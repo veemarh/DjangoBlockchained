@@ -23,5 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("accounts.urls")),
+    # Два пути для одного приложения выглядят костыльно, но это норма
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    # Есть шанс, что этот путь должен находиться не здесь, но я еще подумаю над этим
 ]
