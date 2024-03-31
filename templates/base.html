@@ -1,3 +1,4 @@
+{% load i18n %}
 <!-- templates/base.html -->
 {% load static %}
 <html>
@@ -10,11 +11,18 @@
         <div class="nav-left">
             <h1><a href="{% url 'home' %}">homepage</a></h1>
         </div>
-    
+
         <div class="nav-right">
             {% if user.is_authenticated %}
                 <p>Hi {{ user.username }}!</p>
-                <p><a href="{% url 'logout' %}">Log out</a></p>
+                <form id="logout-form" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">{% translate "Log out" %}</button>
+                </form>
+{#                Честно говоря, у меня жутко горит, что здесь не обычный href, а уродливая кнопка. #}
+{#                Почему додики из стандарта Django решили, что logout может выполняться только #}
+{#                с помощью post, а get в данном случае необходимо запретить. #}
+{#                Поэтому оставляю эту уродскую кнопку на совесть фронтендерам))) #}
             {% else %}
                 <p>You are not logged in.</p>
                 <a href="{% url 'login' %}">Log In</a> |
