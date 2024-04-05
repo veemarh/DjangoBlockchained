@@ -3,35 +3,60 @@
 {% load static %}
 <html>
 <head>
+    {# кодировка текста #}
+    <meta charset="utf-8">
+    {# ширина документа по ширине экрана #}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DjangoBlockchained</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-<div>
-    <header>
-        <div class="nav-left">
-            <h1><a href="{% url 'home' %}">homepage</a></h1>
-        </div>
-
-        <div class="nav-right">
-            {% if user.is_authenticated %}
-                <p>Hi {{ user.username }}!</p>
-                <form id="logout-form" method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">{% translate "Log out" %}</button>
-                </form>
-{#                Честно говоря, у меня жутко горит, что здесь не обычный href, а уродливая кнопка. #}
-{#                Почему додики из стандарта Django решили, что logout может выполняться только #}
-{#                с помощью post, а get в данном случае необходимо запретить. #}
-{#                Поэтому оставляю эту уродскую кнопку на совесть фронтендерам))) #}
-            {% else %}
-                <p>You are not logged in.</p>
-                <a href="{% url 'login' %}">Log In</a> |
-                <a href="{% url 'signup' %}">Sign Up</a>
-            {% endif %}
-        </div>
-    </header>
-    {% block content %}
-    {% endblock content %}
+{# full-content-wrapper и variable-content-wrapper #}
+{# чтобы футер оставался внизу страницы, даже в отсутствие контента #}
+<div class="full-content-wrapper">
+    <div class="variable-content-wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li class="header-menu-link">
+                        <a href="{% url 'home' %}">Homepage</a>
+                    </li>
+                    <li class="header-menu-link">
+                        <a href="/">Teachers</a>
+                    </li>
+                    <li class="header-menu-link">
+                        <a href="/">About Us</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-right">
+                {% if user.is_authenticated %}
+                    {# <p>Hi {{ user.username }}!</p> #}
+                    <form id="logout-form" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button id="nav-logout-button" type="submit">
+                            {% translate "Logout" %}
+                        </button>
+                    </form>
+                {% else %}
+                    {# <p>You are not logged in.</p> #}
+                    <div class="header-menu-link">
+                        <a href="{% url 'login' %}">Log In</a>
+                    </div>
+                    <div class="header-menu-link signup-button">
+                        <a href="{% url 'signup' %}">Sign Up</a>
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock content %}
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2024 Django Blockchained. Все права защищены.</p>
+    </footer>
 </div>
 </body>
 </html>
