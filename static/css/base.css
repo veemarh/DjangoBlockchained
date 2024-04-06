@@ -1,91 +1,294 @@
-/* базовый css шапки и подвала */
-/* цвета, шрифты, отступы, границы можно спокойно менять, ничего сломаться не должно */
-/* блоки, которые лучше не трогать: *, html/body, .full-content-wrapper, .variable-content-wrapper */
-/* замечательную кнопку logout нужно настраивать отдельно */
-
-* {
-    margin: 0;
-    padding: 0;
+*, *:after, *:before {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
-html,
-body {
-    height: 100%;
-}
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
-}
-.full-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-.variable-content-wrapper {
-    flex: 1 0 auto;
-}
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-}
-nav ul,
-.nav-right {
-    display: flex;
-}
-nav ul {
+ul {
+    vertical-align: middle;
     list-style: none;
 }
-.header-menu-link {
-    margin: 0 10px;
-}
-header a {
-    color: #fff;
+a {
     text-decoration: none;
+    outline: none;
 }
-.signup-button a {
-    padding: 5px 10px;
-    border: 1px solid #fff;
-    border-radius: 5px;
+img {
+    display: block;
+    width: 100%;
 }
-#nav-logout-button {
-    color: #fff;
-    background-color: transparent;
-    border: none;
-    font-size: 16px;
-    margin: 0 10px;
+h1, h2, h3, h4, h5, h6 {
+    font-family: arial, sans-serif;
+    font-weight: normal;
+    letter-spacing: 1px;
 }
-header a,
+a:link,
+#user-icon span,
+#nav-toggle,
+#nav-toggle span,
 #nav-logout-button {
     transition: 0.3s;
 }
-header a:hover,
-#nav-logout-button:hover {
-    cursor: pointer;
-    color: #c9c8c2;
+body {
+    font-family: 'Open Sans', arial, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    color: #333;
+    background: #f4f4f4;
 }
-.signup-button a:hover {
-    border-color: #c9c8c2;
+/* очистка потока для всех контейнеров */
+header:after, .header-nav:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+/* ширина контейнера */
+.header-nav {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 15px;
+}
+header {
+    width: 100%;
+    display: block;
+    background: #333;
+    padding: 10px 0;
+    margin-bottom: 30px;
+    position: relative;
+}
+header a {
+    color: #fff;
+    line-height: 30px;
+}
+header a:hover {
+    color: #94938a;
+}
+header li:last-child {
+    margin-right: 0;
+}
+nav > ul > li {
+    display: inline-block;
+    margin-right: 30px;
+}
+/* левая часть шапки */
+#nav-left {
+    float: left;
+}
+/* правая часть шапки */
+#nav-right {
+    float: right;
+}
+/* кнопка переключения меню слева, появляется при узком экране */
+#nav-toggle {
+    display: none;
+    float: left;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff;
+    text-align: center;
+    cursor: pointer;
+}
+#nav-toggle span {
+    line-height: 30px;
+    color: #fff;
+}
+/* иконка пользователя */
+#user-icon {
+    text-align: center;
+    cursor: pointer;
+}
+#user-icon span {
+    border: 1px solid #fff;
+    color: #fff;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+}
+#nav-toggle:hover {
+    border-color: #94938a;
+}
+#user-icon:hover span {
+    border-color: #94938a;
+}
+#user-icon:hover span,
+#nav-toggle:hover span {
+    color: #94938a;
+}
+
+/* меню пользователя, по умолчанию скрыто */
+/* возникает при нажатии на иконку */
+#header-user-menu {
+    display: none;
+    position: absolute;
+    inset: 60px 20px auto auto;
+    background-color: #f4f4f4;
+    min-width: 200px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+#header-user-menu li {
+    padding: 10px 15px;
+}
+#header-user-menu a {           /* потом поправлю меню, чтобы кликабельным было все поле */
+    width: 100%;
+    color: #333;
+}
+#signup-link,
+#nav-logout-button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    line-height: 30px;
+}
+#signup-link a {
+    border: 1px solid #fff;
+    padding: 5px 10px;
     border-radius: 5px;
 }
-main {
-    padding: 20px 30px;
+#signup-link:hover a {
+    border-color: #94938a;
+}
+#nav-logout-button {
+    color: #333;
+}
+#nav-logout-button:hover {
+    color: #94938a;
+    cursor: pointer;
+}
+#header-user-menu li:first-of-type {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+#header-user-menu li:last-of-type {
+    border-top: 1px solid rgba(0,0,0,0.2);
+}
+#header-user-menu li:hover {
+    background-color: #ddd;
+}
+#header-user-menu li:first-of-type:hover {
+    border-radius: 10px 10px 0 0;
+}
+#header-user-menu li:last-of-type {
+    border-radius: 0 0 10px 10px;
+}
+#header-user-menu li a:hover {
+    color: #94938a;
+}
+
+/* компактный */
+@media (max-width: 500px) {
+    /* кнопка навигации */
+    #nav-toggle {
+        display: block;
+    }
+    /* меню навигации убрано под шапкой слева */
+    #nav-left {
+        display: none;
+        position: absolute;
+        inset: 60px auto auto 20px;
+        min-width: 150px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+        background: #333;
+    }
+    #nav-left li {
+        width: 100%;
+        display: block;
+        padding: 10px 15px;
+        margin: 0;
+    }
+    #nav-left li:hover {
+        background-color: #94938a;
+    }
+    #nav-left li a:hover {
+        color: #ddd;
+    }
+    #nav-left li:first-of-type:hover {
+        border-radius: 10px 10px 0 0;
+    }
+    #nav-left li:last-of-type {
+        border-radius: 0 0 10px 10px;
+    }
+    footer span {
+        display: none;
+    }
+}
+
+
+/* формы login, signup */
+main form[method='post'] {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 30px;
+    margin: 20px 0 0;
+    background-color: #f4f4f4;
+    box-shadow: 0 3px 16px 0 rgba(0,0,0,0.2);
+    /* border: 1px solid #333; */
+    border-radius: 10px;
+    width: 300px;
+    max-width: 90%;
+}
+main form[method='post'] p {
+    display: flex;
     flex-direction: column;
 }
+main form[method='post'] p input {
+    order: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #333;
+    padding: 5px 0;
+    font-size: 16px;
+}
+main form[method='post'] p label {
+    order: 2;
+    margin: 5px 0 0;
+    pointer-events: none;
+    font-size: 14px;
+    color: rgba(51, 51, 51, 0.75);
+}
+main form[method='post'] button[type='submit'] {
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px;
+    transition: 0.3s;
+}
+main form[method='post'] button[type='submit']:hover,
+main form[method='post'] button[type='submit']:focus {
+    background-color: #94938a;
+}
+main .helptext {
+    display: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #f4f4f4 inset !important;
+}
+
+main {
+    padding: 15px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    min-height: calc(100vh - 160px);
+}
+
 footer {
     background: #333;
     color: #fff;
     text-align: center;
+    line-height: 30px;
+    margin: 30px 0 0;
     padding: 10px 0;
     bottom: 0;
     width: 100%;
-    flex: 0 0 auto;
+    height: 50px;
 }
