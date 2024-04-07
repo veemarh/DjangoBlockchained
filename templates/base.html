@@ -34,8 +34,7 @@
                         <span></span>
                     </div>
                     <script>
-                        let initials = document.querySelector('#user-icon span');
-                        initials.textContent = '{{ user.username }}'[0];
+                        document.querySelector('#user-icon span').textContent = '{{ user.username }}'[0];
                     </script>
                     <ul id="header-user-menu" class="header-dropdown-content">
                         <li>
@@ -65,9 +64,7 @@
                     <a href="{% url 'login' %}">Log In</a>
                 </li>
                 <li>
-                    <button id="signup-link">
-                        <a href="{% url 'signup' %}">Sign Up</a>
-                    </button>
+                    <a id="signup-link" href="{% url 'signup' %}">Sign Up</a>
                 </li>
             {% endif %}
         </ul>

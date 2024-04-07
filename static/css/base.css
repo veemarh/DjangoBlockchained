@@ -22,10 +22,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 a:link,
 #user-icon span,
-#nav-toggle,
 #nav-toggle span,
-#nav-logout-button {
+button {
     transition: 0.3s;
+}
+button {
+    cursor: pointer;
 }
 body {
     font-family: 'Open Sans', arial, sans-serif;
@@ -34,19 +36,21 @@ body {
     color: #333;
     background: #f4f4f4;
 }
-/* очистка потока для всех контейнеров */
+
+/* очистка потока */
 header:after, .header-nav:after {
     content: '';
     display: table;
     clear: both;
 }
-/* ширина контейнера */
+/* ширина контейнера шапки */
 .header-nav {
     margin: 0 auto;
     width: 100%;
     max-width: 1440px;
     padding: 0 15px;
 }
+/* база шапки */
 header {
     width: 100%;
     display: block;
@@ -62,40 +66,34 @@ header a {
 header a:hover {
     color: #94938a;
 }
-header li:last-child {
-    margin-right: 0;
-}
 nav > ul > li {
     display: inline-block;
     margin-right: 30px;
 }
-/* левая часть шапки */
+nav > ul > li:last-child {
+    margin-right: 0;
+}
 #nav-left {
     float: left;
 }
-/* правая часть шапки */
 #nav-right {
     float: right;
 }
-/* кнопка переключения меню слева, появляется при узком экране */
-#nav-toggle {
-    display: none;
-    float: left;
-    width: 30px;
-    height: 30px;
-    border: 1px solid #fff;
-    text-align: center;
-    cursor: pointer;
-}
-#nav-toggle span {
-    line-height: 30px;
-    color: #fff;
-}
-/* иконка пользователя */
+
+/* переключатель навигатора слева шапки */
+/* иконка пользователя справа шапки */
+#nav-toggle,
 #user-icon {
     text-align: center;
     cursor: pointer;
 }
+/* переключатель навигатора по умолчанию скрыт, только для узких экранов */
+/* потом сделаю его адекватным меню-гамбургером, пока что так */
+#nav-toggle {
+    display: none;
+    float: left;
+}
+#nav-toggle span,
 #user-icon span {
     border: 1px solid #fff;
     color: #fff;
@@ -103,17 +101,14 @@ nav > ul > li {
     width: 30px;
     height: 30px;
     line-height: 30px;
+}
+#user-icon span {
     border-radius: 50%;
-}
-#nav-toggle:hover {
-    border-color: #94938a;
-}
-#user-icon:hover span {
-    border-color: #94938a;
 }
 #user-icon:hover span,
 #nav-toggle:hover span {
     color: #94938a;
+    border-color: #94938a;
 }
 
 /* меню пользователя, по умолчанию скрыто */
@@ -121,63 +116,61 @@ nav > ul > li {
 #header-user-menu {
     display: none;
     position: absolute;
-    inset: 60px 20px auto auto;
-    background-color: #f4f4f4;
+    inset: 52px 15px auto auto;
     min-width: 200px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
     border-radius: 10px;
+    background: #f4f4f4;
 }
-#header-user-menu li {
+#header-user-menu a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #333;
     padding: 10px 15px;
 }
-#header-user-menu a {           /* потом поправлю меню, чтобы кликабельным было все поле */
-    width: 100%;
-    color: #333;
+#header-user-menu li:first-child a {
+    border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 10px 10px 0 0;
 }
-#signup-link,
+#header-user-menu button {
+    border-top: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 0 0 10px 10px;
+}
+#header-user-menu a:hover,
+#header-user-menu button:hover {
+    color: #94938a;
+    background-color: #ddd;
+}
+
+/* кнопка выхода из системы внутри меню пользователя */
 #nav-logout-button {
-    background-color: transparent;
     border: none;
+    background-color: transparent;
+    color: #333;
+    width: 100%;
+    text-align: left;
     font-size: 16px;
+    padding: 10px 15px;
     line-height: 30px;
 }
-#signup-link a {
+
+/* ссылка на форму входа в систему */
+#signup-link {
     border: 1px solid #fff;
     padding: 5px 10px;
     border-radius: 5px;
 }
-#signup-link:hover a {
+#signup-link:hover {
     border-color: #94938a;
 }
-#nav-logout-button {
-    color: #333;
-}
-#nav-logout-button:hover {
-    color: #94938a;
-    cursor: pointer;
-}
-#header-user-menu li:first-of-type {
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-}
-#header-user-menu li:last-of-type {
-    border-top: 1px solid rgba(0,0,0,0.2);
-}
-#header-user-menu li:hover {
-    background-color: #ddd;
-}
-#header-user-menu li:first-of-type:hover {
-    border-radius: 10px 10px 0 0;
-}
-#header-user-menu li:last-of-type {
-    border-radius: 0 0 10px 10px;
-}
-#header-user-menu li a:hover {
-    color: #94938a;
-}
 
-/* компактный */
-@media (max-width: 500px) {
-    /* кнопка навигации */
+/* мобильный */
+/* новое окно навигации прежде всего */
+/* таким убогим я его не оставлю, но это позже */
+/* есть еще один маленький баг, связанный с этим окном, но это тоже потом */
+@media (max-width: 525px) {
+    /* возникает переключатель навигации */
     #nav-toggle {
         display: block;
     }
@@ -185,46 +178,47 @@ nav > ul > li {
     #nav-left {
         display: none;
         position: absolute;
-        inset: 60px auto auto 20px;
+        inset: 52px auto auto 15px;
         min-width: 150px;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
         border-radius: 10px;
         background: #333;
     }
     #nav-left li {
-        width: 100%;
         display: block;
+        margin-right: 0;
+    }
+    #nav-left a {
+        display: block;
+        width: 100%;
+        height: 100%;
         padding: 10px 15px;
-        margin: 0;
     }
-    #nav-left li:hover {
-        background-color: #94938a;
+    #nav-left a:hover {
+        background-color: rgba(148, 147, 138, 0.15);
     }
-    #nav-left li a:hover {
-        color: #ddd;
-    }
-    #nav-left li:first-of-type:hover {
+    #nav-left li:first-child a {
         border-radius: 10px 10px 0 0;
     }
-    #nav-left li:last-of-type {
+    #nav-left li:last-child a {
         border-radius: 0 0 10px 10px;
     }
+    /* не имеет отношения к шапке, но футер тоже нужно урезать */
     footer span {
         display: none;
     }
 }
 
-
 /* формы login, signup */
+/* когда будет разделение на учителей и студентов, переделаю форму регистрации */
 main form[method='post'] {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 20px 30px;
-    margin: 20px 0 0;
+    margin: 20px 0 20px;
     background-color: #f4f4f4;
-    box-shadow: 0 3px 16px 0 rgba(0,0,0,0.2);
-    /* border: 1px solid #333; */
+    box-shadow: 0 3px 16px 0 rgba(51, 51, 51, 0.3);
     border-radius: 10px;
     width: 300px;
     max-width: 90%;
@@ -238,7 +232,7 @@ main form[method='post'] p input {
     background: transparent;
     border: none;
     outline: none;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.3);
     padding: 5px 0;
     font-size: 16px;
 }
@@ -256,7 +250,6 @@ main form[method='post'] button[type='submit'] {
     border-radius: 20px;
     font-size: 16px;
     padding: 10px;
-    transition: 0.3s;
 }
 main form[method='post'] button[type='submit']:hover,
 main form[method='post'] button[type='submit']:focus {
