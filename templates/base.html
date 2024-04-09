@@ -13,10 +13,12 @@
 <body>
 <header>
     <nav class="header-nav">
-        <div onclick="OpenUserMenu('nav-left')" id="nav-toggle" class="header-dropdown-button">
-            <span>m</span>
+        <div id="nav-toggle">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <ul id="nav-left" class="header-dropdown-content">
+        <ul id="nav-left">
             <li>
                 <a href="{% url 'home' %}">Homepage</a>
             </li>
@@ -30,13 +32,13 @@
         <ul id="nav-right">
             {% if user.is_authenticated %}
                 <li>
-                    <div onclick="OpenUserMenu('header-user-menu')" id="user-icon" class="header-dropdown-button">
+                    <div id="user-icon">
                         <span></span>
                     </div>
                     <script>
                         document.querySelector('#user-icon span').textContent = '{{ user.username }}'[0];
                     </script>
-                    <ul id="header-user-menu" class="header-dropdown-content">
+                    <ul id="header-user-menu">
                         <li>
                             <a href="/">Your profile</a>
                         </li>
