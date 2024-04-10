@@ -6,4 +6,10 @@
         {{ form.as_p }}
         <button type="submit">Log In</button>
     </form>
+    <script>
+        document.querySelector('label[for="id_username"]').textContent = 'Username';
+        document.querySelector('label[for="id_password"]').textContent = 'Password';
+    </script>
+    {# локальный скрипт для формы, html не нашла #}
+    {# возможно, еще пригодится, для signup тоже #}
 {% endblock content %}

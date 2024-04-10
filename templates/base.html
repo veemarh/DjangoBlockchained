@@ -3,35 +3,82 @@
 {% load static %}
 <html>
 <head>
+    {# кодировка текста #}
+    <meta charset="utf-8">
+    {# ширина документа по ширине экрана #}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DjangoBlockchained</title>
+    <link rel="stylesheet" href="{% static 'css/based.css' %}">
 </head>
 <body>
-<div>
-    <header>
-        <div class="nav-left">
-            <h1><a href="{% url 'home' %}">homepage</a></h1>
+<header>
+    <nav class="header-nav">
+        <div id="nav-toggle">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-
-        <div class="nav-right">
+        <ul id="nav-left">
+            <li>
+                <a href="{% url 'home' %}">Homepage</a>
+            </li>
+            <li>
+                <a href="/">Teachers</a>
+            </li>
+            <li>
+                <a href="/">About Us</a>
+            </li>
+        </ul>
+        <ul id="nav-right">
             {% if user.is_authenticated %}
-                <p>Hi {{ user.username }}!</p>
-                <form id="logout-form" method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">{% translate "Log out" %}</button>
-                </form>
-{#                Честно говоря, у меня жутко горит, что здесь не обычный href, а уродливая кнопка. #}
-{#                Почему додики из стандарта Django решили, что logout может выполняться только #}
-{#                с помощью post, а get в данном случае необходимо запретить. #}
-{#                Поэтому оставляю эту уродскую кнопку на совесть фронтендерам))) #}
+                <li>
+                    <div id="user-icon">
+                        <span></span>
+                    </div>
+                    <script>
+                        document.querySelector('#user-icon span').textContent = '{{ user.username }}'[0];
+                    </script>
+                    <ul id="header-user-menu">
+                        <li>
+                            <a href="/">Your profile</a>
+                        </li>
+                        <li>
+                            <a href="/">Your teachers</a>
+                        </li>
+                        <li>
+                            <a href="/">Your schedule</a>
+                        </li>
+                        <li>
+                            <a href="/">Your homework</a>
+                        </li>
+                        <li>
+                            <form id="logout-form" method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button id="nav-logout-button" type="submit">
+                                    {% translate "Logout" %}
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
             {% else %}
-                <p>You are not logged in.</p>
-                <a href="{% url 'login' %}">Log In</a> |
-                <a href="{% url 'signup' %}">Sign Up</a>
+                <li>
+                    <a href="{% url 'login' %}">Log In</a>
+                </li>
+                <li>
+                    <a id="signup-link" href="{% url 'signup' %}">Sign Up</a>
+                </li>
             {% endif %}
-        </div>
-    </header>
+        </ul>
+    </nav>
+</header>
+<main>
     {% block content %}
     {% endblock content %}
-</div>
+</main>
+<footer>
+    <p>&copy; 2024 Django Blockchained.<span> Все права защищены.</span></p>
+</footer>
+<script type="text/javascript" src={% static 'scripts/main.js' %}></script>
 </body>
 </html>
