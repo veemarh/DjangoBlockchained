@@ -10,8 +10,8 @@ class StudentUserCreationForm(UserCreationForm):
             "first_name",
             "second_name",
             "third_name",
-            "phone_number" "email",
-            "age",
+            "phone_number",
+            "email",
         )
 
 
@@ -24,7 +24,33 @@ class StudentUserChangeForm(UserChangeForm):
             # "third_name",
             "phone_number",
             "school_name",
-            "birth_date" "email",
-            "age",
+            "birth_date",
+            "email",
         )
 
+
+class TeacherUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm):
+        model = TeacherUser
+        fields = (
+            "first_name",
+            "second_name",
+            "third_name",
+            "phone_number",
+            "email",
+            "birth_date",
+        )
+
+
+class TeacherUserChangeForm(UserChangeForm):
+    class Meta:
+        model = StudentUser
+        fields = (
+            # "first_name",
+            # "second_name", Допустим препод не может поменять свое имя?
+            # "third_name",
+            "phone_number",
+            "school_name",
+            "birth_date",
+            "email",
+        )
