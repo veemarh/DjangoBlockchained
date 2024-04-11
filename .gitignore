@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 /db.sqlite3
 **/__pycache__/
-=======
 .venv/
-__pycache__/
-*.sqlite3
-/venv/
->>>>>>> 6493f80359ba15cbbaaf86cac5c9acea771bf031
+
+
