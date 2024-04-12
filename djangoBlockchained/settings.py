@@ -126,7 +126,10 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "accounts.User"
+
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+# SIGNUP_REDIRECT_URL = "home"
 # Эти волшебные переменные показывают, куда именно попадет пользователь,
 # когда сделает log in или logaut. Пока тут будет home, но потом мб изменим

@@ -1,56 +1,66 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.db import transaction
 
-from .models import StudentUser, TeacherUser
+from .models import Student, Subject, User
 
 
-class StudentUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm):
-        model = StudentUser
+class StudentCreationForm(UserCreationForm):
+    interests = forms.ModelMultipleChoiceField(
+        queryset=Subject.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True,
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = User
         fields = (
             "first_name",
             "second_name",
-            "third_name",
-            "phone_number",
             "email",
+            "phone_number",
         )
 
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.is_student = True
+        user.save()
+        student = Student.objects.create(user=user)
+        student.interests.add(*self.cleaned_data.get("interests"))
+        return user
 
-class StudentUserChangeForm(UserChangeForm):
+
+class TeacherCreationForm(UserCreationForm):
+    interests = forms.ModelMultipleChoiceField(
+        queryset=Subject.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True,
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+
+    @transaction.atomic
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_teacher = True
+        if commit:
+            user.save()
+        return user
+
+
+class StudentInterestsForm(forms.ModelForm):
     class Meta:
-        model = StudentUser
-        fields = (
-            # "first_name",
-            # "second_name", Допустим студент не может поменять свое имя?
-            # "third_name",
-            "phone_number",
-            "school_name",
-            "birth_date",
-            "email",
-        )
+        model = Student
+        fields = ("interests",)
+        widgets = {"interests": forms.CheckboxSelectMultiple}
 
 
-class TeacherUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm):
-        model = TeacherUser
-        fields = (
-            "first_name",
-            "second_name",
-            "third_name",
-            "phone_number",
-            "email",
-            "birth_date",
-        )
-
-
-class TeacherUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(UserChangeForm):
     class Meta:
-        model = StudentUser
+        model = User
         fields = (
-            # "first_name",
-            # "second_name", Допустим препод не может поменять свое имя?
-            # "third_name",
-            "phone_number",
-            "school_name",
-            "birth_date",
+            "username",
             "email",
         )

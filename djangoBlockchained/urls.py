@@ -19,11 +19,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from accounts.views import TeacherSignUpView, StudentSignUpView, SignUpView
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("accounts.urls")),
-    # Два пути для одного приложения выглядят костыльно, но это норма
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
-    # Есть шанс, что этот путь должен находиться не здесь, но я еще подумаю над этим
+    path("accounts/signup/", SignUpView.as_view(), name="signup"),
+    path(
+        "accounts/signup/student/", StudentSignUpView.as_view(), name="student_signup"
+    ),
+    path(
+        "accounts/signup/teacher/", TeacherSignUpView.as_view(), name="teacher_signup"
+    ),
 ]
