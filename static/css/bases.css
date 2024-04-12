@@ -46,7 +46,7 @@ header:after, .header-nav:after {
 .header-nav {
     margin: 0 auto;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 16px;
     max-width: 1280px;
 }
 /* база шапки */
@@ -88,7 +88,7 @@ nav ul:first-of-type li:first-of-type a {
     position: absolute;
     cursor: pointer;
     top: 10px;
-    left: 15px;
+    left: 16px;
     z-index: 9999;
     width: 30px;
     height: 30px;
@@ -126,8 +126,8 @@ nav ul:first-of-type li:first-of-type a {
 #header-user-menu {
     visibility: hidden;
     opacity: 0;
-    position: absolute;
-    inset: 52px 15px auto auto;
+    position: fixed;
+    justify-self: start;
     min-width: 200px;
     box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
     border-radius: 10px;
@@ -144,7 +144,7 @@ nav ul:first-of-type li:first-of-type a {
     width: 100%;
     height: 100%;
     color: #333;
-    padding: 10px 15px;
+    padding: 10px 16px;
 }
 #header-user-menu li:first-child a {
     border-bottom: 1px solid rgba(51, 51, 51, 0.3);
@@ -168,7 +168,7 @@ nav ul:first-of-type li:first-of-type a {
     width: 100%;
     text-align: left;
     font-size: 16px;
-    padding: 10px 15px;
+    padding: 10px 16px;
     line-height: 30px;
 }
 
@@ -186,7 +186,7 @@ nav ul:first-of-type li:first-of-type a {
 /* под навигацией остается много места */
 /* туда можно поместить любую содержательную инфу */
 /* можно ссылки на ДЗ, можно занятия препода, можно банально скопировать сюда футер, как на гитхабе */
-@media (max-width: 560px) {
+@media (max-width: 576px) {
     /* возникает переключатель навигации */
     #nav-toggle {
         display: block;
@@ -211,7 +211,7 @@ nav ul:first-of-type li:first-of-type a {
     #nav-left a {
         display: block;
         width: 100%;
-        padding: 10px 15px;
+        padding: 10px 16px;
     }
     #nav-left a:hover {
         background-color: rgba(148, 147, 138, 0.15);
@@ -225,10 +225,6 @@ nav ul:first-of-type li:first-of-type a {
     #nav-left.active {
         left: 0;
         box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
-    }
-    /* не имеет отношения к шапке, но футер тоже нужно урезать */
-    footer span {
-        display: none;
     }
 }
 
@@ -304,30 +300,4 @@ footer {
     bottom: 0;
     width: 100%;
     height: 50px;
-}
-
-section {
-    width: 100%;
-    max-width: 1280px;
-    height: 100vb;
-    border: 1px solid #333;
-    padding: 0 15px;
-}
-#billboard {
-    display: flex;
-    height: calc(100vb - 50px);
-    flex-wrap: wrap;
-}
-#usp {
-    background-color: #dddddd;
-    flex: 1 0 400px;
-    align-content: stretch;
-}
-#usp div {
-    width: 100%;
-    background-color: #f4f4f4;
-}
-#poster {
-    background-color: #94938a;
-    flex: 1 0 400px;
 }
