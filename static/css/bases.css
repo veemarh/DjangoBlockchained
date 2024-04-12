@@ -83,22 +83,82 @@ nav ul:first-of-type li:first-of-type a {
 }
 
 /* переключатель навигатора по умолчанию скрыт, только для узких экранов */
+/* конкретно эта штука, скорее, просто кликабельная область экрана */
 #nav-toggle {
     display: none;
     position: absolute;
-    cursor: pointer;
-    top: 10px;
+    margin: auto;
+    top: 0;
+	bottom: 0;
     left: 16px;
+    cursor: pointer;
     z-index: 9999;
     width: 30px;
-    height: 30px;
+    height: 27px;
 }
-#nav-toggle div {
+/* внешняя оболочка не тыкабельная */
+/* прозрачный слой поверх кнопки */
+#nav-toggle > div {
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    position: absolute;
+    width: 30px;
+    height: 27px;
+    pointer-events: none;
+}
+#nav-toggle > div.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .12s, visibility .12s;
+}
+/* переключатель по умолчанию */
+#toggle-hamburger {
+    justify-content: space-around;
+    flex-direction: column;
+}
+#toggle-hamburger div {
     height: 1px;
-    width: 100%;
+    width: 30px;
+    background-color: #fff;
+}
+/* переключатель при наведенной мыши */
+#toggle-arrow {
+    justify-content: center;
+}
+#toggle-arrow > div {
+    align-content: center;
+}
+#toggle-arrow > div > div {
+    height: 1px;
+    width: 12px;
     margin: 7px 0;
     background-color: #fff;
-    pointer-events: none;
+}
+#toggle-arrow > div > div:first-of-type {
+    transform: rotate(45deg);
+}
+#toggle-arrow > div > div:last-of-type {
+    transform: rotate(-45deg);
+}
+/* при зафиксированном окне навигации */
+#toggle-cross {
+    justify-content: center;
+    align-items: center;
+}
+#toggle-cross::before,
+#toggle-cross::after {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: 1px;
+    height: 24px;
+}
+#toggle-cross::after {
+    transform: rotate(45deg);
+}
+#toggle-cross::before {
+    transform: rotate(-45deg);
 }
 
 /* иконка пользователя справа шапки */
