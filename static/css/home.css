@@ -1,0 +1,164 @@
+/* секция */
+/* самодостаточный блок на странице, со своей темой и задачей */
+section {
+    width: 100%;
+    max-width: 1280px;
+}
+/* самый первый блок любой секции -- оболочка внутреннего контента */
+/* здесь задается максимальная ширина содержимого */
+/* прежде всего нужна для адаптации к разным устройствам */
+/* гланые изменения при смене девайса происходят тут */
+.homepage-content-wrapper {
+    display: flex;
+    margin: auto;
+    padding: 0 16px;
+    max-width: 1140px;
+}
+/* вложенный в оболочку блок с разделителями */
+/* собственно блок с содержанием */
+/* и отделять его нужно собственно от других блоков с содержанием */
+.homepage-content-spacing {
+    padding: 16px;
+}
+/* разделитель разделов */
+.homepage-spacer {
+    width: 100%;
+    height: 48px;
+}
+/* адаптация */
+@media (max-width: 1140px) {
+    .homepage-content-wrapper {
+        max-width: 992px;
+    }
+}
+@media (max-width: 992px) {
+    .homepage-content-wrapper {
+        max-width: 768px;
+    }
+}
+@media (max-width: 768px) {
+    .homepage-content-wrapper {
+        max-width: 576px;
+    }
+}
+
+/* первая секция домашней страницы */
+/* титульная */
+/* задаю пропорциональный размер блоков */
+#usp,
+#poster {
+    flex: 1 0;
+    align-content: center;
+}
+#usp {
+    padding-top: 128px;
+    padding-bottom: 128px;
+}
+#poster {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+/* допишу, когда найду картинку */
+#poster div {
+    height: 350px;
+    background-color: #94938a;
+}
+
+/* вторая секция -- кого и как учат на платформе, услуги */
+#services .homepage-content-wrapper {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.proposition {
+    flex: 1 0;
+    margin: 16px 16px 0;
+    min-width: 240px;
+}
+.proposition-img {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background-color: #333333;
+}
+
+/* третья секция -- о работе преподавателей на платформе */
+#tutors-work {
+    flex: 1;
+    align-content: center;
+}
+#tutors-picture {
+    flex: 2;
+}
+#tutors-picture > div {
+    width: 100%;
+    height: 350px;
+    background-color: #94938a;
+}
+
+/* четвертая секция -- преимущества нашей платформы */
+/* вспоминаю презентации с опд с трепетом и теплом */
+#feature-list,
+#feature-addition {
+    flex: 1 0;
+    min-width: 360px;
+}
+.feature-point {
+    display: flex;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.feature-point:last-child {
+    margin-bottom: 0;
+}
+.feature-icon {
+    min-width: 32px;
+    height: 32px;
+    margin-right: 32px;
+    background-color: #333;
+}
+#feature-addition > div {
+    height: 100%;
+    width: 100%;
+    background-color: #94938a;
+}
+
+/* отдельные моменты адаптации разделов */
+@media (max-width: 992px) {
+    #billboard .homepage-content-wrapper,
+    #features .homepage-content-wrapper,
+    #about .homepage-content-wrapper {
+        flex-direction: column;
+    }
+    #usp {
+        padding-bottom: 16px;
+    }
+    #poster {
+        padding-top: 16px;
+        padding-bottom: 32px;
+    }
+    .proposition {
+        max-width: 336px;
+    }
+    #feature-addition {
+        display: none;
+    }
+    #tutors-work {
+        order: 1;
+    }
+    #tutors-picture {
+        order: 2;
+    }
+}
+@media (max-width: 768px) {
+    #services .homepage-content-wrapper {
+        flex-direction: column;
+    }
+    .proposition {
+        max-width: none;
+    }
+    .proposition,
+    #feature-list {
+        min-width: 0;
+    }
+}
