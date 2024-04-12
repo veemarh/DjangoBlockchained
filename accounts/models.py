@@ -25,12 +25,12 @@ class User(AbstractUser):
     is_student = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
 
-    first_name = models.CharField(max_length=15, null=False, blank=False)
-    second_name = models.CharField(max_length=15, null=False, blank=False)
+    first_name = models.CharField(max_length=15, null=True, blank=True)
+    second_name = models.CharField(max_length=15, null=True, blank=True)
     third_name = models.CharField(max_length=15, null=True, blank=True)
 
     birth_date = models.DateField(null=True, blank=True)
-    phone_number = models.CharField(max_length=10, null=False, blank=False)
+    phone_number = models.CharField(max_length=10, null=True, blank=True)
     email = models.EmailField()
 
 
