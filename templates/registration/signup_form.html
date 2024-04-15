@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
-
+{% block header %}{% endblock header %}
 {% block content %}
-  <div class="row">
-    <div class="col-md-8 col-sm-10 col-12">
-      <h2>Sign up as a {{ user_type }}</h2>
-      <form method="post">{% csrf_token %}
-          <input type="hidden" name="next" value="{{ next }}">
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Sign up</button>
-    </form>
+    <div class="row">
+        <div class="col-md-8 col-sm-10 col-12">
+            <div id="signup-form-wrapper" class="authorization-form-wrapper">
+                <div id="signup-info-box">
+                    {# здесь будет h2 #}
+                    {# и кнопка возвращения на страницу выбора роли #}
+                </div>
+                <form method="post" class="form-container">
+                    <h2>Sign up as a {{ user_type }}</h2>
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Sign up</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 {% endblock %}
+{% block footer %}{% endblock footer %}

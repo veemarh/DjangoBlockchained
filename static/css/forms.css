@@ -1,0 +1,145 @@
+/* расположение формы на странице */
+.authorization-form-wrapper {
+    padding-top: 64px;
+    margin: 0 auto;
+    max-width: 90%;
+}
+.authorization-form-wrapper h2 {
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+/* внутренняя структура */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 3px 16px 0 rgba(51, 51, 51, 0.3);
+}
+
+/* выбор роли */
+#signup-wrapper {
+    width: 640px;
+}
+#signup-wrapper p {
+    text-align: center;
+}
+#select-user-type {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+#select-user-type a {
+    width: 150px;
+    height: 200px;
+    border: 1px solid #94938a;
+    border-radius: 5px;
+    color: #333;
+    margin: 16px;
+    padding-bottom: 8px;
+    text-align: center;
+    align-content: end;
+}
+#select-user-type a:hover {
+    border-color: #333;
+    background-color: #ddd;
+    transform: scale(105%);
+}
+
+/* регистрация и вход в систему */
+#login-wrapper {
+    width: 320px;
+}
+#signup-form-wrapper {
+    width: 960px;
+    display: flex;
+    justify-content: center;
+}
+#login-wrapper p,
+#signup-form-wrapper p {
+    display: flex;
+    flex-direction: column;
+}
+.form-container input {
+    order: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+    padding: 5px 0;
+    font-size: 16px;
+}
+.form-container label {
+    order: 2;
+    margin: 5px 0 0;
+    pointer-events: none;
+    font-size: 14px;
+    color: rgba(51, 51, 51, 0.75);
+}
+.form-container button {
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 16px;
+}
+.form-container button:hover,
+.form-container button:focus {
+    background-color: #94938a;
+}
+.form-container input:active,
+.form-container input:focus {
+    border-bottom-color: #333;
+}
+/* серый блок левее формы signup */
+/* у него есть смысл, но пока что он пустой */
+#signup-info-box {
+    flex-grow: 1;
+    z-index: -1;
+    float: left;
+    border-radius: 5px;
+    min-height: 516px;
+    background-color: #ddd;
+    transform: scale(105%) translateX(32px);
+}
+.helptext {
+    display: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #f4f4f4 inset !important;
+}
+
+@media (max-width: 768px) {
+    #signup-info-box {
+        display: none;
+    }
+}
+
+@media (max-width: 486px) {
+    .form-container {
+        width: 100%;
+        box-shadow: none;
+        padding: 8px;
+    }
+    #select-user-type {
+        justify-content: space-around;
+    }
+    #select-user-type a {
+        width: 144px;
+        height: 192px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    #signup-form-wrapper {
+        width: 320px;
+    }
+}

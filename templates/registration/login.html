@@ -1,15 +1,14 @@
 <!-- templates/registration/login.html -->
 {% extends "base.html" %}
+{% block header %}{% endblock header %}
 {% block content %}
-    <h2>Log In</h2>
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Log In</button>
-    </form>
-    <script>
-        document.querySelector('label[for="id_username"]').textContent = 'Username';
-        document.querySelector('label[for="id_password"]').textContent = 'Password';
-    </script>
-    {# локальный скрипт для формы, html не нашла #}
-    {# возможно, еще пригодится, для signup тоже #}
+    <div id="login-wrapper" class="authorization-form-wrapper">
+        <form method="post" class="form-container">
+            <h2>Log In</h2>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Log In</button>
+        </form>
+    </div>
 {% endblock content %}
+{% block footer %}{% endblock footer %}
