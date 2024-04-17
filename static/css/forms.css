@@ -1,6 +1,6 @@
 /* расположение формы на странице */
 .authorization-form-wrapper {
-    padding-top: 64px;
+    padding: 64px 0;
     margin: 0 auto;
     max-width: 90%;
 }
@@ -55,7 +55,7 @@
     width: 320px;
 }
 #signup-form-wrapper {
-    width: 960px;
+    width: 800px;
     display: flex;
     justify-content: center;
 }
@@ -64,7 +64,7 @@
     display: flex;
     flex-direction: column;
 }
-.form-container input {
+.form-container > p > input {
     order: 1;
     background: transparent;
     border: none;
@@ -73,7 +73,7 @@
     padding: 5px 0;
     font-size: 16px;
 }
-.form-container label {
+.form-container > p > label {
     order: 2;
     margin: 5px 0 0;
     pointer-events: none;
@@ -104,7 +104,6 @@
     z-index: -1;
     float: left;
     border-radius: 5px;
-    min-height: 516px;
     background-color: #ddd;
     transform: scale(105%) translateX(32px);
 }
@@ -142,4 +141,36 @@ input:-webkit-autofill:active {
     #signup-form-wrapper {
         width: 320px;
     }
+}
+
+/* блок выбора интересов */
+#id_interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+#id_interests div {
+    flex: 1 0 160px;
+}
+#id_interests input {
+    visibility: hidden;
+    width: 0;
+}
+#id_interests label {
+    display: flex;
+    height: 64px;
+    background-color: #ddd;
+    border: 1px solid #94938a;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+#id_interests label:hover {
+    background-color: rgba(148, 147, 138, 0.3);
+    border-color: #333;
+}
+#id_interests label:has(input:checked) {
+    background-color: rgba(148, 147, 138, 0.6);
+    border-color: #333;
 }
