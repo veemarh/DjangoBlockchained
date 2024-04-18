@@ -59,9 +59,12 @@
     display: flex;
     justify-content: center;
 }
-#login-wrapper p,
-#signup-form-wrapper p {
+#login-wrapper p {
     display: flex;
+    flex-direction: column;
+}
+#signup-form-wrapper p {
+    display: none;
     flex-direction: column;
 }
 .form-container > p > input {
@@ -121,6 +124,9 @@ input:-webkit-autofill:active {
     #signup-info-box {
         display: none;
     }
+    #signup-form-wrapper .form-container {
+        width: 320px;
+    }
 }
 
 @media (max-width: 486px) {
@@ -138,14 +144,11 @@ input:-webkit-autofill:active {
         margin-right: 0;
         margin-left: 0;
     }
-    #signup-form-wrapper {
-        width: 320px;
-    }
 }
 
 /* блок выбора интересов */
 #id_interests {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 8px;
 }
@@ -160,7 +163,6 @@ input:-webkit-autofill:active {
     display: flex;
     height: 64px;
     background-color: #ddd;
-    border: 1px solid #94938a;
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -168,9 +170,50 @@ input:-webkit-autofill:active {
 }
 #id_interests label:hover {
     background-color: rgba(148, 147, 138, 0.3);
-    border-color: #333;
 }
 #id_interests label:has(input:checked) {
     background-color: rgba(148, 147, 138, 0.6);
-    border-color: #333;
+}
+
+/* скрипт */
+#signup-form-wrapper p.active,
+#id_interests.active {
+    display: flex;
+}
+#dataset-buttons-container {
+    margin-top: 8px;
+}
+#dataset-buttons-container * {
+    display: none;
+    width: 128px;
+    border-radius: 10px;
+}
+#dataset-buttons-container *.active {
+    display: block;
+}
+#dataset-buttons-container .btn.btn-success {
+    float: right;
+}
+#next-set-button,
+#prev-set-button {
+    height: 48px;
+    align-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+}
+#next-set-button {
+    float: right;
+    background-color: #dddddd;
+    border: 1px solid #333;
+}
+#prev-set-button {
+    float: left;
+    color: rgba(51, 51, 51, 0.75);
+}
+#next-set-button:hover {
+    background-color: rgba(148, 147, 138, 0.6);
+}
+#prev-set-button:hover {
+    background-color: rgba(221, 221, 221, 0.3);
 }

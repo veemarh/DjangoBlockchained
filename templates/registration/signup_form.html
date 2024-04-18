@@ -4,19 +4,62 @@
     <div class="row">
         <div class="col-md-8 col-sm-10 col-12">
             <div id="signup-form-wrapper" class="authorization-form-wrapper">
-                <div id="signup-info-box">
-                    {# здесь будет h2 #}
-                    {# и кнопка возвращения на страницу выбора роли #}
-                </div>
+                <div id="signup-info-box"></div>
                 <form method="post" class="form-container">
                     <h2>Sign up as a {{ user_type }}</h2>
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ next }}">
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-success">Sign up</button>
+                    <div id="dataset-buttons-container">
+                        <div id="prev-set-button">Back</div>
+                        <button type="submit" class="btn btn-success">Sign up</button>
+                        <div class="active" id="next-set-button">Continue</div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        let setNumber = 0;
+        let buttonNext = document.getElementById('next-set-button');
+        let buttonPrev = document.getElementById('prev-set-button');
+        let buttonSignup = document.querySelector('.btn.btn-success');
+
+        let inputs = document.querySelectorAll('.form-container > p, .form-container > [id=\'id_interests\']');
+        let inputDataSet;
+        '{{ user_type }}' === 'student'
+            ? inputDataSet = [[inputs[0], inputs[3], inputs[5], inputs[6]],
+                [inputs[1], inputs[2], inputs[4]],
+                [inputs[7], inputs[8]]]
+            : inputDataSet = [[inputs[0], inputs[1], inputs[2]],
+                [inputs[3], inputs[4]]];
+        inputDataSet[0].forEach(input => input.classList.add('active'));
+
+        function ChangeDataSet(param) {
+            inputDataSet[setNumber].forEach(input => input.classList.remove('active'));
+            param ? setNumber++ : setNumber--;
+            inputDataSet[setNumber].forEach(input => input.classList.add('active'));
+        }
+        buttonNext.onclick = function() {
+            ChangeDataSet(1);
+            if (setNumber === 1) {
+                buttonPrev.classList.add('active');
+            }
+            if (setNumber === inputDataSet.length - 1) {
+                buttonNext.classList.remove('active');
+                buttonSignup.classList.add('active');
+            }
+        };
+        buttonPrev.onclick = function() {
+            ChangeDataSet(0);
+            if (setNumber === 0) {
+                buttonPrev.classList.remove('active');
+            }
+            if (setNumber === inputDataSet.length - 2) {
+                buttonSignup.classList.remove('active');
+                buttonNext.classList.add('active');
+            }
+        };
+    </script>
 {% endblock %}
 {% block footer %}{% endblock footer %}
