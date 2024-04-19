@@ -13,7 +13,7 @@
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     padding: 32px;
     background-color: #f4f4f4;
     border-radius: 10px;
@@ -54,31 +54,36 @@
 #login-wrapper {
     width: 320px;
 }
+#login-wrapper p {
+    display: flex;
+    flex-direction: column;
+}
 #signup-form-wrapper {
     width: 800px;
     display: flex;
     justify-content: center;
 }
-#login-wrapper p {
-    display: flex;
-    flex-direction: column;
+#signup-form-wrapper .form-container {
+    width: 400px;
 }
 #signup-form-wrapper p {
     display: none;
     flex-direction: column;
 }
+.form-container span {
+     margin-bottom: 10px;
+}
 .form-container > p > input {
-    order: 1;
     background: transparent;
-    border: none;
     outline: none;
-    border-bottom: 1px solid rgba(51, 51, 51, 0.3);
-    padding: 5px 0;
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 5px;
+    padding: 10px;
     font-size: 16px;
 }
 .form-container > p > label {
-    order: 2;
-    margin: 5px 0 0;
+    padding: 10px 0;
+    line-height: normal;
     pointer-events: none;
     font-size: 14px;
     color: rgba(51, 51, 51, 0.75);
@@ -92,13 +97,16 @@
     line-height: 1;
     padding: 16px;
 }
+#login-wrapper button {
+    margin-top: 10px;
+}
 .form-container button:hover,
 .form-container button:focus {
     background-color: #94938a;
 }
 .form-container input:active,
 .form-container input:focus {
-    border-bottom-color: #333;
+    border-color: #333;
 }
 /* серый блок левее формы signup */
 /* у него есть смысл, но пока что он пустой */
@@ -107,6 +115,7 @@
     z-index: -1;
     float: left;
     border-radius: 5px;
+    align-content: center;
     background-color: #ddd;
     transform: scale(105%) translateX(32px);
 }
@@ -124,9 +133,6 @@ input:-webkit-autofill:active {
     #signup-info-box {
         display: none;
     }
-    #signup-form-wrapper .form-container {
-        width: 320px;
-    }
 }
 
 @media (max-width: 486px) {
@@ -143,6 +149,9 @@ input:-webkit-autofill:active {
         height: 192px;
         margin-right: 0;
         margin-left: 0;
+    }
+    #signup-form-wrapper .form-container {
+        width: 320px;
     }
 }
 
@@ -181,7 +190,7 @@ input:-webkit-autofill:active {
     display: flex;
 }
 #dataset-buttons-container {
-    margin-top: 8px;
+    margin-top: 10px;
 }
 #dataset-buttons-container * {
     display: none;
@@ -205,7 +214,6 @@ input:-webkit-autofill:active {
 #next-set-button {
     float: right;
     background-color: #dddddd;
-    border: 1px solid #333;
 }
 #prev-set-button {
     float: left;

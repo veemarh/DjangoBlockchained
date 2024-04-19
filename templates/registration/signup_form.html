@@ -4,9 +4,12 @@
     <div class="row">
         <div class="col-md-8 col-sm-10 col-12">
             <div id="signup-form-wrapper" class="authorization-form-wrapper">
-                <div id="signup-info-box"></div>
+                <div id="signup-info-box">
+                    <h2>Sign up <br/>as a {{ user_type }}</h2>
+                </div>
                 <form method="post" class="form-container">
-                    <h2>Sign up as a {{ user_type }}</h2>
+                    <h3>Create a profile</h3>
+                    <span>These details are essential for creating your account.</span>
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ next }}">
                     {{ form.as_p }}
@@ -24,21 +27,34 @@
         let buttonNext = document.getElementById('next-set-button');
         let buttonPrev = document.getElementById('prev-set-button');
         let buttonSignup = document.querySelector('.btn.btn-success');
+        let setTitle = document.querySelector('.form-container h3');
+        let setLabel = document.querySelector('.form-container span');
 
         let inputs = document.querySelectorAll('.form-container > p, .form-container > [id=\'id_interests\']');
         let inputDataSet;
+        let titles;
+        let labels;
         '{{ user_type }}' === 'student'
-            ? inputDataSet = [[inputs[0], inputs[3], inputs[5], inputs[6]],
+            ? (inputDataSet = [[inputs[0], inputs[3], inputs[5], inputs[6]],
                 [inputs[1], inputs[2], inputs[4]],
-                [inputs[7], inputs[8]]]
-            : inputDataSet = [[inputs[0], inputs[1], inputs[2]],
-                [inputs[3], inputs[4]]];
+                [inputs[7], inputs[8]]],
+                titles = ['Create a profile', 'Share personal information', 'Choose hobbies and interests'],
+                labels = ['These details are essential for creating your account.',
+                    'Personalize your experience. You can provide this later.',
+                    'We will tailor content and recommendations to your preferences.'])
+            : (inputDataSet = [[inputs[0], inputs[1], inputs[2]],
+                [inputs[3], inputs[4]]],
+                titles = ['Create a profile', 'Choose hobbies and interests'],
+                labels = ['These details are essential for creating your account.',
+                    'We will tailor content and recommendations to your preferences.']);
         inputDataSet[0].forEach(input => input.classList.add('active'));
 
         function ChangeDataSet(param) {
             inputDataSet[setNumber].forEach(input => input.classList.remove('active'));
             param ? setNumber++ : setNumber--;
             inputDataSet[setNumber].forEach(input => input.classList.add('active'));
+            setTitle.textContent = titles[setNumber];
+            setLabel.textContent = labels[setNumber];
         }
         buttonNext.onclick = function() {
             ChangeDataSet(1);
