@@ -9,7 +9,7 @@ class StudentCreationForm(UserCreationForm):
     interests = forms.ModelMultipleChoiceField(
         queryset=Subject.objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        required=True,
+        required=False,
     )
 
     class Meta(UserCreationForm.Meta):
@@ -35,7 +35,7 @@ class TeacherCreationForm(UserCreationForm):
     interests = forms.ModelMultipleChoiceField(
         queryset=Subject.objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        required=True,
+        required=False,
     )
 
     class Meta(UserCreationForm.Meta):
