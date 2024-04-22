@@ -11,14 +11,23 @@
     <link rel="stylesheet" href="{% static 'css/bases.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 </head>
 <body>
-<header>
+{% block header %}
+    <header>
     <nav class="header-nav">
         <div id="nav-toggle">
-            <div></div>
-            <div></div>
-            <div></div>
+            <div id="toggle-hamburger" class="active">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div id="toggle-arrow">
+                <div><div></div><div></div></div>
+                <div><div></div><div></div></div>
+            </div>
+            <div id="toggle-cross"></div>
         </div>
         <ul id="nav-left">
             <li>
@@ -73,14 +82,15 @@
             {% endif %}
         </ul>
     </nav>
-</header>
-<main>
-    {% block content %}
-    {% endblock content %}
-</main>
-<footer>
-    &copy; 2024 Django Blockchained.
-</footer>
+    </header>
+{% endblock header %}
+{% block content %}
+{% endblock content %}
+{% block footer %}
+    <footer>
+        &copy; 2024 Django Blockchained.
+    </footer>
+{% endblock footer %}
 <script type="text/javascript" src={% static 'scripts/main.js' %}></script>
 </body>
 </html>

@@ -15,6 +15,7 @@ class StudentCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = (
+            "username",
             "first_name",
             "second_name",
             "email",

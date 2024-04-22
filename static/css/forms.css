@@ -1,0 +1,219 @@
+/* расположение формы на странице */
+.authorization-form-wrapper {
+    padding: 64px 0;
+    margin: 0 auto;
+    max-width: 90%;
+}
+.authorization-form-wrapper h2 {
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+/* внутренняя структура */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 3px 16px 0 rgba(51, 51, 51, 0.3);
+}
+
+/* выбор роли */
+#signup-wrapper {
+    width: 640px;
+}
+#signup-wrapper p {
+    text-align: center;
+}
+#select-user-type {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+#select-user-type a {
+    width: 150px;
+    height: 200px;
+    border: 1px solid #94938a;
+    border-radius: 5px;
+    color: #333;
+    margin: 16px;
+    padding-bottom: 8px;
+    text-align: center;
+    align-content: end;
+}
+#select-user-type a:hover {
+    border-color: #333;
+    background-color: #ddd;
+    transform: scale(105%);
+}
+
+/* регистрация и вход в систему */
+#login-wrapper {
+    width: 320px;
+}
+#signup-form-wrapper {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+}
+#login-wrapper p {
+    display: flex;
+    flex-direction: column;
+}
+#signup-form-wrapper p {
+    display: none;
+    flex-direction: column;
+}
+.form-container > p > input {
+    order: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+    padding: 5px 0;
+    font-size: 16px;
+}
+.form-container > p > label {
+    order: 2;
+    margin: 5px 0 0;
+    pointer-events: none;
+    font-size: 14px;
+    color: rgba(51, 51, 51, 0.75);
+}
+.form-container button {
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 16px;
+}
+.form-container button:hover,
+.form-container button:focus {
+    background-color: #94938a;
+}
+.form-container input:active,
+.form-container input:focus {
+    border-bottom-color: #333;
+}
+/* серый блок левее формы signup */
+/* у него есть смысл, но пока что он пустой */
+#signup-info-box {
+    flex-grow: 1;
+    z-index: -1;
+    float: left;
+    border-radius: 5px;
+    background-color: #ddd;
+    transform: scale(105%) translateX(32px);
+}
+.helptext {
+    display: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #f4f4f4 inset !important;
+}
+
+@media (max-width: 768px) {
+    #signup-info-box {
+        display: none;
+    }
+    #signup-form-wrapper .form-container {
+        width: 320px;
+    }
+}
+
+@media (max-width: 486px) {
+    .form-container {
+        width: 100%;
+        box-shadow: none;
+        padding: 8px;
+    }
+    #select-user-type {
+        justify-content: space-around;
+    }
+    #select-user-type a {
+        width: 144px;
+        height: 192px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+/* блок выбора интересов */
+#id_interests {
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+#id_interests div {
+    flex: 1 0 160px;
+}
+#id_interests input {
+    visibility: hidden;
+    width: 0;
+}
+#id_interests label {
+    display: flex;
+    height: 64px;
+    background-color: #ddd;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+#id_interests label:hover {
+    background-color: rgba(148, 147, 138, 0.3);
+}
+#id_interests label:has(input:checked) {
+    background-color: rgba(148, 147, 138, 0.6);
+}
+
+/* скрипт */
+#signup-form-wrapper p.active,
+#id_interests.active {
+    display: flex;
+}
+#dataset-buttons-container {
+    margin-top: 8px;
+}
+#dataset-buttons-container * {
+    display: none;
+    width: 128px;
+    border-radius: 10px;
+}
+#dataset-buttons-container *.active {
+    display: block;
+}
+#dataset-buttons-container .btn.btn-success {
+    float: right;
+}
+#next-set-button,
+#prev-set-button {
+    height: 48px;
+    align-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+}
+#next-set-button {
+    float: right;
+    background-color: #dddddd;
+    border: 1px solid #333;
+}
+#prev-set-button {
+    float: left;
+    color: rgba(51, 51, 51, 0.75);
+}
+#next-set-button:hover {
+    background-color: rgba(148, 147, 138, 0.6);
+}
+#prev-set-button:hover {
+    background-color: rgba(221, 221, 221, 0.3);
+}
