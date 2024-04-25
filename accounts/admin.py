@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = [
         "email",
         "username",
-        "birth_date",
+        "birth_date",  # Нахуя тут дата рождения? Позже уберу
         "is_staff",
     ]
     fieldsets = UserAdmin.fieldsets + ((None, {"fields": ("birth_date",)}),)
