@@ -6,7 +6,11 @@
             <div class="homepage-content-spacing" id="usp">
                 <h1>We bring all your tasks and tools together</h1>
                 <p>Global e-learning platform that offers anyone, anywhere access to online education.</p>
-                <a class="homepage-link" href="{% url 'login' %}">Get started</a>
+                {% if user.is_authenticated %}
+                    <a class="homepage-link" href="{% url 'home' %}">Get started</a>
+                {% else %}
+                    <a class="homepage-link" href="{% url 'login' %}">Get started</a>
+                {% endif %}
             </div>
             <div class="homepage-content-spacing" id="poster">
                 <div></div>

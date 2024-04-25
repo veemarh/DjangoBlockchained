@@ -1,15 +1,34 @@
-/* расположение формы на странице */
-.authorization-form-wrapper {
-    padding: 64px 0;
+.authorization-form-wrapper,
+.message-form-wrapper {
+    padding: 32px 0;
     margin: 0 auto;
     max-width: 90%;
 }
-.authorization-form-wrapper h2 {
+.authorization-form-wrapper h2,
+.message-form-wrapper {
     text-align: center;
-    padding-bottom: 16px;
 }
-
-/* внутренняя структура */
+.authorization-form-wrapper h3 {
+    padding-bottom: 0;
+}
+.authorization-form-wrapper p:has(label) {
+    display: flex;
+    flex-direction: column;
+}
+#forgot-password-link {
+    font-size: 14px;
+    color: slateblue;
+    margin-left: auto;
+}
+.authorization-form-wrapper a:hover {
+    color: darkslateblue;
+}
+.message-form-wrapper a {
+    color: goldenrod;
+}
+.message-form-wrapper a:hover {
+    color: darkgoldenrod;
+}
 .form-container {
     display: flex;
     flex-direction: column;
@@ -18,6 +37,39 @@
     background-color: #f4f4f4;
     border-radius: 10px;
     box-shadow: 0 3px 16px 0 rgba(51, 51, 51, 0.3);
+}
+.form-container > p > input {
+    background: transparent;
+    outline: none;
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-container > p > label {
+    padding: 10px 0;
+    line-height: normal;
+    pointer-events: none;
+    font-size: 14px;
+    color: rgba(51, 51, 51, 0.75);
+}
+.form-container button {
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 16px;
+    margin-top: 10px;
+}
+.form-container button:hover,
+.form-container button:focus {
+    background-color: #94938a;
+}
+.form-container input:active,
+.form-container input:focus {
+    border-color: #333;
 }
 
 /* выбор роли */
@@ -47,78 +99,25 @@
 #select-user-type a:hover {
     border-color: #333;
     background-color: #ddd;
-    transform: scale(105%);
+    transform: scale(102%);
 }
 
-/* регистрация и вход в систему */
+/* локальные настройки */
 #login-wrapper {
     width: 320px;
 }
-#login-wrapper p {
-    display: flex;
-    flex-direction: column;
-}
-#signup-form-wrapper {
-    width: 800px;
-    display: flex;
-    justify-content: center;
-}
-#signup-form-wrapper .form-container {
-    width: 400px;
+#signup-form-wrapper,
+.password-form-wrapper {
+    width: 480px;
 }
 #signup-form-wrapper p {
     display: none;
-    flex-direction: column;
 }
-.form-container span {
-     margin-bottom: 10px;
+#signup-form-wrapper button {
+    margin-top: 0;
 }
-.form-container > p > input {
-    background: transparent;
-    outline: none;
-    border: 1px solid rgba(51, 51, 51, 0.3);
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
-}
-.form-container > p > label {
-    padding: 10px 0;
-    line-height: normal;
-    pointer-events: none;
-    font-size: 14px;
-    color: rgba(51, 51, 51, 0.75);
-}
-.form-container button {
-    color: #fff;
-    background-color: #333;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    line-height: 1;
-    padding: 16px;
-}
-#login-wrapper button {
-    margin-top: 10px;
-}
-.form-container button:hover,
-.form-container button:focus {
-    background-color: #94938a;
-}
-.form-container input:active,
-.form-container input:focus {
-    border-color: #333;
-}
-/* серый блок левее формы signup */
-/* у него есть смысл, но пока что он пустой */
-#signup-info-box {
-    flex-grow: 1;
-    z-index: -1;
-    float: left;
-    border-radius: 5px;
-    align-content: center;
-    background-color: #ddd;
-    transform: scale(105%) translateX(32px);
-}
+
+/* сообщения об ошибках и проч. */
 .helptext {
     display: none;
     /*position: absolute;
@@ -148,6 +147,10 @@ input:-webkit-autofill:active {
     #signup-info-box {
         display: none;
     }
+    [class$='-form-wrapper'] p:not(:has(label)) {
+        font-size: 16px;
+        line-height: 24px;
+    }
 }
 
 @media (max-width: 486px) {
@@ -164,9 +167,6 @@ input:-webkit-autofill:active {
         height: 192px;
         margin-right: 0;
         margin-left: 0;
-    }
-    #signup-form-wrapper .form-container {
-        width: 320px;
     }
 }
 

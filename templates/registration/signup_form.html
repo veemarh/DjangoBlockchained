@@ -4,10 +4,8 @@
     <div class="row">
         <div class="col-md-8 col-sm-10 col-12">
             <div id="signup-form-wrapper" class="authorization-form-wrapper">
-                <div id="signup-info-box">
-                    <h2>Sign up <br/>as a {{ user_type }}</h2>
-                </div>
                 <form method="post" class="form-container">
+                    <h2>Sign up <br/>as a {{ user_type }}</h2><hr>
                     <h3>Create a profile</h3>
                     <span>These details are essential for creating your account.</span>
                     {% csrf_token %}

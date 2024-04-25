@@ -60,7 +60,7 @@ header:after, .header-nav:after {
 /* база шапки */
 header {
     width: 100%;
-    padding: 8px;
+    padding: 16px;
     position: relative;
 }
 header a {
@@ -259,7 +259,7 @@ nav > ul > li:last-child {
         width: 240px;
         max-width: calc(100% - 34px);
         height: 100%;
-        padding: 61px 16px 0 16px;
+        padding: 69px 16px 0 16px;
         transition: left 0.4s;
         background: #f4f4f4;
         border-radius: 0 0 10px;
