@@ -23,9 +23,11 @@ from accounts.views import TeacherSignUpView, StudentSignUpView, SignUpView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("accounts.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    # Практически точно
+    # главная в скором времена страница отсюда переедет в отдельное приложение
     path("accounts/signup/", SignUpView.as_view(), name="signup"),
     path(
         "accounts/signup/student/", StudentSignUpView.as_view(), name="student_signup"
