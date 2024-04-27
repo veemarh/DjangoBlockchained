@@ -29,6 +29,8 @@ class User(AbstractUser):
     second_name = models.CharField(max_length=15, null=True, blank=True)
     third_name = models.CharField(max_length=15, null=True, blank=True)
 
+    # picture = models.ImageField(upload_to="") Куда?
+
     birth_date = models.DateField(null=True, blank=True)
     phone_number = models.CharField(max_length=10, null=True, blank=True)
     email = models.EmailField()
