@@ -6,6 +6,11 @@
             <div class="homepage-content-spacing" id="usp">
                 <h1>We bring all your tasks and tools together</h1>
                 <p>Global e-learning platform that offers anyone, anywhere access to online education.</p>
+                {% if user.is_authenticated %}
+                    <a class="homepage-link" href="{% url 'home' %}">Get started</a>
+                {% else %}
+                    <a class="homepage-link" href="{% url 'login' %}">Get started</a>
+                {% endif %}
             </div>
             <div class="homepage-content-spacing" id="poster">
                 <div></div>
@@ -56,6 +61,7 @@
                 <h2>Bringing the knowledge gap</h2>
                 <p>Our community of educators share their expertise, 
                     connect with eager students, and create personalized learning experiences.</p>
+            <a class="homepage-link" href="/">Meet with tutors</a>
             </div>
         </div>
     </section>

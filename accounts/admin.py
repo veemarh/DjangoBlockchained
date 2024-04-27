@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import UserChangeForm, UserCreationForm
@@ -16,3 +17,6 @@ class CustomUserAdmin(UserAdmin):
     ]
     fieldsets = UserAdmin.fieldsets + ((None, {"fields": ("birth_date",)}),)
     add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": ("birth_date",)}),)
+
+
+admin.site.register(User, CustomUserAdmin)

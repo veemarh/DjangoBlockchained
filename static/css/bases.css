@@ -34,6 +34,12 @@ body {
     line-height: 1;
     color: #333;
     background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+main {
+    flex: 1 0 auto;
 }
 
 /* очистка потока */
@@ -46,34 +52,32 @@ header:after, .header-nav:after {
 .header-nav {
     margin: 0 auto;
     width: 100%;
-    padding: 0 16px;
+    padding: 8px;
     max-width: 1280px;
+    border: 1px solid #333;
+    border-radius: 30px;
 }
 /* база шапки */
 header {
     width: 100%;
-    display: block;
-    background: #333;
-    padding: 10px 0;
+    padding: 16px;
     position: relative;
 }
 header a {
-    color: #fff;
+    display: inline-block;
+    color: #333;
     line-height: 30px;
-    padding: 5px 10px;
+    padding: 3px 16px;
 }
 header a:hover {
     color: #94938a;
 }
 nav > ul > li {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 8px;
 }
 nav > ul > li:last-child {
     margin-right: 0;
-}
-nav ul:first-of-type li:first-of-type a {
-    padding-left: 0;
 }
 #nav-left {
     float: left;
@@ -89,8 +93,9 @@ nav ul:first-of-type li:first-of-type a {
     position: absolute;
     cursor: pointer;
     z-index: 2;
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
+    border-radius: 30px;
 }
 /* внешняя оболочка не тыкабельная */
 /* прозрачный слой поверх кнопки */
@@ -101,6 +106,7 @@ nav ul:first-of-type li:first-of-type a {
     position: absolute;
     width: 30px;
     height: 30px;
+    margin: 3px;
     pointer-events: none;
 }
 #nav-toggle > div.active {
@@ -118,7 +124,7 @@ nav ul:first-of-type li:first-of-type a {
 #toggle-hamburger div {
     height: 1px;
     width: 24px;
-    background-color: #fff;
+    background-color: #333;
 }
 /* переключатель при наведенной мыши */
 #toggle-arrow {
@@ -131,7 +137,7 @@ nav ul:first-of-type li:first-of-type a {
     height: 1px;
     width: 12px;
     margin: 7px 0;
-    background-color: #fff;
+    background-color: #333;
 }
 #toggle-arrow > div > div:first-of-type {
     transform: rotate(45deg);
@@ -148,7 +154,7 @@ nav ul:first-of-type li:first-of-type a {
 #toggle-cross::after {
     content: '';
     position: absolute;
-    background-color: #fff;
+    background-color: #333;
     width: 1px;
     height: 24px;
 }
@@ -165,18 +171,17 @@ nav ul:first-of-type li:first-of-type a {
     cursor: pointer;
 }
 #user-icon span {
-    border: 1px solid #fff;
-    color: #fff;
+    border: 1px solid #333;
+    color: #333;
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
     border-radius: 50%;
     pointer-events: none;
 }
 #user-icon:hover span {
-    color: #94938a;
-    border-color: #94938a;
+    background-color: #ddd;
 }
 
 /* меню пользователя, по умолчанию скрыто */
@@ -185,11 +190,12 @@ nav ul:first-of-type li:first-of-type a {
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    transform: translate(calc(-100% + 30px), 16px);
-    min-width: 200px;
+    transform: translate(calc(-100% + 36px), 16px);
+    min-width: 210px;
     box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
     border-radius: 10px;
     background: #f4f4f4;
+    padding: 10px;
     transition: opacity .08s, visibility .08s;
 }
 #header-user-menu.active {
@@ -199,22 +205,18 @@ nav ul:first-of-type li:first-of-type a {
 }
 #header-user-menu a {
     display: block;
-    width: 100%;
-    height: 100%;
-    color: #333;
-    padding: 10px 16px;
+    margin: 5px 0;
+    padding: 5px 16px;
+    border-radius: 5px;
 }
-#header-user-menu li:first-child a {
+#header-user-menu li:first-child {
     border-bottom: 1px solid rgba(51, 51, 51, 0.3);
-    border-radius: 10px 10px 0 0;
 }
-#header-user-menu button {
+#header-user-menu li:last-child {
     border-top: 1px solid rgba(51, 51, 51, 0.3);
-    border-radius: 0 0 10px 10px;
 }
 #header-user-menu a:hover,
 #header-user-menu button:hover {
-    color: #94938a;
     background-color: #ddd;
 }
 
@@ -226,41 +228,42 @@ nav ul:first-of-type li:first-of-type a {
     width: 100%;
     text-align: left;
     font-size: 16px;
-    padding: 10px 16px;
+    margin: 5px 0;
+    padding: 5px 16px;
     line-height: 30px;
+    border-radius: 5px;
+}
+#nav-logout-button:hover {
+    color: #94938a;
 }
 
 /* ссылка на форму входа в систему */
 #signup-link {
-    border: 1px solid #fff;
-    border-radius: 5px;
+    color: #f4f4f4;
+    background-color: #333;
+    border-radius: 30px;
 }
 #signup-link:hover {
-    border-color: #94938a;
+    background-color: goldenrod;
 }
 
 /* мобильный */
-/* новое меню навигации, прежде всего */
-/* под навигацией остается много места */
-/* туда можно поместить любую содержательную инфу */
-/* можно ссылки на ДЗ, можно занятия препода, можно банально скопировать сюда футер, как на гитхабе */
 @media (max-width: 576px) {
-    /* возникает переключатель навигации */
     #nav-toggle {
         display: block;
     }
-    /* меню навигации убрано под шапкой слева */
     #nav-left {
         position: fixed;
         top: 0;
-        left: -240px;
+        left: -300px;
         width: 240px;
         max-width: calc(100% - 34px);
         height: 100%;
-        padding-top: 50px;
+        padding: 69px 16px 0 16px;
         transition: left 0.4s;
-        background: #333;
+        background: #f4f4f4;
         border-radius: 0 0 10px;
+        box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
     }
     #nav-left li {
         display: block;
@@ -268,21 +271,24 @@ nav ul:first-of-type li:first-of-type a {
     }
     #nav-left a {
         display: block;
-        width: 100%;
-        padding: 10px 16px;
+        padding: 5px 16px;
+        margin: 5px 0;
+        border-radius: 5px;
     }
     #nav-left a:hover {
-        background-color: rgba(148, 147, 138, 0.15);
+        background-color: #ddd;
     }
-    #nav-left li:first-child a {
-        border-top: 1px solid rgba(255, 255, 255, 0.3);
+    #nav-left li:first-child {
+        border-top: 1px solid rgba(51, 51, 51, 0.3);
     }
-    #nav-left li:last-child a {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    #nav-left li:last-child {
+        border-bottom: 1px solid rgba(51, 51, 51, 0.3);
     }
     #nav-left.active {
         left: 0;
-        box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
+    }
+    body:has(#nav-left.active) {
+        overflow: hidden;
     }
 }
 
