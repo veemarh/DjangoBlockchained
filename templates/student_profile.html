@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block header %}{% endblock header %}
+{% block content %}
+    <div class="col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <h3>Edit Profile</h3>
+            <hr>
+            <p>fn{{ user.first_name }}</p>
+            <p>{{ user.second_name }}</p>
+            <p>{{ user.third_name }}</p>
+            <p>{{ user.username }}</p>
+            <p>"{{ user.email }}"</p>
+            <p>{{ user.birth_date }}</p>
+            <p>{{ user.phone_number }}</p>
+        </form>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock footer %}
