@@ -5,6 +5,11 @@
         <div class="col-md-8 col-sm-10 col-12">
             <div id="signup-form-wrapper" class="authorization-form-wrapper">
                 <form method="post" class="form-container">
+                    <a href="{% url 'signup' %}">
+                        <div class="return-link">
+                            <div></div><div></div>
+                        </div>
+                    </a>
                     <h2>Sign up <br/>as a {{ user_type }}</h2><hr>
                     <h3>Create a profile</h3>
                     <span>These details are essential for creating your account.</span>

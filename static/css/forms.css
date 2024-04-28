@@ -20,7 +20,7 @@
     color: slateblue;
     margin-left: auto;
 }
-.authorization-form-wrapper a:hover {
+#forgot-password-link:hover {
     color: darkslateblue;
 }
 .message-form-wrapper a {
@@ -29,6 +29,48 @@
 .message-form-wrapper a:hover {
     color: darkgoldenrod;
 }
+/* переход на предыдущую страницу */
+.return-link {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+}
+.return-link div {
+    pointer-events: none;
+    height: 1px;
+    width: 9px;
+    margin: 5px 0;
+    background-color: #333;
+    opacity: .75;
+    transition: .2s;
+}
+.return-link:hover div {
+    background-color: #94938a;
+}
+.return-link div:first-of-type {
+    transform: rotate(-45deg);
+}
+.return-link div:last-of-type {
+    transform: rotate(45deg);
+}
+/* это ссылка на домашнюю страницу */
+/* как мне кажется, самая удобная вещь для страниц без шапки */
+/* здесь должен быть лого, сейчас его нет, но это поправимо */
+.return-to-home {
+    height: 48px;
+    width: 48px;
+    margin: 0 auto 24px;
+    background-image: url('../img/back.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: .2s;
+}
+.return-to-home:hover {
+    opacity: .5;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;

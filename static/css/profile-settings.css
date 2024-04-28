@@ -1,0 +1,114 @@
+.account-content-wrapper {
+    margin: 64px auto auto;
+    padding: 0 16px;
+    max-width: 1140px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+}
+#account-space-nav {
+    flex: 1 0;
+}
+#account-space-nav a {
+    display: block;
+    line-height: 30px;
+    padding: 5px 0 5px 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #333;
+}
+#account-space-nav li:last-child a {
+    margin-bottom: 0;
+}
+#account-space-nav a:hover {
+    color: #94938a;
+    background-color: #ddd;
+}
+#current-edit-page div {
+    float: left;
+    height: 40px;
+    width: 4px;
+    background-color: #94938a;
+    border-radius: 5px 0 0 5px;
+}
+#current-edit-page a {
+    color: #94938a;
+    background-color: #ddd;
+}
+#account-space-edit {
+    flex: 3 0;
+}
+.data-editing-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-bottom: 64px;
+}
+.data-editing-form button[type="submit"] {
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 16px;
+    width: 100%;
+}
+.data-editing-form button[type="submit"]:hover,
+.data-editing-form button[type="submit"]:focus {
+    background-color: #94938a;
+}
+.account-dataset {
+    flex: 1 0;
+}
+/*.account-dataset:has(div[id=""]) {
+    flex-grow: 2;
+}*/
+.account-dataset span {
+    display: inline-block;
+    padding-bottom: 16px;
+}
+.account-dataset p:has(label + input) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+.account-dataset p:has(label + input):last-child {
+    margin-bottom: 0;
+}
+.account-dataset input {
+    background: transparent;
+    outline: none;
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+.account-dataset input:active,
+.account-dataset input:focus {
+    border-color: #333;
+}
+.account-dataset label {
+    padding: 10px 0;
+    line-height: normal;
+    pointer-events: none;
+    font-size: 14px;
+    color: rgba(51, 51, 51, 0.75);
+}
+
+@media (max-width: 1140px) {
+    .account-content-wrapper {
+        max-width: 992px;
+    }
+}
+@media (max-width: 992px) {
+    .account-content-wrapper {
+        max-width: 768px;
+    }
+}
+@media (max-width: 768px) {
+    .account-content-wrapper {
+        max-width: 576px;
+        flex-direction: column;
+    }
+}
