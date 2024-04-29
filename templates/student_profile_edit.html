@@ -1,8 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Edit</h1>
-    <form action="" method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-info ml-2" type="submit">Update</button>
-    </form>
+    <div class="account-content-wrapper">
+        <div id="account-space-nav">
+            <ul>
+                <li id="current-edit-page">
+                    <div></div>
+                    <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
+                </li>
+                <li><a href="{% url 'interests' user.id %}">Update interests</a></li>
+                <li><a href="{% url 'password_change' %}">Change password</a></li>
+            </ul>
+        </div>
+        <div id="account-space-edit">
+            <h3>Edit profile</h3>
+            <form action="" method="post" class="data-editing-form">
+                <div class="account-dataset">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <button class="btn btn-info ml-2" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let inputs = document.querySelectorAll('.data-editing-form input');
+        inputs.forEach(input => {
+            let currentValue = input.value;
+            input.addEventListener('input', () => {
+                if (input.value !== currentValue) {
+                    input.classList.add('modified');
+                }
+                else {
+                    input.classList.remove('modified');
+                }
+            });
+        });
+    </script>
 {% endblock content %}

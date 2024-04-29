@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
     <section id="billboard">
@@ -12,7 +13,7 @@
                     <a class="homepage-link" href="{% url 'login' %}">Get started</a>
                 {% endif %}
             </div>
-            <div class="homepage-content-spacing" id="poster"><img src="../static/img/img1.jpg"></div>
+            <div class="homepage-content-spacing" id="poster"><img src="{% static 'img/img1.jpg' %}"></div>
         </div>
     </section>
     <div class="homepage-spacer"></div>
@@ -52,7 +53,7 @@
     <div class="homepage-spacer"></div>
     <section class="hidden-dynamic-up" id="about">
         <div class="homepage-content-wrapper">
-            <div class="homepage-content-spacing" id="tutors-picture"><img src="../static/img/img2.jpg"></div>
+            <div class="homepage-content-spacing" id="tutors-picture"><img src="{% static 'img/img2.jpg' %}"></div>
             <div class="homepage-content-spacing" id="tutors-work">
                 <h2>Bringing the knowledge gap</h2>
                 <p>Our community of educators share their expertise, 
@@ -98,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="homepage-content-spacing" id="feature-addition"><img src="../static/img/img3.jpg"></div>
+            <div class="homepage-content-spacing" id="feature-addition"><img src="{% static 'img/img3.jpg' %}"></div>
         </div>
     </section>
     <div class="homepage-spacer"></div>
@@ -108,7 +109,7 @@
             let dynamicBlocks = document.querySelectorAll('.hidden-dynamic-up');
             dynamicBlocks.forEach(block => {
                 let rect = block.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
+                if (rect.top < window.innerHeight * 0.8) {
                     block.classList.remove('hidden-dynamic-up');
                 }
                 else {

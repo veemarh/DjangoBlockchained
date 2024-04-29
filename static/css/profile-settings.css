@@ -61,9 +61,9 @@
 .account-dataset {
     flex: 1 0;
 }
-/*.account-dataset:has(div[id=""]) {
-    flex-grow: 2;
-}*/
+.account-dataset#main-dataset {
+    flex-grow: 3;
+}
 .account-dataset span {
     display: inline-block;
     padding-bottom: 16px;
@@ -84,8 +84,8 @@
     padding: 10px;
     font-size: 16px;
 }
-.account-dataset input:active,
-.account-dataset input:focus {
+.account-dataset input:not([disabled]):active,
+.account-dataset input:not([disabled]):focus {
     border-color: #333;
 }
 .account-dataset label {
@@ -94,6 +94,30 @@
     pointer-events: none;
     font-size: 14px;
     color: rgba(51, 51, 51, 0.75);
+}
+.account-dataset a {
+    display: block;
+    line-height: 30px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    color: #333;
+    background-color: rgba(221, 221, 221, 0.6);
+    border: 1px solid rgba(51, 51, 51, 0.3);
+}
+.account-dataset a:hover {
+    background-color: #ddd;
+}
+#summary-dataset {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+#summary-dataset img {
+    border-radius: 50%;
+}
+#summary-dataset h3 {
+    color: darkgoldenrod;
 }
 
 @media (max-width: 1140px) {
@@ -111,4 +135,37 @@
         max-width: 576px;
         flex-direction: column;
     }
+    .account-content-wrapper:has(#main-dataset) .data-editing-form {
+        flex-direction: column;
+    }
+    #summary-dataset {
+        flex-direction: row;
+        padding-bottom: 16px;
+    }
+    #summary-dataset img {
+        max-width: 24vw;
+    }
+    #summary-dataset h3 {
+        align-self: center;
+        padding: 0;
+    }
+}
+
+.account-content-wrapper .helptext {
+    display: none;
+    /*padding: 10px 0 0;
+    font-size: 12px;
+    line-height: normal;
+    color: rgba(51, 51, 51, 0.5);*/
+}
+
+.data-editing-form input.modified {
+    border-color: slateblue;
+}
+.data-editing-form p:has(input.modified) label {
+    color: slateblue;
+}
+.data-editing-form input.modified:focus,
+.data-editing-form input.modified:active {
+    border-color: darkslateblue;
 }
