@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.html import escape
-from django.utils.safestring import mark_safe
+from django.utils.html import mark_safe
 
 
 class Subject(models.Model):
@@ -18,6 +18,7 @@ class Subject(models.Model):
             '<span class="badge badge-primary" style="background-color: %s">%s</span>'
             % (color, name)
         )
+
         return mark_safe(html)
 
 
@@ -41,6 +42,9 @@ class Student(models.Model):
     interests = models.ManyToManyField(Subject, related_name="interested_students")
 
     school_name = models.CharField(max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
 
 
 class Teacher(models.Model):

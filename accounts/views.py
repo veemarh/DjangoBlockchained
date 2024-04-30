@@ -4,13 +4,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, TemplateView, DetailView
+from django.views.generic import (
+    CreateView,
+    UpdateView,
+    TemplateView,
+    DetailView,
+    ListView,
+)
 
 from .decorators import student_required
 from .forms import (
     StudentCreationForm,
     TeacherCreationForm,
-    InterestsChangeForm,
+    StudentInterestsForm,
 )
 from .models import User, Student
 
@@ -35,9 +41,22 @@ class StudentSignUpView(CreateView):
 
 
 @method_decorator([login_required, student_required], name="dispatch")
-class StudentInterestsUpdateView(UpdateView):
+class StudentInterestsView(ListView):
     model = Student
-    form_class = InterestsChangeForm
+    # form_class = InterestsChangeForm
+    template_name = "registration/interests_list.html"
+
+    # def get_object(self):
+    #     return self.request.user.student
+    #
+    # def form_valid(self, form):
+    #     messages.success(self.request, "Interests updated with success!")
+    #     return super().form_valid(form)
+
+
+class StudentInterestsEditView(UpdateView):
+    model = Student
+    form_class = StudentInterestsForm
     template_name = "registration/interests_form.html"
 
     def get_object(self):

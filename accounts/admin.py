@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import UserChangeForm, UserCreationForm
-from .models import User
+from .models import User, Subject, Student
 
 
 class CustomUserAdmin(UserAdmin):
@@ -19,4 +19,16 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": ("birth_date",)}),)
 
 
+class InterestsInline(admin.TabularInline):
+    model = Subject
+
+
+class StudentAdmin(admin.ModelAdmin):
+    inlines = [InterestsInline]
+
+
 admin.site.register(User, CustomUserAdmin)
+
+admin.site.register(Student)
+
+admin.site.register(Subject)

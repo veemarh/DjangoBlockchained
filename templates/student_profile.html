@@ -11,7 +11,7 @@
                             <img src="{% static 'img/avatar.jpg' %}">
                             <h3>{{ user.username }}</h3>
                         </div>
-                            <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
+                        <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
                     </div>
                     <div class="account-dataset" id="main-dataset">
                         <h3>Public profile</h3>
@@ -39,6 +39,9 @@
                             <label for="phone-number">Phone number</label>
                             <input type="text" id="phone-number" value="{{ user.phone_number }}" disabled>
                         </p>
+                        {% for subject in user.student.interests.all %}
+                            <li> {{ subject.name }} </li>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
