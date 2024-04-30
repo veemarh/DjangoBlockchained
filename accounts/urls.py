@@ -20,5 +20,9 @@ urlpatterns = [
         StudentProfileView.as_view(),
         name="student_profile",
     ),
-    path("student/profile/<int:pk>/edit/", StudentProfileUpdateView.as_view()),
+    path(
+        "student/profile/<int:pk>/edit/",
+        StudentProfileUpdateView.as_view(),
+        name="student_profile_edit",
+    ),
 ]

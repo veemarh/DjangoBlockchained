@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
     <section id="billboard">
@@ -12,13 +13,11 @@
                     <a class="homepage-link" href="{% url 'login' %}">Get started</a>
                 {% endif %}
             </div>
-            <div class="homepage-content-spacing" id="poster">
-                <div></div>
-            </div>
+            <div class="homepage-content-spacing" id="poster"><img src="{% static 'img/img1.jpg' %}"></div>
         </div>
     </section>
     <div class="homepage-spacer"></div>
-    <section id="services-title">
+    <section class="hidden-dynamic-up" id="services-title">
         <div class="homepage-content-wrapper">
             <div class="homepage-content-spacing">
                 <h2>Our educational offerings</h2>
@@ -26,7 +25,7 @@
             </div>
         </div>
     </section>
-    <section id="services">
+    <section class="hidden-dynamic-up" id="services">
         <div class="homepage-content-wrapper">
             <div class="homepage-content-spacing proposition">
                 <div class="proposition-img"></div>
@@ -52,21 +51,19 @@
         </div>
     </section>
     <div class="homepage-spacer"></div>
-    <section id="about">
+    <section class="hidden-dynamic-up" id="about">
         <div class="homepage-content-wrapper">
-            <div class="homepage-content-spacing" id="tutors-picture">
-                <div></div>
-            </div>
+            <div class="homepage-content-spacing" id="tutors-picture"><img src="{% static 'img/img2.jpg' %}"></div>
             <div class="homepage-content-spacing" id="tutors-work">
                 <h2>Bringing the knowledge gap</h2>
                 <p>Our community of educators share their expertise, 
                     connect with eager students, and create personalized learning experiences.</p>
-            <a class="homepage-link" href="/">Meet with tutors</a>
+                <a class="homepage-link" href="/">Meet with tutors</a>
             </div>
         </div>
     </section>
     <div class="homepage-spacer"></div>
-    <section id="features-title">
+    <section class="hidden-dynamic-up" id="features-title">
         <div class="homepage-content-wrapper">
             <div class="homepage-content-spacing">
                 <h2>Special features for you</h2>
@@ -74,7 +71,7 @@
             </div>
         </div>
     </section>
-    <section id="features">
+    <section class="hidden-dynamic-up" id="features">
         <div class="homepage-content-wrapper">
             <div class="homepage-content-spacing" id="feature-list">
                 <div class="feature-point">
@@ -102,10 +99,31 @@
                     </div>
                 </div>
             </div>
-            <div class="homepage-content-spacing" id="feature-addition">
-                <div></div>
-            </div>
+            <div class="homepage-content-spacing" id="feature-addition"><img src="{% static 'img/img3.jpg' %}"></div>
         </div>
     </section>
     <div class="homepage-spacer"></div>
+    <script>
+        {# весь контент, который помещается на странице, будет загружен сразу #}
+        window.addEventListener('DOMContentLoaded', () => {
+            let dynamicBlocks = document.querySelectorAll('.hidden-dynamic-up');
+            dynamicBlocks.forEach(block => {
+                let rect = block.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    block.classList.remove('hidden-dynamic-up');
+                }
+                else {
+                    return 0;
+                }
+            });
+        });
+        {# все остальное возникнет при прокрутке #}
+        window.addEventListener('scroll', () => {
+            let dynamicBlock = document.querySelector('.hidden-dynamic-up');
+            let rect = dynamicBlock.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) {
+                dynamicBlock.classList.remove('hidden-dynamic-up');
+            }
+        });
+    </script>
 {% endblock content %}

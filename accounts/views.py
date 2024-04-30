@@ -85,6 +85,8 @@ class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVi
     )
     template_name = "student_profile_edit.html"
 
+    success_url = ".."
+
     def test_func(self):
         obj = self.get_object()
         return obj == self.request.user

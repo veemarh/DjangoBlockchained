@@ -3,6 +3,9 @@
 {% block header %}{% endblock header %}
 {% block content %}
     <div id="login-wrapper" class="authorization-form-wrapper">
+        <a href="{% url 'home' %}">
+            <div class="return-to-home"></div>
+        </a>
         <form method="post" class="form-container">
             <h2>Log In</h2>
             {% csrf_token %}

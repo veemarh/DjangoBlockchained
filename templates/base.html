@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile-settings.css' %}">
 </head>
 <body>
 {% block header %}
@@ -51,7 +52,7 @@
                     </script>
                     <ul id="header-user-menu">
                         <li>
-                            <a href="/">Your profile</a>
+                            <a href="{% url 'student_profile' user.id %}">Your profile</a>
                         </li>
                         <li>
                             <a href="/">Your teachers</a>
