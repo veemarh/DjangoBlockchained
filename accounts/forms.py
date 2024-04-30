@@ -72,3 +72,15 @@ class CustomUserChangeForm(UserChangeForm):
             "username",
             "email",
         )
+
+
+# class StudentInterestsForm(forms.ModelForm):
+#
+#     interests = forms.ModelMultipleChoiceField(
+#         queryset=Subject.objects.all(),
+#         widget=forms.CheckboxSelectMultiple,
+#         required=True,
+#     )
+#
+#     class Meta(UserCreationForm.Meta):
+#         model = User
