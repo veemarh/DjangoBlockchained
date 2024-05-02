@@ -2,24 +2,17 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from .views import (
-    StudentInterestsView,
     StudentProfileView,
     StudentProfileUpdateView,
-    StudentInterestsEditView,
+    StudentInterestsView,
 )
 
 urlpatterns = (
-    path("student/", TemplateView.as_view(template_name="home.html"), name="home"),
-    path("teacher/", TemplateView.as_view(template_name="home.html"), name="home"),
+    path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path(
-        "student/<int:pk>/interests/",
+        "student/interests/",
         StudentInterestsView.as_view(),
-        name="interests",
-    ),
-    path(
-        "student/<int:pk>/interests/edit/",
-        StudentInterestsEditView.as_view(),
-        name="interests_edit",
+        name="student_interests",
     ),
     path(
         "student/profile/<int:pk>/",

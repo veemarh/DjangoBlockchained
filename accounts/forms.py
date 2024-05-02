@@ -32,7 +32,7 @@ class StudentCreationForm(UserCreationForm):
         return user
 
 
-class InterestsChangeForm(forms.ModelForm):
+class StudentInterestsForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ("interests",)
@@ -58,13 +58,6 @@ class TeacherCreationForm(UserCreationForm):
         return user
 
 
-class StudentInterestsForm(forms.ModelForm):
-    class Meta:
-        model = Student
-        fields = ("interests",)
-        widgets = {"interests": forms.CheckboxSelectMultiple}
-
-
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
@@ -72,15 +65,3 @@ class CustomUserChangeForm(UserChangeForm):
             "username",
             "email",
         )
-
-
-# class StudentInterestsForm(forms.ModelForm):
-#
-#     interests = forms.ModelMultipleChoiceField(
-#         queryset=Subject.objects.all(),
-#         widget=forms.CheckboxSelectMultiple,
-#         required=True,
-#     )
-#
-#     class Meta(UserCreationForm.Meta):
-#         model = User

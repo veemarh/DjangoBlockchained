@@ -18,7 +18,6 @@ class Subject(models.Model):
             '<span class="badge badge-primary" style="background-color: %s">%s</span>'
             % (color, name)
         )
-
         return mark_safe(html)
 
 
