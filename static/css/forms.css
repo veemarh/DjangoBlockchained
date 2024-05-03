@@ -209,19 +209,20 @@ input:-webkit-autofill:active {
 }
 
 /* блок выбора интересов */
-#id_interests {
-    /*display: none;*/
+.authorization-form-wrapper #id_interests {
+    display: none;
     flex-wrap: wrap;
     gap: 8px;
 }
-#id_interests div {
+.authorization-form-wrapper #id_interests div {
     flex: 1 0 160px;
 }
-#id_interests input {
-    visibility: hidden;
-    width: 0;
+.authorization-form-wrapper #id_interests input {
+    position: absolute;
+    opacity: 0;
+    z-index: -10;
 }
-#id_interests label {
+.authorization-form-wrapper #id_interests label {
     display: flex;
     height: 64px;
     background-color: #ddd;
@@ -229,11 +230,12 @@ input:-webkit-autofill:active {
     justify-content: center;
     align-items: center;
     transition: .2s;
+    cursor: pointer;
 }
-#id_interests label:hover {
+.authorization-form-wrapper #id_interests label:hover {
     background-color: rgba(148, 147, 138, 0.3);
 }
-#id_interests label:has(input:checked) {
+.authorization-form-wrapper #id_interests label:has(input:checked) {
     background-color: rgba(148, 147, 138, 0.6);
 }
 
