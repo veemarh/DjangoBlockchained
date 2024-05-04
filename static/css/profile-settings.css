@@ -44,6 +44,9 @@
     gap: 32px;
     margin-bottom: 64px;
 }
+.data-editing-form:not(:has(#main-dataset)) {
+    max-width: 640px;
+}
 .data-editing-form button[type="submit"] {
     color: #fff;
     background-color: #333;
@@ -53,10 +56,14 @@
     line-height: 1;
     padding: 16px;
     width: 100%;
+    user-select: none;
 }
 .data-editing-form button[type="submit"]:hover,
-.data-editing-form button[type="submit"]:focus {
+.data-editing-form button[type="submit"]:active {
     background-color: #94938a;
+}
+.data-editing-form button[type="submit"]:focus:not(:checked) {
+    background-color: #333;
 }
 .account-dataset {
     flex: 1 0;
@@ -64,11 +71,12 @@
 .account-dataset#main-dataset {
     flex-grow: 3;
 }
-.account-dataset span {
+.account-dataset span:not(.helptext) {
     display: inline-block;
     padding-bottom: 16px;
 }
-.account-dataset p:has(label + input) {
+.account-dataset p:has(label + input),
+.account-dataset:has(#id_interests) p {
     display: flex;
     flex-direction: column;
     margin-bottom: 8px;
@@ -88,10 +96,9 @@
 .account-dataset input:not([disabled]):focus {
     border-color: #333;
 }
-.account-dataset label {
-    padding: 10px 0;
+.account-dataset label:not(:has(input)) {
+    margin: 10px 0;
     line-height: normal;
-    pointer-events: none;
     font-size: 14px;
     color: rgba(51, 51, 51, 0.75);
 }
@@ -118,6 +125,21 @@
 }
 #summary-dataset h3 {
     color: darkgoldenrod;
+}
+#main-dataset {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.main-dataset-page ul > * {
+    display: inline-block;
+    padding: 8px 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin: 0 5px 10px 0;
+}
+.main-dataset-page ul > *:last-child {
+    margin-right: 0;
 }
 
 @media (max-width: 1140px) {
@@ -151,14 +173,6 @@
     }
 }
 
-.account-content-wrapper .helptext {
-    display: none;
-    /*padding: 10px 0 0;
-    font-size: 12px;
-    line-height: normal;
-    color: rgba(51, 51, 51, 0.5);*/
-}
-
 .data-editing-form input.modified {
     border-color: slateblue;
 }
@@ -168,4 +182,60 @@
 .data-editing-form input.modified:focus,
 .data-editing-form input.modified:active {
     border-color: darkslateblue;
+}
+
+/* блок выбора интересов */
+.account-dataset #id_interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 8px;
+}
+.account-dataset #id_interests div {
+    width: 160px;
+}
+.account-dataset #id_interests input {
+    position: absolute;
+    opacity: 0;
+    z-index: -10;
+}
+.account-dataset #id_interests label {
+    display: flex;
+    width: fit-content;
+    gap: 8px;
+    padding: 8px 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+    transition: .2s;
+    cursor: pointer;
+    user-select: none;
+}
+.account-dataset #id_interests label:hover {
+    background-color: rgba(148, 147, 138, 0.3);
+}
+.account-dataset #id_interests label:has(input:checked) {
+    background-color: rgba(148, 147, 138, 0.5);
+}
+.account-dataset #id_interests label:has(input:focus:not(:checked)) {
+    background-color: #ddd;
+}
+.account-dataset #id_interests label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #94938a;
+    border-radius: 0.25em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    transition: .2s;
+}
+.account-dataset #id_interests label:has(input:checked)::before {
+    border-color: #94938a;
+    background-color: #94938a;
+    background-image: url('../img/checkmark.png');
+    background-size: 60%;
+    background-position: center;
 }

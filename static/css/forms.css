@@ -161,22 +161,18 @@
 
 /* сообщения об ошибках и проч. */
 .helptext {
-    display: none;
-    /*position: absolute;
-    padding: 16px;
-    max-width: 256px;
-    background-color: #f4f4f4;
-    border-radius: 30px 30px 30px 0;
-    box-shadow: 0 3px 16px 0 rgba(51, 51, 51, 0.3);
-    transform: translateX(368px);*/
+    padding: 10px 0 0;
+    font-size: 12px;
+    line-height: normal;
+    color: rgba(51, 51, 51, 0.5);
 }
 .errorlist {
-    order: 100;
     color: indianred;
-    padding-top: 16px;
-    margin-top: 8px;
-    border-top: 1px solid rgba(51, 51, 51, 0.3);
+    padding: 10px;
+    border: 1px solid indianred;
+    border-radius: 5px;
     line-height: normal;
+    background-color: rgba(205, 92, 92, 0.1);
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -213,19 +209,20 @@ input:-webkit-autofill:active {
 }
 
 /* блок выбора интересов */
-#id_interests {
-    /*display: none;*/
+.authorization-form-wrapper #id_interests {
+    display: none;
     flex-wrap: wrap;
     gap: 8px;
 }
-#id_interests div {
+.authorization-form-wrapper #id_interests div {
     flex: 1 0 160px;
 }
-#id_interests input {
-    visibility: hidden;
-    width: 0;
+.authorization-form-wrapper #id_interests input {
+    position: absolute;
+    opacity: 0;
+    z-index: -10;
 }
-#id_interests label {
+.authorization-form-wrapper #id_interests label {
     display: flex;
     height: 64px;
     background-color: #ddd;
@@ -233,11 +230,12 @@ input:-webkit-autofill:active {
     justify-content: center;
     align-items: center;
     transition: .2s;
+    cursor: pointer;
 }
-#id_interests label:hover {
+.authorization-form-wrapper #id_interests label:hover {
     background-color: rgba(148, 147, 138, 0.3);
 }
-#id_interests label:has(input:checked) {
+.authorization-form-wrapper #id_interests label:has(input:checked) {
     background-color: rgba(148, 147, 138, 0.6);
 }
 
@@ -270,8 +268,20 @@ input:-webkit-autofill:active {
 }
 #next-set-button {
     float: right;
-    background-color: #dddddd;
+    background-color: #ddd;
 }
+/* для скрипта с проверкой валидности */
+/*#next-set-button {
+    float: right;
+    background-color: rgba(221, 221, 221, 0.3);
+    color: rgba(51, 51, 51, 0.3);
+    pointer-events: none;
+}
+#next-set-button.valid {
+    background-color: #ddd;
+    color: #333;
+    pointer-events: auto;
+}*/
 #prev-set-button {
     float: left;
     color: rgba(51, 51, 51, 0.75);
