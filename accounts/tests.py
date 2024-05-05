@@ -1,5 +1,3 @@
-from django.test import TestCase
-
 # Create your tests here.
 
 # Писать тесты безумно душно, но скорее всего рано или поздно придется,

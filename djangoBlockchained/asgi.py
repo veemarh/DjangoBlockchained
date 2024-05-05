@@ -22,9 +22,9 @@ application = get_asgi_application()
 
 chat_application = ProtocolTypeRouter(
     {
-        'http': application,
-        'websocket': AllowedHostsOriginValidator(
+        "http": application,
+        "websocket": AllowedHostsOriginValidator(
             AuthMiddlewareStack(URLRouter(routing.websocket_urlpatterns))
-        )
+        ),
     }
 )
