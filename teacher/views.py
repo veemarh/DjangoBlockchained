@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from accounts.models import Teacher
 from django.views.generic import ListView
+
+from accounts.models import Teacher
 
 
 class TeacherListView(ListView):
