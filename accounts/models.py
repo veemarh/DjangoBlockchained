@@ -36,26 +36,25 @@ class User(AbstractUser):
     email = models.EmailField()
 
 
-class Student:
-    pass
-
-
-class Teacher:
+class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     interests = models.ManyToManyField(Subject, related_name="interests_teacher")
 
     diploma = models.TextField(null=True, blank=True)
     experience = models.TextField(null=True, blank=True)
 
-    student_list = models.ManyToManyField(Student, related_name="student_list")
-
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    interests = models.ManyToManyField(Subject, related_name="interests_teacher")
+    interests = models.ManyToManyField(Subject, related_name="interests_student")
 
     school_name = models.CharField(max_length=20, null=True, blank=True)
     teacher_list = models.ManyToManyField(Teacher, related_name="teacher_list")
 
     def __str__(self):
         return self.user.username
+
+
+Teacher.__annotations__["student_list"] = models.ManyToManyField(
+    Student, related_name="student_list"
+)
