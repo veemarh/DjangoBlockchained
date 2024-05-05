@@ -1,10 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     CreateView,
     UpdateView,
@@ -12,11 +10,11 @@ from django.views.generic import (
     DetailView,
 )
 
-from .decorators import student_required
 from .forms import (
     StudentCreationForm,
     TeacherCreationForm,
     StudentInterestsForm,
+    StudentProfileChangeForm,
 )
 from .models import User, Student
 
@@ -81,19 +79,14 @@ class StudentProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
-    fields = (
-        "username",
-        "first_name",
-        "second_name",
-        "third_name",
-        "birth_date",
-        "phone_number",
-        "email",
-    )
-    template_name = "student_profile_edit.html"
+    form_class = StudentProfileChangeForm
 
-    success_url = reverse_lazy("home")  # Нужно на профиль
+    template_name = "student_profile_edit.html"
 
     def test_func(self):
         obj = self.get_object()
         return obj == self.request.user
+
+    def get_success_url(self):
+        user = self.get_object()
+        return reverse("student_profile", kwargs={"pk": user.pk})
