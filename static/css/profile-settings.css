@@ -79,7 +79,7 @@
 .account-dataset:has(#id_interests) p {
     display: flex;
     flex-direction: column;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 .account-dataset p:has(label + input):last-child {
     margin-bottom: 0;
