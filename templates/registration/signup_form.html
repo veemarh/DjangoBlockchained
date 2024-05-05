@@ -79,12 +79,19 @@
                 buttonNext.classList.add('active');
             }
         };
-        {% comment %}
+        
         let password1 = document.getElementById('id_password1');
         let password2 = document.getElementById('id_password2');
+        let usernamesRender = "{{ usernames }}".split("!");
+        let usernameInput, usernameExists;
         function isValid() {
+            usernameInput = document.getElementById('id_username');
+            usernameExists = usernamesRender.includes(usernameInput.value);
+            usernameExists
+                ? usernameInput.style.borderColor = "indianred"
+                : usernameInput.style.borderColor = "limegreen";
             for (let i = 0; i < inputDataSet[setNumber].length; i++) {
-                if (!inputDataSet[setNumber][i].querySelector('input').checkValidity()) {
+                if (!inputDataSet[setNumber][i].querySelector('input').checkValidity() || usernameExists) {
                     return false;
                 }
             }
@@ -106,7 +113,7 @@
         }
         inputDataSet[0].forEach(oneInput => {
             oneInput.querySelector('input').addEventListener('input', updateStatus);
-        });{% endcomment %}
+        });
     </script>
 {% endblock %}
 {% block footer %}{% endblock footer %}

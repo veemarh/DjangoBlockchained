@@ -266,12 +266,12 @@ input:-webkit-autofill:active {
     cursor: pointer;
     transition: .2s;
 }
-#next-set-button {
+/*#next-set-button {
     float: right;
     background-color: #ddd;
-}
+}*/
 /* для скрипта с проверкой валидности */
-/*#next-set-button {
+#next-set-button {
     float: right;
     background-color: rgba(221, 221, 221, 0.3);
     color: rgba(51, 51, 51, 0.3);
@@ -281,7 +281,7 @@ input:-webkit-autofill:active {
     background-color: #ddd;
     color: #333;
     pointer-events: auto;
-}*/
+}
 #prev-set-button {
     float: left;
     color: rgba(51, 51, 51, 0.75);
