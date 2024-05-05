@@ -11,11 +11,18 @@
                             <img src="{% static 'img/avatar.jpg' %}">
                             <h3>{{ user.username }}</h3>
                         </div>
-                        <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
+                        {% if request.user == user %}
+                            <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
+                        {% endif %}
                     </div>
                     <div class="account-dataset" id="main-dataset">
                         <div class="main-dataset-page">
-                            <h3>Public profile</h3>
+                             <h3>
+                                 {% if request.user == user %}Public 
+                                 {% elif user.is_student %}Student 
+                                 {% endif %}
+                                 profile
+                             </h3>
                             <p>
                                 <label for="first-name">First name</label>
                                 <input type="text" id="first-name" value="{{ user.first_name }}" disabled>

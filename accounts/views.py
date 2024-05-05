@@ -68,13 +68,13 @@ class TeacherSignUpView(CreateView):
         return redirect("")
 
 
-class StudentProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+class StudentProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = "student_profile.html"
 
-    def test_func(self):
-        obj = self.get_object()
-        return obj == self.request.user
+    # def test_func(self):
+    #     obj = self.get_object()
+    #     return obj == self.request.user
 
 
 class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
