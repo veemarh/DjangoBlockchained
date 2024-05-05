@@ -65,3 +65,27 @@ class CustomUserChangeForm(UserChangeForm):
             "username",
             "email",
         )
+
+
+class StudentProfileChangeForm(forms.ModelForm):
+    school_name = forms.CharField()
+
+    class Meta:
+        fields = (
+            "username",
+            "first_name",
+            "second_name",
+            "third_name",
+            "birth_date",
+            "phone_number",
+            "email",
+        )
+        model = User
+
+    @transaction.atomic
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.student.school_name = self.cleaned_data.get("school_name")
+        user.save()
+        user.student.save()
+        return user
