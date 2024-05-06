@@ -1,0 +1,11 @@
+.teacher-content-wrapper {
+    display: flex;
+    margin: auto;
+    padding: 0 16px;
+    max-width: 1140px;
+}
+
+.teacher-content-spacing {
+    padding: 16px;
+    align-content: center;
+}
