@@ -90,3 +90,4 @@ class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVi
     def get_success_url(self):
         user = self.get_object()
         return reverse("student_profile", kwargs={"pk": user.pk})
+
