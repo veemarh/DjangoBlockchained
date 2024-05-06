@@ -26,13 +26,25 @@
         </div>
     </div>
     <script>
+        let passwordLabels = document.querySelectorAll('p:has(input[id*=password]) label');
+        passwordLabels.forEach(label => {
+            let passwordViewToggle = document.createElement("div");
+            passwordViewToggle.classList.add('password-view-toggle');
+            label.appendChild(passwordViewToggle);
+            passwordViewToggle.addEventListener('click', () => {
+                passwordViewToggle.classList.toggle('shown');
+                passwordViewToggle.classList.contains('shown')
+                    ? label.nextElementSibling.setAttribute('type', 'text')
+                    : label.nextElementSibling.setAttribute('type', 'password');
+            }) 
+        });
+        
         let setNumber = 0;
         let buttonNext = document.getElementById('next-set-button');
         let buttonPrev = document.getElementById('prev-set-button');
         let buttonSignup = document.querySelector('.btn.btn-success');
         let setTitle = document.querySelector('.form-container h3');
         let setLabel = document.querySelector('.form-container span');
-
         let inputs = document.querySelectorAll('.form-container > p, .form-container > [id=\'id_interests\']');
         let inputDataSet;
         let titles;
