@@ -94,6 +94,7 @@ class StudentProfileChangeForm(forms.ModelForm):
 
 
 class TeacherProfileChangeForm(forms.ModelForm):
+    description = forms.CharField()
     diploma = forms.CharField()
     experience = forms.CharField()
 
@@ -112,6 +113,7 @@ class TeacherProfileChangeForm(forms.ModelForm):
     @transaction.atomic
     def save(self, commit=True):
         user = super().save(commit=False)
+        user.teacher.description = self.cleaned_data.get("description")
         user.teacher.diploma = self.cleaned_data.get("diploma")
         user.teacher.experience = self.cleaned_data.get("experience")
         user.save()
