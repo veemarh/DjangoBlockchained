@@ -31,6 +31,9 @@ class StudentSignUpView(CreateView):
 
     def get_context_data(self, **kwargs):
         kwargs["user_type"] = "student"
+        kwargs["usernames"] = "!".join(
+            [user.username for user in list(User.objects.all())]
+        )
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):

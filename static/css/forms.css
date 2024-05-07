@@ -91,9 +91,9 @@
 .form-container > p > label {
     padding: 10px 0;
     line-height: normal;
-    pointer-events: none;
     font-size: 14px;
     color: rgba(51, 51, 51, 0.75);
+    display: flex;
 }
 .form-container button {
     color: #fff;
@@ -173,6 +173,20 @@
     border-radius: 5px;
     line-height: normal;
     background-color: rgba(205, 92, 92, 0.1);
+}
+.errorlist.self-written{
+    position: absolute;
+    top: -10000px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s, opacity .2s;
+}
+.errorlist.self-written.shown {
+    position: static;
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .2s, opacity .2s;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -266,12 +280,12 @@ input:-webkit-autofill:active {
     cursor: pointer;
     transition: .2s;
 }
-#next-set-button {
+/*#next-set-button {
     float: right;
     background-color: #ddd;
-}
+}*/
 /* для скрипта с проверкой валидности */
-/*#next-set-button {
+#next-set-button {
     float: right;
     background-color: rgba(221, 221, 221, 0.3);
     color: rgba(51, 51, 51, 0.3);
@@ -281,7 +295,7 @@ input:-webkit-autofill:active {
     background-color: #ddd;
     color: #333;
     pointer-events: auto;
-}*/
+}
 #prev-set-button {
     float: left;
     color: rgba(51, 51, 51, 0.75);
