@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.db import transaction
 
-from .models import Student, Subject, User
+from .models import Student, Teacher, Subject, User
 
 
 class StudentCreationForm(UserCreationForm):
@@ -53,6 +53,8 @@ class TeacherCreationForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_teacher = True
+        user.save()
+        teacher = Teacher.objects.create(user=user)
         if commit:
             user.save()
         return user
@@ -88,4 +90,30 @@ class StudentProfileChangeForm(forms.ModelForm):
         user.student.school_name = self.cleaned_data.get("school_name")
         user.save()
         user.student.save()
+        return user
+
+
+class TeacherProfileChangeForm(forms.ModelForm):
+    diploma = forms.CharField()
+    experience = forms.CharField()
+
+    class Meta:
+        fields = (
+            "username",
+            "first_name",
+            "second_name",
+            "third_name",
+            "birth_date",
+            "phone_number",
+            "email",
+        )
+        model = User
+
+    @transaction.atomic
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.teacher.diploma = self.cleaned_data.get("diploma")
+        user.teacher.experience = self.cleaned_data.get("experience")
+        user.save()
+        user.teacher.save()
         return user
