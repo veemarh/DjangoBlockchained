@@ -26,6 +26,7 @@
         </div>
     </div>
     <script>
+        {# глаз для пароля #}
         let passwordLabels = document.querySelectorAll('p:has(input[id*=password]) label');
         passwordLabels.forEach(label => {
             let passwordViewToggle = document.createElement("div");
@@ -39,6 +40,7 @@
             }) 
         });
         
+        {# перемещение между страницами #}
         let setNumber = 0;
         let buttonNext = document.getElementById('next-set-button');
         let buttonPrev = document.getElementById('prev-set-button');
@@ -92,30 +94,70 @@
             }
         };
         
+        {# проверка валидности #}
+        let usernameInput = document.getElementById('id_username');
+        let emailInput = document.getElementById('id_email');
         let password1 = document.getElementById('id_password1');
         let password2 = document.getElementById('id_password2');
-        let usernamesRender = "{{ usernames }}".split("!");
-        let usernameInput, usernameExists;
-        function isValid() {
-            usernameInput = document.getElementById('id_username');
-            usernameExists = usernamesRender.includes(usernameInput.value);
-            usernameExists
-                ? usernameInput.style.borderColor = "indianred"
-                : usernameInput.style.borderColor = "limegreen";
-            for (let i = 0; i < inputDataSet[setNumber].length; i++) {
-                if (!inputDataSet[setNumber][i].querySelector('input').checkValidity() || usernameExists) {
-                    return false;
-                }
-            }
-            return !(setNumber === 0 && (password1.value !== password2.value));
+        
+        function getError(num, message) {
+            let error = document.createElement("ul");
+            error.classList.add('errorlist', 'self-written');
+            let content = document.createElement("li");
+            content.textContent = message;
+            error.appendChild(content);
+            inputs[num].after(error);
+            return error;
         }
+        let errorUsername = getError(0, 'A user with that username already exists.');
+        let errorPassword = getError(5, 'The two password fields didn’t match.');
+        let errorEmail = getError(3, 'Please enter a valid email.');
+        
+        function usernameExists() {
+            let usernamesRender = "{{ usernames }}".split("!");
+            return usernamesRender.includes(usernameInput.value.trim());
+        }
+        usernameInput.addEventListener("change", () => {
+            usernameExists()
+                ? errorUsername.classList.add('shown')
+                : errorUsername.classList.remove('shown');
+        });
+        
+        function passwordIsValid() {
+            return password1.value && password1.value === password2.value;
+        }
+        function toggleErrorPassword() {
+            !passwordIsValid()
+                ? errorPassword.classList.add('shown')
+                : errorPassword.classList.remove('shown');
+        }
+        password1.addEventListener("change", () => {
+            password2.value ? toggleErrorPassword() : 0;
+        });
+        password2.addEventListener("change", () => {
+            password1.value ? toggleErrorPassword() : 0;
+        });
+        
+        function emailIsValid() {
+            return emailInput.checkValidity();
+        }
+        emailInput.addEventListener("change", () => {
+            !emailIsValid()
+                ? errorEmail.classList.add('shown')
+                : errorEmail.classList.remove('shown');
+        });
+        
+        function isValid() {
+            return !usernameExists() && passwordIsValid() && emailIsValid();
+        }
+        
         function updateStatus() {
             if (isValid()) {
                 buttonNext.classList.add('valid');
                 let errorLists = document.querySelectorAll('.errorlist');
                 if (errorLists) {
                     errorLists.forEach(errorList => {
-                        errorList.style.display = 'none';
+                        errorUsername.classList.remove('shown');
                     });
                 }
             }
