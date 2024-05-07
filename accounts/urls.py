@@ -5,6 +5,8 @@ from .views import (
     StudentProfileView,
     StudentProfileUpdateView,
     StudentInterestsView,
+    TeacherProfileView,
+    TeacherProfileUpdateView,
 )
 
 urlpatterns = (
@@ -23,5 +25,15 @@ urlpatterns = (
         "student/profile/<int:pk>/edit/",
         StudentProfileUpdateView.as_view(),
         name="student_profile_edit",
+    ),
+    path(
+        "teacher/profile/<int:pk>/",
+        TeacherProfileView.as_view(),
+        name="teacher_profile",
+    ),
+    path(
+        "teacher/profile/<int:pk>/edit",
+        TeacherProfileUpdateView.as_view(),
+        name="teacher_profile_edit",
     ),
 )

@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.html import escape
@@ -38,10 +40,30 @@ class User(AbstractUser):
 
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    interests = models.ManyToManyField(Subject, related_name="interests_teacher")
+    description = models.TextField(null=True, blank=True)
+    # interests = models.ManyToManyField(Subject, related_name="interests_teacher")
 
     diploma = models.TextField(null=True, blank=True)
     experience = models.TextField(null=True, blank=True)
+
+    price_list = models.JSONField(default=dict, null=True, blank=True)
+    # В процессе редактирования
+
+    def add_to_price_list(self, new_object, price):
+        dict_price_list = json.loads(self.price_list)
+        dict_price_list[new_object] = price
+        self.price_list = json.dumps(dict_price_list)
+
+    def delete_from_price_list(self, object):
+        dict_price_list = json.loads(self.price_list)
+        del dict_price_list[object]
+        self.price_list = json.dumps(dict_price_list)
+
+    def set_price_list(self, price_list):
+        self.price_list = json.dumps(price_list)
+
+    def __str__(self):
+        return self.user.username
 
 
 class Student(models.Model):
