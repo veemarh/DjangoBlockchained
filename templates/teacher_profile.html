@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="col-md-6">
+        <div class="account-content-wrapper">
+            <div id="account-space-edit">
+                <div class="data-editing-form">
+                    <div class="account-dataset">
+                        <div id="summary-dataset">
+                            {# условно #}
+                            <img src="{% static 'img/avatar.jpg' %}">
+                            <h3>{{ user.username }}</h3>
+                        </div>
+                        {% if request.user == user %}
+                            <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
+                        {% endif %}
+                    </div>
+                    <div class="account-dataset" id="main-dataset">
+                        <div class="main-dataset-page">
+                             <h3>
+                                 {% if request.user == user %}Public 
+                                 {% elif user.is_student %}Student 
+                                 {% endif %}
+                                 profile
+                             </h3>
+                            <p>
+                                <label for="first-name">First name</label>
+                                <input type="text" id="first-name" value="{{ user.first_name }}" disabled>
+                            </p>
+                            <p>
+                                <label for="second-name">Second name</label>
+                                <input type="text" id="second-name" value="{{ user.second_name }}" disabled>
+                            </p>
+                            <p>
+                                <label for="third-name">Third name</label>
+                                <input type="text" id="third-name" value="{{ user.third_name }}" disabled>
+                            </p>
+                            <p>
+                                <label for="birth-date">Birth date</label>
+                                <input type="text" id="birth-date" value="{{ user.birth_date }}" disabled>
+                            </p>
+                            <p>
+                                <label for="email">Email</label>
+                                <input type="text" id="email" value="{{ user.email }}" disabled>
+                            </p>
+                            <p>
+                                <label for="phone-number">Phone number</label>
+                                <input type="text" id="phone-number" value="{{ user.phone_number }}" disabled>
+                            </p>
+                        </div>
+                        <div class="main-dataset-page">
+                            <h3>Services</h3>
+                            <ul>
+                                {% for service in user.teacher.service_set.all %}
+                                    <li> {{ service }} </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
