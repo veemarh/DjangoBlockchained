@@ -14,5 +14,19 @@
             <a href="{% url 'password_reset' %}" id="forgot-password-link">Forgot password?</a>
         </form>
     </div>
+    <script>
+        let passwordLabels = document.querySelectorAll('p:has(input[id*=password]) label');
+        passwordLabels.forEach(label => {
+            let passwordViewToggle = document.createElement("div");
+            passwordViewToggle.classList.add('password-view-toggle');
+            label.appendChild(passwordViewToggle);
+            passwordViewToggle.addEventListener('click', () => {
+                passwordViewToggle.classList.toggle('shown');
+                passwordViewToggle.classList.contains('shown')
+                    ? label.nextElementSibling.setAttribute('type', 'text')
+                    : label.nextElementSibling.setAttribute('type', 'password');
+            }) 
+        });
+    </script>
 {% endblock content %}
 {% block footer %}{% endblock footer %}

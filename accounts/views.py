@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 from django.views.generic import (
     CreateView,
     UpdateView,
@@ -15,6 +15,7 @@ from .forms import (
     TeacherCreationForm,
     StudentInterestsForm,
     StudentProfileChangeForm,
+    TeacherProfileChangeForm,
 )
 from .models import User, Student
 
@@ -30,6 +31,9 @@ class StudentSignUpView(CreateView):
 
     def get_context_data(self, **kwargs):
         kwargs["user_type"] = "student"
+        kwargs["usernames"] = "!".join(
+            [user.username for user in list(User.objects.all())]
+        )
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -43,7 +47,6 @@ class StudentInterestsView(UpdateView):
     model = Student
     form_class = StudentInterestsForm
     template_name = "interests_form.html"
-    success_url = reverse_lazy("home")  # Нужно на профиль
 
     def get_object(self):
         return self.request.user.student
@@ -51,6 +54,10 @@ class StudentInterestsView(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "Interests updated with success!")
         return super().form_valid(form)
+
+    def get_success_url(self):
+        user = self.get_object()
+        return reverse("student_profile", kwargs={"pk": user.pk})
 
 
 class TeacherSignUpView(CreateView):
@@ -65,7 +72,7 @@ class TeacherSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect("")
+        return redirect("home")
 
 
 class StudentProfileView(LoginRequiredMixin, DetailView):
@@ -75,6 +82,11 @@ class StudentProfileView(LoginRequiredMixin, DetailView):
     # def test_func(self):
     #     obj = self.get_object()
     #     return obj == self.request.user
+
+
+class TeacherProfileView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = "teacher_profile.html"
 
 
 class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -91,3 +103,16 @@ class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVi
         user = self.get_object()
         return reverse("student_profile", kwargs={"pk": user.pk})
 
+
+class TeacherProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = User
+    form_class = TeacherProfileChangeForm
+    template_name = "teacher_profile_edit.html"
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj == self.request.user
+
+    def get_success_url(self):
+        user = self.get_object()
+        return reverse("teacher_profile", kwargs={"pk": user.pk})

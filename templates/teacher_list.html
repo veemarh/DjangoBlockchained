@@ -1,21 +1,7 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %}Teachers{% endblock title %}
-{% block content %}
-    <div>
-        <h1>List of teachers</h1>
-    </div>
-    <ul>
-<!--        убрал пока цикл с выводом учителей, чтобы отлаживать-->
-        <li>
-            <div class="teacher-content-wrapper">
-                <div class="teacher-content-spacing">
-                    <div class="teacher-info-block">
-                        <span>some random info</span>
-                    </div>
-                </div>
+<h1>Teachers List</h1>
 
-            </div>
-        </li>
-    </ul>
-{% endblock content %}
+<ul>
+  {% for teacher in teachers %}
+    <li>{{ teacher.user.username }} </li>
+  {% endfor %}
+</ul>

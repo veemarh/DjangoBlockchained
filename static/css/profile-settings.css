@@ -228,14 +228,31 @@
     border: 1px solid #94938a;
     border-radius: 0.25em;
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
-    transition: .2s;
+    background-position: center;
+    background-size: 60%;
 }
 .account-dataset #id_interests label:has(input:checked)::before {
-    border-color: #94938a;
     background-color: #94938a;
     background-image: url('../img/checkmark.png');
-    background-size: 60%;
+}
+
+.account-dataset p:has(input[id*=password]) label {
+    display: flex;
+}
+p:has(input[id*=password]) .password-view-toggle {
+    content: '';
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    background-image: url('../img/hidden.png');
+    background-repeat: no-repeat;
     background-position: center;
+    background-size: 100%;
+    margin-left: auto;
+    transition: .2s;
+    cursor: pointer;
+}
+p:has(input[id*=password]) .password-view-toggle.shown {
+    background-image: url('../img/view.png');
 }

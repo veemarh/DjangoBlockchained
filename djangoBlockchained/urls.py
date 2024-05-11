@@ -35,6 +35,5 @@ urlpatterns = [
     path(
         "accounts/signup/teacher/", TeacherSignUpView.as_view(), name="teacher_signup"
     ),
-    path("teacher/", include("teacher.urls")),
-    path("chat/", include("chat.urls")),
+    path("teacher_list/", include("teacher.urls")),
 ]
