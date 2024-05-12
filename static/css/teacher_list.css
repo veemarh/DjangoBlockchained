@@ -1,11 +1,66 @@
-.teacher-content-wrapper {
-    display: flex;
-    margin: auto;
-    padding: 0 16px;
-    max-width: 1140px;
+.teacher-container {
+  --main-color: #000;
+  --submain-color: #78858F;
+  --bg-color: #fff;
+  position: relative;
+  width: 300px;
+  height: 384px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  background: var(--bg-color);
 }
 
-.teacher-content-spacing {
-    padding: 16px;
-    align-content: center;
+
+
+.teacher-avatar {
+  position: absolute;
+  width: 114px;
+  height: 114px;
+  background-color: red;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: calc(50% - 57px);
+}
+
+.teacher-avatar svg {
+  width: 100px;
+  height: 100px;
+}
+
+.teacher-name {
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+}
+
+.teacher-profession {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--submain-color);
+}
+
+.teacher-button {
+  margin-top: 15px;
+  width: 76px;
+  height: 31px;
+  border: 2px solid var(--main-color);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--main-color);
+  background: var(--bg-color);
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+
+.teacher-button:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
 }
