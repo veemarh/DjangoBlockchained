@@ -51,19 +51,16 @@
         let inputDataSet;
         let titles;
         let labels;
-        '{{ user_type }}' === 'student'
-            ? (inputDataSet = [[inputs[0], inputs[3], inputs[5], inputs[6]],
-                [inputs[1], inputs[2], inputs[4]],
-                [inputs[7], inputs[8]]],
-                titles = ['Create a profile', 'Share personal information', 'Choose hobbies and interests'],
-                labels = ['These details are essential for creating your account.',
-                    'Personalize your experience. You can provide this later.',
-                    'We will tailor content and recommendations to your preferences.'])
-            : (inputDataSet = [[inputs[0], inputs[1], inputs[2]],
-                [inputs[3], inputs[4]]],
-                titles = ['Create a profile', 'Choose hobbies and interests'],
-                labels = ['These details are essential for creating your account.',
-                    'We will tailor content and recommendations to your preferences.']);
+        inputDataSet = [[inputs[0], inputs[3], inputs[5], inputs[6]],
+            [inputs[1], inputs[2], inputs[4]]];
+        titles = ['Create a profile', 'Share personal information'];
+        labels = ['These details are essential for creating your account.',
+            'Personalize your experience. You can provide this later.'];
+        if ('{{ user_type }}' === 'student') {
+            inputDataSet.push([inputs[7], inputs[8]]);
+            titles.push('Choose hobbies and interests');
+            labels.push('We will tailor content and recommendations to your preferences.');
+        }
         inputDataSet[0].forEach(input => input.classList.add('active'));
 
         function ChangeDataSet(param) {
@@ -150,20 +147,8 @@
         function isValid() {
             return !usernameExists() && passwordIsValid() && emailIsValid();
         }
-        
         function updateStatus() {
-            if (isValid()) {
-                buttonNext.classList.add('valid');
-                let errorLists = document.querySelectorAll('.errorlist');
-                if (errorLists) {
-                    errorLists.forEach(errorList => {
-                        errorUsername.classList.remove('shown');
-                    });
-                }
-            }
-            else {
-                buttonNext.classList.remove('valid');
-            }
+            isValid() ? buttonNext.classList.add('valid') : buttonNext.classList.remove('valid');
         }
         inputDataSet[0].forEach(oneInput => {
             oneInput.querySelector('input').addEventListener('input', updateStatus);
