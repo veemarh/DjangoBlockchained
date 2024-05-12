@@ -40,14 +40,21 @@ class StudentInterestsForm(forms.ModelForm):
 
 
 class TeacherCreationForm(UserCreationForm):
-    interests = forms.ModelMultipleChoiceField(
-        queryset=Subject.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=False,
-    )
+    # interests = forms.ModelMultipleChoiceField(
+    #     queryset=Subject.objects.all(),
+    #     widget=forms.CheckboxSelectMultiple,
+    #     required=False,
+    # )
 
     class Meta(UserCreationForm.Meta):
         model = User
+        fields = (
+            "username",
+            "first_name",
+            "second_name",
+            "email",
+            "phone_number",
+        )
 
     @transaction.atomic
     def save(self, commit=True):
