@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Teachers{% endblock title %}
@@ -11,10 +10,13 @@
         <li>
             <div class="teacher-container">
                 <div class="teacher-avatar"></div>
-                <div class="teacher-name"><a href="#">{{ teacher.user.username }}</a></div>
-                <div class="teacher-profession">"Profession"</div>
-                <div class="teacher-wrapper">
-                    <button class="teacher-button">Chat</button>
+                <div class="teacher-info">
+                    <div class="teacher-name"><a href="#">{{ teacher.user.username }}</a></div>
+<!--                    чуть позже добавю связь с нормальной отраслью-->
+                    <div class="teacher-profession">"Profession"</div>
+                </div>
+                <div class="teacher-button-wrapper">
+                    <a class="teacher-button" href="#">Chat</a>
                 </div>
             </div>
         </li>
