@@ -1,7 +1,25 @@
-<h1>Teachers List</h1>
-
-<ul>
-  {% for teacher in teachers %}
-    <li>{{ teacher.user.username }} </li>
-  {% endfor %}
-</ul>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Teachers{% endblock title %}
+{% block content %}
+    <div>
+        <h1>List of teachers</h1>
+    </div>
+    <ul>
+      {% for teacher in teachers %}
+        <li>
+            <div class="teacher-container">
+                <div class="teacher-avatar"></div>
+                <div class="teacher-info">
+                    <div class="teacher-name"><a href="#">{{ teacher.user.username }}</a></div>
+<!--                    чуть позже добавю связь с нормальной отраслью-->
+                    <div class="teacher-profession">"Profession"</div>
+                </div>
+                <div class="teacher-button-wrapper">
+                    <a class="teacher-button" href="#">Chat</a>
+                </div>
+            </div>
+        </li>
+      {% endfor %}
+    </ul>
+{% endblock %}

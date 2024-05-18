@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     <link rel="stylesheet" href="{% static 'css/forms.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile-settings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/teacher_list.css' %}">
 </head>
 <body>
 {% block header %}
@@ -35,7 +36,7 @@
                 <a href="{% url 'home' %}">Homepage</a>
             </li>
             <li>
-                <a href="/">Teachers</a>
+                <a href="{% url 'teacher_list' %}">Teachers</a>
             </li>
             <li>
                 <a href="/">About Us</a>
