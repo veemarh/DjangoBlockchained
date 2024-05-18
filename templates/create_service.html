@@ -8,6 +8,14 @@
 
 {% for service in request.user.teacher.service_set.all %}
     <li> {{ service.name }} </li>
+    <form method="post" action="{% url 'delete_service' service.pk %}">
+        {% csrf_token %}
+        <button id="nav-logout-button" type="submit">
+            delete
+        </button>
+    </form>
+
+
 
 {% endfor %}
 <form action="" method="post">{% csrf_token %}
