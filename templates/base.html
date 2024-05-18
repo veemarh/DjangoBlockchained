@@ -53,7 +53,10 @@
                     </script>
                     <ul id="header-user-menu">
                         <li>
-                            <a href="{% url 'student_profile' user.id %}">Your profile</a>
+                            {% if user.is_student %}<a href="{% url 'student_profile' user.id %}">
+                            {% else %}<a href="{% url 'teacher_profile' user.id %}">
+                            {% endif %}
+                            Your profile</a>
                         </li>
                         <li>
                             <a href="/">Your teachers</a>
