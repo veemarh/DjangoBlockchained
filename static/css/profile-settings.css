@@ -71,6 +71,13 @@
 .account-dataset#main-dataset {
     flex-grow: 3;
 }
+.account-dataset#main-dataset h2 {
+    margin-bottom: 0;
+}
+.account-dataset#main-dataset span {
+    color: #94938a;
+    font-weight: lighter;
+}
 .account-dataset span:not(.helptext) {
     display: inline-block;
     padding-bottom: 16px;
@@ -102,7 +109,7 @@
     font-size: 14px;
     color: rgba(51, 51, 51, 0.75);
 }
-.account-dataset a {
+.account-dataset #summary-dataset a {
     display: block;
     line-height: 30px;
     padding: 5px;
@@ -112,36 +119,54 @@
     background-color: rgba(221, 221, 221, 0.6);
     border: 1px solid rgba(51, 51, 51, 0.3);
 }
-.account-dataset a:hover {
+.account-dataset #summary-dataset a:hover {
     background-color: #ddd;
 }
 #summary-dataset {
     display: flex;
     flex-direction: column;
-    gap: 16px;
 }
 #summary-dataset img {
     border-radius: 50%;
 }
-#summary-dataset h3 {
-    color: darkgoldenrod;
+#summary-dataset a {
+    margin-top: 1em;
 }
 #main-dataset {
     display: flex;
     flex-direction: column;
-    gap: 32px;
 }
-.main-dataset-page ul > * {
+#main-dataset ul > * {
     display: inline-block;
     padding: 8px 10px;
     background-color: #ddd;
     border-radius: 10px;
     margin: 0 5px 10px 0;
 }
-.main-dataset-page ul > *:last-child {
+#main-dataset ul > *:last-child {
     margin-right: 0;
 }
-
+.profile-connect::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    margin: auto 1em auto 0;
+}
+.profile-connect#profile-email::before {
+    background-image: url('../img/email.png');
+}
+.profile-connect#profile-phone::before {
+    background-image: url('../img/phone.png');
+}
+a[href^="mailto:"],
+a[href^="tel:"] {
+  color: slateblue;
+}
 @media (max-width: 1140px) {
     .account-content-wrapper {
         max-width: 992px;
@@ -161,15 +186,10 @@
         flex-direction: column;
     }
     #summary-dataset {
-        flex-direction: row;
         padding-bottom: 16px;
     }
     #summary-dataset img {
         max-width: 24vw;
-    }
-    #summary-dataset h3 {
-        align-self: center;
-        padding: 0;
     }
 }
 

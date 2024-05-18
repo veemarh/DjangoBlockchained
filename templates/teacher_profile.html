@@ -9,53 +9,34 @@
                         <div id="summary-dataset">
                             {# условно #}
                             <img src="{% static 'img/avatar.jpg' %}">
-                            <h3>{{ user.username }}</h3>
+                            {% if request.user == user %}
+                                <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
+                            {% endif %}
                         </div>
-                        {% if request.user == user %}
-                            <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
-                        {% endif %}
                     </div>
                     <div class="account-dataset" id="main-dataset">
-                        <div class="main-dataset-page">
-                             <h3>
-                                 {% if request.user == user %}Public 
-                                 {% elif user.is_student %}Student 
-                                 {% endif %}
-                                 profile
-                             </h3>
-                            <p>
-                                <label for="first-name">First name</label>
-                                <input type="text" id="first-name" value="{{ user.first_name }}" disabled>
-                            </p>
-                            <p>
-                                <label for="second-name">Second name</label>
-                                <input type="text" id="second-name" value="{{ user.second_name }}" disabled>
-                            </p>
-                            <p>
-                                <label for="third-name">Third name</label>
-                                <input type="text" id="third-name" value="{{ user.third_name }}" disabled>
-                            </p>
-                            <p>
-                                <label for="birth-date">Birth date</label>
-                                <input type="text" id="birth-date" value="{{ user.birth_date }}" disabled>
-                            </p>
-                            <p>
-                                <label for="email">Email</label>
-                                <input type="text" id="email" value="{{ user.email }}" disabled>
-                            </p>
-                            <p>
-                                <label for="phone-number">Phone number</label>
-                                <input type="text" id="phone-number" value="{{ user.phone_number }}" disabled>
-                            </p>
+                        <h3>
+                            {% if request.user == user %}Public
+                            {% elif user.is_student %}Teacher
+                            {% endif %}
+                            profile
+                        </h3>
+                        <h2>{{ user.first_name }} {{ user.second_name }} {{ user.third_name }}</h2>
+                        <span>@{{ user.username }}</span>
+                        <br/>
+                        <div class="profile-connect" id="profile-phone" style="display: flex">
+                            <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
                         </div>
-                        <div class="main-dataset-page">
-                            <h3>Services</h3>
-                            <ul>
-                                {% for service in user.teacher.service_set.all %}
-                                    <li> {{ service }} </li>
-                                {% endfor %}
-                            </ul>
+                        <div class="profile-connect" id="profile-email" style="display: flex">
+                            <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
                         </div>
+                        <br/><hr><br/>
+                        <h3>Services</h3>
+                        <ul>
+                            {% for service in user.teacher.service_set.all %}
+                                <li> {{ service }} </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
