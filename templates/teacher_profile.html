@@ -18,6 +18,7 @@
                         <h3>
                             {% if request.user == user %}Public
                             {% elif user.is_teacher %}Teacher
+
                             {% endif %}
                             profile
                         </h3>

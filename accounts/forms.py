@@ -39,12 +39,19 @@ class StudentInterestsForm(forms.ModelForm):
         widgets = {"interests": forms.CheckboxSelectMultiple}
 
 
+class TeacherInterestsForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ("interests",)
+        widgets = {"interests": forms.CheckboxSelectMultiple}
+
+
 class TeacherCreationForm(UserCreationForm):
-    # interests = forms.ModelMultipleChoiceField(
-    #     queryset=Subject.objects.all(),
-    #     widget=forms.CheckboxSelectMultiple,
-    #     required=False,
-    # )
+    interests = forms.ModelMultipleChoiceField(
+        queryset=Subject.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
 
     class Meta(UserCreationForm.Meta):
         model = User
