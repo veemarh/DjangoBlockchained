@@ -39,7 +39,7 @@ class User(AbstractUser):
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     description = models.TextField(null=True, blank=True)
-    # interests = models.ManyToManyField(Subject, related_name="interests_teacher")
+    interests = models.ManyToManyField(Subject, related_name="interests_teacher")
 
     diploma = models.TextField(null=True, blank=True)
     experience = models.TextField(null=True, blank=True)
