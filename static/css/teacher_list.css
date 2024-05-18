@@ -1,5 +1,5 @@
 /* Центрирование карточек */
-ul {
+ul#teacher-list-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
