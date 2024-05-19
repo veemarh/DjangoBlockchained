@@ -82,6 +82,7 @@
     display: inline-block;
     padding-bottom: 16px;
 }
+.account-dataset p:has(label + textarea),
 .account-dataset p:has(label + input),
 .account-dataset:has(#id_interests) p {
     display: flex;
@@ -91,6 +92,15 @@
 .account-dataset p:has(label + input):last-child {
     margin-bottom: 0;
 }
+.account-dataset textarea {
+    font-family: 'Open Sans', arial, sans-serif;
+    line-height: 1.2;
+    color: #333;
+    width: 100%;
+    resize: none;
+    height: 128px;
+}
+.account-dataset textarea,
 .account-dataset input {
     background: transparent;
     outline: none;
@@ -99,6 +109,8 @@
     padding: 10px;
     font-size: 16px;
 }
+.account-dataset textarea:not([disabled]):active,
+.account-dataset textarea:not([disabled]):focus,
 .account-dataset input:not([disabled]):active,
 .account-dataset input:not([disabled]):focus {
     border-color: #333;
@@ -275,4 +287,88 @@ p:has(input[id*=password]) .password-view-toggle {
 }
 p:has(input[id*=password]) .password-view-toggle.shown {
     background-image: url('../img/view.png');
+}
+
+/* блок сервисов преподавателей */
+#service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 640px;
+}
+#service-list .one-service {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(221, 221, 221, 0.3);
+    padding: 3px 8px;
+}
+#service-list label {
+    align-self: center;
+}
+#service-list button {
+    color: #f4f4f4;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    line-height: 1;
+    padding: 8px;
+    user-select: none;
+}
+#service-list button:hover,
+#service-list button:active {
+    background-color: #94938a;
+}
+#service-list button:focus:not(:checked) {
+    background-color: #333;
+}
+#service-form {
+    background-color: #f4f4f4;
+    padding: 16px;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+#show-service-button {
+    color: #333;
+    background-color: #f4f4f4;
+    border: 1px solid #333;
+    border-radius: 5px;
+    line-height: 1;
+    padding: 8px;
+    width: 128px;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    transition: .2s;
+}
+#show-service-button:hover,
+#show-service-button:active {
+    background-color: #ddd;
+}
+#show-service-button button:focus:not(:checked) {
+    background-color: #f4f4f4;
+}
+#service-dialog {
+    position: absolute;
+    background: none;
+    border: none;
+    margin: auto;
+    overflow: visible;
+}
+#service-dialog::backdrop {
+    background: rgba(51, 51, 51, 0.3);
+}
+#close-service-form button {
+    display: block;
+    margin-left: auto;
+    margin-right: 16px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    background-color: transparent;
+    transform: translateY(calc(100% + 16px));
+}
+#close-service-form button:focus-visible {
+    outline: none;
 }
