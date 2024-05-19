@@ -1,26 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-{% for service in request.user.teacher.service_set.all %}
-    <li> {{ service.name }} </li>
-    <form method="post" action="{% url 'delete_service' service.pk %}">
-        {% csrf_token %}
-        <button id="nav-logout-button" type="submit">
-            delete
-        </button>
-    </form>
-
-
-
-{% endfor %}
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-success ml-2" type="submit">Save</button>
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="account-content-wrapper">
+        <div id="account-space-nav">
+            <ul>
+                <li><a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a></li>
+                <li id="current-edit-page">
+                    <div></div>
+                    <a href="{% url 'teacher_services' %}">Update services</a>
+                </li>
+                <li><a href="{% url 'password_change' %}">Change password</a></li>
+            </ul>
+        </div>
+        <div id="account-space-edit">
+            <h3>Update services</h3>
+            <div id="service-list">
+                {% for service in request.user.teacher.service_set.all %}
+                    <div class="one-service">
+                        <label>{{ service.name }}</label>
+                        <form method="post" action="{% url 'delete_service' service.pk %}">
+                            {% csrf_token %}
+                            <button class="delete-service-button" type="submit">Delete</button>
+                        </form>
+                    </div>
+                {% endfor %}
+                <div id="show-service-button">Add service</div>
+            </div>
+            <dialog id="service-dialog">
+                <form id="close-service-form" method="dialog">
+                    <button>X</button>
+                </form>
+                <form id="service-form" class="data-editing-form" action="" method="post">
+                    <div class="account-dataset">
+                        <h3>Add service</h3>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <button class="btn btn-success ml-2" type="submit">Save</button>
+                </form>
+            </dialog>
+        </div>
+    </div>
+    <script>
+        let showServiceButton = document.getElementById('show-service-button');
+        let serviceDialog = document.getElementById('service-dialog');
+        showServiceButton.addEventListener('click', () => {
+            serviceDialog.showModal();
+        });
+    </script>
+{% endblock content %}
+{% block footer %}{% endblock footer %}
