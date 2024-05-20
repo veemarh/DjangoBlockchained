@@ -355,6 +355,9 @@ p:has(input[id*=password]) .password-view-toggle.shown {
 #create-service-dialog::backdrop {
     background: rgba(51, 51, 51, 0.3);
 }
+#delete-service-dialog {
+    max-width: 480px;
+}
 #close-service-form button {
     display: block;
     margin-left: auto;
@@ -403,4 +406,8 @@ p:has(input[id*=password]) .password-view-toggle.shown {
 #delete-service-buttons button:last-of-type:active {
     background-color: #94938a;
     border-color: #94938a;
+}
+#current-service-name {
+    font-weight: bolder;
+    color: goldenrod;
 }

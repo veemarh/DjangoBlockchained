@@ -40,7 +40,9 @@
             </dialog>
             <dialog id="delete-service-dialog">
                 <div>
-                    <span>Are you sure you want to delete the service?</span>
+                    <span>Are you sure you want to delete the service 
+                        <span id="current-service-name"></span>?
+                    </span>
                     <form method="dialog">
                         <div id="delete-service-buttons">
                             <button>Cancel</button>
@@ -61,11 +63,13 @@
         let deleteServiceButton = document.querySelectorAll('.delete-service-button');
         let deleteServiceDialog = document.getElementById('delete-service-dialog');
         let confirmDeleteButton = document.getElementById('confirm-delete-button');
+        let currentServiceName = document.getElementById('current-service-name');
         let currentDeleteForm;
         deleteServiceButton.forEach(button => {
             button.addEventListener('click', function(event) {
                 event.preventDefault();
                 currentDeleteForm = button.parentElement;
+                currentServiceName.textContent = currentDeleteForm.parentElement.firstElementChild.textContent;
                 deleteServiceDialog.showModal();
             });
         });
