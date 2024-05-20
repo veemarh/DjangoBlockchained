@@ -1,14 +1,30 @@
 from django.db import models
 
-from accounts.models import User
+from accounts.models import User, Teacher, Student
+
+
+class Room(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    # teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='room_teacher')
+    # student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='room_student')
+
+    class Meta:
+        ordering = ("-created_at",)
+
+    def __str__(self):
+        return f"{self.name} - {self.slug}"
 
 
 class Message(models.Model):
+    room = models.ForeignKey(Room, related_name='messages', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='messages', on_delete=models.CASCADE)
     body = models.TextField()
     sent_by = models.CharField(max_length=255, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(
-        User, blank=True, null=True, on_delete=models.SET_NULL
+        User, null=True, on_delete=models.SET_NULL
     )
 
     class Meta:
@@ -16,31 +32,3 @@ class Message(models.Model):
 
     def __str__(self):
         return f"{self.sent_by},"
-
-
-class Room(models.Model):
-    WAITING = "waiting"
-    ACTIVE = "active"
-    CLOSED = "closed"
-
-    CHOICES_STATUS = (
-        (WAITING, "Waiting"),
-        (ACTIVE, "Active"),
-        (CLOSED, "Closed"),
-    )
-
-    room_id = models.CharField(max_length=255, unique=True)
-    client = models.CharField(max_length=255)
-    agent = models.ForeignKey(
-        User, related_name="rooms", blank=True, null=True, on_delete=models.SET_NULL
-    )
-    messages = models.ManyToManyField(Message, blank=True)
-    url = models.CharField(max_length=255, blank=True, null=True)
-    status = models.CharField(max_length=20, choices=CHOICES_STATUS, default=WAITING)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ("-created_at",)
-
-    def __str__(self):
-        return f"{self.client} - {self.room_id}"
