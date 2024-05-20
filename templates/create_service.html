@@ -25,11 +25,11 @@
                 {% endfor %}
                 <div id="show-service-button">Add service</div>
             </div>
-            <dialog id="service-dialog">
+            <dialog id="create-service-dialog">
                 <form id="close-service-form" method="dialog">
                     <button>X</button>
                 </form>
-                <form id="service-form" class="data-editing-form" action="" method="post">
+                <form id="create-service-form" class="data-editing-form" action="" method="post">
                     <div class="account-dataset">
                         <h3>Add service</h3>
                         {% csrf_token %}
@@ -38,13 +38,39 @@
                     <button class="btn btn-success ml-2" type="submit">Save</button>
                 </form>
             </dialog>
+            <dialog id="delete-service-dialog">
+                <div>
+                    <span>Are you sure you want to delete the service?</span>
+                    <form method="dialog">
+                        <div id="delete-service-buttons">
+                            <button>Cancel</button>
+                            <button id="confirm-delete-button">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
         </div>
     </div>
     <script>
-        let showServiceButton = document.getElementById('show-service-button');
-        let serviceDialog = document.getElementById('service-dialog');
-        showServiceButton.addEventListener('click', () => {
-            serviceDialog.showModal();
+        let createServiceButton = document.getElementById('show-service-button');
+        let createServiceDialog = document.getElementById('create-service-dialog');
+        createServiceButton.addEventListener('click', () => {
+            createServiceDialog.showModal();
+        });
+        
+        let deleteServiceButton = document.querySelectorAll('.delete-service-button');
+        let deleteServiceDialog = document.getElementById('delete-service-dialog');
+        let confirmDeleteButton = document.getElementById('confirm-delete-button');
+        let currentDeleteForm;
+        deleteServiceButton.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                currentDeleteForm = button.parentElement;
+                deleteServiceDialog.showModal();
+            });
+        });
+        confirmDeleteButton.addEventListener('click', () => {
+            currentDeleteForm.submit();
         });
     </script>
 {% endblock content %}
