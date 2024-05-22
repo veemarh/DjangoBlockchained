@@ -305,7 +305,7 @@ p:has(input[id*=password]) .password-view-toggle.shown {
 #service-list label {
     align-self: center;
 }
-#service-list button {
+#service-list .delete-service-button {
     color: #f4f4f4;
     background-color: #333;
     border: none;
@@ -314,14 +314,12 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     padding: 8px;
     user-select: none;
 }
-#service-list button:hover,
-#service-list button:active {
+#service-list .delete-service-button:hover,
+#service-list .delete-service-button:active {
     background-color: #94938a;
 }
-#service-list button:focus:not(:checked) {
-    background-color: #333;
-}
-#service-form {
+#delete-service-dialog > div,
+#create-service-form {
     background-color: #f4f4f4;
     padding: 16px;
     border: 1px solid #333;
@@ -332,10 +330,8 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     background-color: #f4f4f4;
     border: 1px solid #333;
     border-radius: 5px;
-    line-height: 1;
-    padding: 8px;
-    width: 128px;
-    text-align: center;
+    padding: 8px 16px;
+    width: fit-content;
     user-select: none;
     cursor: pointer;
     transition: .2s;
@@ -347,15 +343,20 @@ p:has(input[id*=password]) .password-view-toggle.shown {
 #show-service-button button:focus:not(:checked) {
     background-color: #f4f4f4;
 }
-#service-dialog {
+#delete-service-dialog,
+#create-service-dialog {
     position: absolute;
     background: none;
     border: none;
     margin: auto;
     overflow: visible;
 }
-#service-dialog::backdrop {
+#delete-service-dialog::backdrop,
+#create-service-dialog::backdrop {
     background: rgba(51, 51, 51, 0.3);
+}
+#delete-service-dialog {
+    max-width: 480px;
 }
 #close-service-form button {
     display: block;
@@ -371,4 +372,42 @@ p:has(input[id*=password]) .password-view-toggle.shown {
 }
 #close-service-form button:focus-visible {
     outline: none;
+}
+#delete-service-buttons {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+}
+#delete-service-buttons button {
+    font-size: 16px;
+    border-radius: 5px;
+    line-height: 1;
+    padding: 8px 0;
+    user-select: none;
+    flex-grow: 1;
+}
+#delete-service-buttons button:first-of-type {
+    color: #333;
+    background-color: #f4f4f4;
+    border: 1px solid #333;
+    float: left;
+}
+#delete-service-buttons button:first-of-type:hover,
+#delete-service-buttons button:first-of-type:active {
+    background-color: #ddd;
+}
+#delete-service-buttons button:last-of-type {
+    color: #f4f4f4;
+    background-color: #333;
+    border: 1px solid #333;
+    float: right;
+}
+#delete-service-buttons button:last-of-type:hover,
+#delete-service-buttons button:last-of-type:active {
+    background-color: #94938a;
+    border-color: #94938a;
+}
+#current-service-name {
+    font-weight: bolder;
+    color: goldenrod;
 }
