@@ -41,7 +41,7 @@ class StudentInterestsForm(forms.ModelForm):
 
 class TeacherInterestsForm(forms.ModelForm):
     class Meta:
-        model = Student
+        model = Teacher
         fields = ("interests",)
         widgets = {"interests": forms.CheckboxSelectMultiple}
 
