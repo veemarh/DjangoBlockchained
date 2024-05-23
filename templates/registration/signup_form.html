@@ -7,10 +7,12 @@
                 <form method="post" class="form-container">
                     <a href="{% url 'signup' %}">
                         <div class="return-link">
-                            <div></div><div></div>
+                            <div></div>
+                            <div></div>
                         </div>
                     </a>
-                    <h2>Sign up <br/>as a {{ user_type }}</h2><hr>
+                    <h2>Sign up <br/>as a {{ user_type }}</h2>
+                    <hr>
                     <h3>Create a profile</h3>
                     <span>These details are essential for creating your account.</span>
                     {% csrf_token %}
@@ -37,9 +39,9 @@
                 passwordViewToggle.classList.contains('shown')
                     ? label.nextElementSibling.setAttribute('type', 'text')
                     : label.nextElementSibling.setAttribute('type', 'password');
-            }) 
+            })
         });
-        
+
         {# перемещение между страницами #}
         let setNumber = 0;
         let buttonNext = document.getElementById('next-set-button');
@@ -52,15 +54,12 @@
         let titles;
         let labels;
         inputDataSet = [[inputs[0], inputs[3], inputs[5], inputs[6]],
-            [inputs[1], inputs[2], inputs[4]]];
-        titles = ['Create a profile', 'Share personal information'];
+            [inputs[1], inputs[2], inputs[4]],
+            [inputs[7], inputs[8]]];
+        titles = ['Create a profile', 'Share personal information', 'Choose hobbies and interests'];
         labels = ['These details are essential for creating your account.',
-            'Personalize your experience. You can provide this later.'];
-        if ('{{ user_type }}' === 'student') {
-            inputDataSet.push([inputs[7], inputs[8]]);
-            titles.push('Choose hobbies and interests');
-            labels.push('We will tailor content and recommendations to your preferences.');
-        }
+            'Personalize your experience. You can provide this later.',
+            'We will tailor content and recommendations to your preferences.'];
         inputDataSet[0].forEach(input => input.classList.add('active'));
 
         function ChangeDataSet(param) {
@@ -70,7 +69,8 @@
             setTitle.textContent = titles[setNumber];
             setLabel.textContent = labels[setNumber];
         }
-        buttonNext.onclick = function() {
+
+        buttonNext.onclick = function () {
             ChangeDataSet(1);
             if (setNumber === 1) {
                 buttonPrev.classList.add('active');
@@ -80,7 +80,7 @@
                 buttonSignup.classList.add('active');
             }
         };
-        buttonPrev.onclick = function() {
+        buttonPrev.onclick = function () {
             ChangeDataSet(0);
             if (setNumber === 0) {
                 buttonPrev.classList.remove('active');
@@ -90,13 +90,13 @@
                 buttonNext.classList.add('active');
             }
         };
-        
+
         {# проверка валидности #}
         let usernameInput = document.getElementById('id_username');
         let emailInput = document.getElementById('id_email');
         let password1 = document.getElementById('id_password1');
         let password2 = document.getElementById('id_password2');
-        
+
         function getError(num, message) {
             let error = document.createElement("ul");
             error.classList.add('errorlist', 'self-written');
@@ -106,50 +106,57 @@
             inputs[num].after(error);
             return error;
         }
+
         let errorUsername = getError(0, 'A user with that username already exists.');
         let errorPassword = getError(5, 'The two password fields didn’t match.');
         let errorEmail = getError(3, 'Please enter a valid email.');
-        
+
         function usernameExists() {
             let usernamesRender = "{{ usernames }}".split("!");
             return usernamesRender.includes(usernameInput.value.trim());
         }
+
         usernameInput.addEventListener("change", () => {
             usernameExists()
                 ? errorUsername.classList.add('shown')
                 : errorUsername.classList.remove('shown');
         });
-        
+
         function passwordIsValid() {
             return password1.value && password1.value === password2.value;
         }
+
         function toggleErrorPassword() {
             !passwordIsValid()
                 ? errorPassword.classList.add('shown')
                 : errorPassword.classList.remove('shown');
         }
+
         password1.addEventListener("change", () => {
             password2.value ? toggleErrorPassword() : 0;
         });
         password2.addEventListener("change", () => {
             password1.value ? toggleErrorPassword() : 0;
         });
-        
+
         function emailIsValid() {
             return emailInput.checkValidity();
         }
+
         emailInput.addEventListener("change", () => {
             !emailIsValid()
                 ? errorEmail.classList.add('shown')
                 : errorEmail.classList.remove('shown');
         });
-        
+
         function isValid() {
             return !usernameExists() && passwordIsValid() && emailIsValid();
         }
+
         function updateStatus() {
             isValid() ? buttonNext.classList.add('valid') : buttonNext.classList.remove('valid');
         }
+
         inputDataSet[0].forEach(oneInput => {
             oneInput.querySelector('input').addEventListener('input', updateStatus);
         });
