@@ -7,8 +7,7 @@ class Room(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    # teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='room_teacher')
-    # student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='room_student')
+    # Don't sure that created_at is necessary here
 
     class Meta:
         ordering = ("-created_at",)
