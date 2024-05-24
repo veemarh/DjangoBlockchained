@@ -15,9 +15,15 @@ def create_room(request, slug):
     slug = request.POST.get('slug', '')
 
     Room.objects.create(name=name, slug=slug)
-
     return JsonResponse({'message': 'Room created'})
 
+
+@login_required
+def rooms(request):
+    rooms = Room.objects.all()
+    return render(request, "rooms.html", {
+        "rooms": rooms
+    })
 
 @login_required
 def room(request, slug):
@@ -29,23 +35,12 @@ def room(request, slug):
     })
 
 
-
 @login_required
 def delete_room(request, slug):
     room = Room.objects.get(slug=slug)
     room.delete()
     messages.success(request, 'You have successfully deleted this room.')
     return redirect('home')
-
-
-# @login_required
-# def user_details(request, uuid):
-#     user = User.objects.get(pk=uuid)
-#     rooms = user.rooms.all()
-#     return render(request, 'chat/user_detail.html', {
-#         'user': user,
-#         'rooms': rooms
-#     })
 
 
 class ChatRoomView(ListView):
