@@ -11,6 +11,8 @@ from .views import (
     TeacherInterestsView,
     add_to_teacher_list,
     remove_from_teacher_list,
+    add_to_student_list,
+    remove_from_student_list,
 )
 
 urlpatterns = (
@@ -54,5 +56,13 @@ urlpatterns = (
         "teacher/profile/<int:pk>/remove",
         remove_from_teacher_list,
         name="remove_from_teacher_list",
+    ),
+    path(
+        "student/profile/<int:pk>/add", add_to_student_list, name="add_to_student_list"
+    ),
+    path(
+        "student/profile/<int:pk>/remove",
+        remove_from_student_list,
+        name="remove_from_student_list",
     ),
 )

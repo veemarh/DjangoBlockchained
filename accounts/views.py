@@ -141,6 +141,8 @@ class TeacherProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVi
         return reverse("teacher_profile", kwargs={"pk": user.pk})
 
 
+@login_required
+@student_required
 def add_to_teacher_list(request, pk, *args, **kwargs):
     student = request.user.student
     teacher = get_object_or_404(Teacher, pk=pk)
@@ -151,9 +153,31 @@ def add_to_teacher_list(request, pk, *args, **kwargs):
     return redirect("teacher_profile", pk)
 
 
+@login_required
+@student_required
 def remove_from_teacher_list(request, pk, *args, **kwargs):
     student = request.user.student
     teacher = get_object_or_404(Teacher, pk=pk)
     student.favorite_teachers.remove(teacher)
     student.save()
     return redirect("teacher_profile", pk)
+
+
+@login_required
+@teacher_required
+def add_to_student_list(request, pk, *args, **kwargs):
+    teacher = request.user.teacher
+    student = get_object_or_404(Student, pk=pk)
+    teacher.favorite_students.add(student)
+    teacher.save()
+    return redirect("student_profile", pk)
+
+
+@login_required
+@teacher_required
+def remove_from_student_list(request, pk, *args, **kwargs):
+    teacher = request.user.teacher
+    student = get_object_or_404(Student, pk=pk)
+    teacher.favorite_students.remove(student)
+    teacher.save()
+    return redirect("student_profile", pk)

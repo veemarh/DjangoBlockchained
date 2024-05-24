@@ -1,12 +1,16 @@
 from django.urls import path
-from django.views.generic import TemplateView
 
-# from .views import FavoriteTeachersListView
+from .views import getFavoriteTeachersList, getFavoriteStudentsList
 
 urlpatterns = (
     path(
         "teachers/",
-        TemplateView.as_view(template_name="favorite_teachers.html"),
+        getFavoriteTeachersList,
         name="favorite_teachers_list",
+    ),
+    path(
+        "student/",
+        getFavoriteStudentsList,
+        name="favorite_student_list",
     ),
 )
