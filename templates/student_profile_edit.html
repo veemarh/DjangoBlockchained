@@ -18,7 +18,10 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                 </div>
-                <button class="btn btn-info ml-2" type="submit">Update</button>
+                <div id="profile-edit-buttons">
+                    <input type="reset" value="Reset">
+                    <button class="btn btn-info ml-2" type="submit">Update</button>
+                </div>
             </form>
         </div>
     </div>
@@ -29,11 +32,27 @@
             input.addEventListener('input', () => {
                 if (input.value !== currentValue) {
                     input.classList.add('modified');
-                }
-                else {
+                } else {
                     input.classList.remove('modified');
                 }
             });
+        });
+
+        let inputSchoolName = document.getElementById('id_school_name');
+
+        function FillInSchoolName() {
+            inputSchoolName.value = '{{ user.student.school_name }}';
+        }
+
+        FillInSchoolName();
+        let resetButton = document.querySelector("input[type=reset]");
+        resetButton.addEventListener('click', () => {
+            inputs.forEach(input => {
+                input.classList.contains('modified') ? input.classList.remove('modified') : 0;
+            });
+            setTimeout(function () {
+                FillInSchoolName();
+            }, 0);
         });
     </script>
 {% endblock content %}

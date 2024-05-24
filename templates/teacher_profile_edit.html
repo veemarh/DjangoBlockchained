@@ -7,6 +7,7 @@
                     <div></div>
                     <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
                 </li>
+                <li><a href="/">Update interests</a></li>
                 <li><a href="{% url 'teacher_services' %}">Update services</a></li>
                 <li><a href="{% url 'password_change' %}">Change password</a></li>
             </ul>
@@ -18,7 +19,10 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                 </div>
-                <button class="btn btn-info ml-2" type="submit">Update</button>
+                <div id="profile-edit-buttons">
+                    <input type="reset" value="Reset">
+                    <button class="btn btn-info ml-2" type="submit">Update</button>
+                </div>
             </form>
         </div>
     </div>
@@ -33,6 +37,30 @@
                     input.classList.remove('modified');
                 }
             });
+        });
+
+        let idsToFix = ['id_description', 'id_diploma', 'id_experience'];
+        let inputsToFix = Array.from(inputs).filter(input => idsToFix.includes(input.id));
+        let currentInputId;
+
+        function FillInTeacherData() {
+            inputsToFix.forEach(input => {
+                currentInputId = input.id;
+                currentInputId === 'id_description' ? input.value = '{{ user.teacher.description }}'
+                    : currentInputId === 'id_diploma' ? input.value = '{{ user.teacher.diploma }}'
+                        : input.value = '{{ user.teacher.experience }}';
+            });
+        }
+
+        FillInTeacherData();
+        let resetButton = document.querySelector("input[type=reset]");
+        resetButton.addEventListener('click', () => {
+            inputs.forEach(input => {
+                input.classList.contains('modified') ? input.classList.remove('modified') : 0;
+            });
+            setTimeout(function () {
+                FillInTeacherData();
+            }, 0);
         });
     </script>
 {% endblock content %}

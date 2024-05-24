@@ -4,6 +4,7 @@
         <div id="account-space-nav">
             <ul>
                 <li><a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a></li>
+                <li><a href="/">Update interests</a></li>
                 <li id="current-edit-page">
                     <div></div>
                     <a href="{% url 'teacher_services' %}">Update services</a>
@@ -59,14 +60,14 @@
         createServiceButton.addEventListener('click', () => {
             createServiceDialog.showModal();
         });
-        
+
         let deleteServiceButton = document.querySelectorAll('.delete-service-button');
         let deleteServiceDialog = document.getElementById('delete-service-dialog');
         let confirmDeleteButton = document.getElementById('confirm-delete-button');
         let currentServiceName = document.getElementById('current-service-name');
         let currentDeleteForm;
         deleteServiceButton.forEach(button => {
-            button.addEventListener('click', function(event) {
+            button.addEventListener('click', function (event) {
                 event.preventDefault();
                 currentDeleteForm = button.parentElement;
                 currentServiceName.textContent = currentDeleteForm.parentElement.firstElementChild.textContent;

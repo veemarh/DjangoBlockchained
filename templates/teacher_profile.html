@@ -18,26 +18,47 @@
                         <h3>
                             {% if request.user == user %}Public
                             {% elif user.is_teacher %}Teacher
-
                             {% endif %}
                             profile
                         </h3>
                         <h2>{{ user.first_name }} {{ user.second_name }} {{ user.third_name }}</h2>
                         <span>@{{ user.username }}</span>
-                        <br/>
-                        <div class="profile-connect" id="profile-phone" style="display: flex">
-                            <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
+                        <div class="profile-block">
+                            <div class="profile-connect" id="profile-phone" style="display: flex">
+                                <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
+                            </div>
+                            <div class="profile-connect" id="profile-email" style="display: flex">
+                                <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+                            </div>
                         </div>
-                        <div class="profile-connect" id="profile-email" style="display: flex">
-                            <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+                        <div class="profile-block">
+                            <h3>Description</h3>
+                            <p>{{ user.teacher.description }}</p>
                         </div>
-                        <br/><hr><br/>
-                        <h3>Services</h3>
-                        <ul>
-                            {% for service in user.teacher.service_set.all %}
-                                <li> {{ service }} </li>
-                            {% endfor %}
-                        </ul>
+                        <div class="profile-block">
+                            <h3>Diploma</h3>
+                            <p>{{ user.teacher.diploma }}</p>
+                        </div>
+                        <div class="profile-block">
+                            <h3>Experience</h3>
+                            <p>{{ user.teacher.experience }}</p>
+                        </div>
+                        {% comment %}<div class="profile-block">
+                            <h3>Interests</h3>
+                            <ul>
+                                {% for subject in user.teacher.interests.all %}
+                                    <li> {{ subject.name }} </li>
+                                {% endfor %}
+                            </ul>
+                        </div>{% endcomment %}
+                        <div class="profile-block">
+                            <h3>Services</h3>
+                            <ul>
+                                {% for service in user.teacher.service_set.all %}
+                                    <li> {{ service }} </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
