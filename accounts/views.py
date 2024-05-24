@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import (
     CreateView,
     UpdateView,
@@ -10,14 +12,17 @@ from django.views.generic import (
     DetailView,
 )
 
+from .decorators import student_required, teacher_required
+
 from .forms import (
     StudentCreationForm,
     TeacherCreationForm,
     StudentInterestsForm,
+    TeacherInterestsForm,
     StudentProfileChangeForm,
     TeacherProfileChangeForm,
 )
-from .models import User, Student
+from .models import User, Student, Teacher
 
 
 class SignUpView(TemplateView):
@@ -42,7 +47,7 @@ class StudentSignUpView(CreateView):
         return redirect("home")
 
 
-# @method_decorator([login_required, student_required], name="dispatch")
+@method_decorator([login_required, student_required], name="dispatch")
 class StudentInterestsView(UpdateView):
     model = Student
     form_class = StudentInterestsForm
@@ -58,6 +63,26 @@ class StudentInterestsView(UpdateView):
     def get_success_url(self):
         user = self.get_object()
         return reverse("student_profile", kwargs={"pk": user.pk})
+
+
+@method_decorator([login_required, teacher_required], name="dispatch")
+class TeacherInterestsView(UpdateView):
+    model = Teacher
+    form_class = TeacherInterestsForm
+    template_name = "interests_form.html"
+
+    def get_object(self):
+        return self.request.user.teacher
+
+    def form_valid(self, form):
+        messages.success(self.request, "Interests updated with success!")
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        user = self.get_object()
+        return reverse(
+            "teacher_profile", kwargs={"pk": user.pk}
+        )  # Как это работает вообще?
 
 
 class TeacherSignUpView(CreateView):
