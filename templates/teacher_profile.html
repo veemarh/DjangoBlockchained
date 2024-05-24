@@ -43,14 +43,14 @@
                             <h3>Experience</h3>
                             <p>{{ user.teacher.experience }}</p>
                         </div>
-                        {% comment %}<div class="profile-block">
+                        <div class="profile-block">
                             <h3>Interests</h3>
                             <ul>
                                 {% for subject in user.teacher.interests.all %}
                                     <li> {{ subject.name }} </li>
                                 {% endfor %}
                             </ul>
-                        </div>{% endcomment %}
+                        </div>
                         <div class="profile-block">
                             <h3>Services</h3>
                             <ul>
