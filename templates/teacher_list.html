@@ -34,11 +34,11 @@
                             <span class="teacher-name">
                                 {{ teacher.user.first_name }} {{ teacher.user.second_name }} {{ teacher.user.third_name }}
                             </span>
-                            <ul class="teacher-subjects">
+                            <div class="teacher-subjects">
                                 {% for subject in teacher.interests.all %}
-                                    <li>{{ subject.name }}</li>
+                                    <span id="teacher-subject">{{ subject.name }}</span>
                                 {% endfor %}
-                            </ul>
+                            </div>
                         </div>
                     </a>
                     <div class="teacher-button-wrapper">
@@ -51,10 +51,10 @@
     <script>
         let teachers = document.querySelectorAll('#teacher-list-container > li');
         document.getElementById('search').addEventListener('input', function () {
-            let filter = this.value.toLowerCase();
+            let currSearch = this.value.toLowerCase();
             teachers.forEach(function (teacher) {
                 let teacherName = teacher.querySelector('.teacher-name').textContent.toLowerCase();
-                if (teacherName.includes(filter)) {
+                if (teacherName.includes(currSearch)) {
                     teacher.classList.remove('hidden-teacher-container');
                 } else {
                     teacher.classList.add('hidden-teacher-container');
@@ -62,15 +62,16 @@
             });
         });
 
-        document.getElementById('teacher-list-filter').addEventListener('change', function () {
-            let checkboxes = document.querySelectorAll('#teacher-list-filter input[type="checkbox"]');
-            let selectedSubjects = Array.from(checkboxes)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.value);
-            teachers.forEach(function (teacher) {
-                let subjects = teacher.querySelectorAll('.teacher-subjects li');
-                subjects.forEach(subject => {
-                    if (selectedSubjects.length === 0 || selectedSubjects.includes(subject)) {
+        document.addEventListener('DOMContentLoaded', function () {
+            let filterForm = document.getElementById('teacher-list-filter');
+            filterForm.addEventListener('change', function () {
+                let checkedBoxes = filterForm.querySelectorAll('input[type="checkbox"]:checked');
+                let filters = Array.from(checkedBoxes).map(checkbox => checkbox.value.toLowerCase());
+                Array.from(teachers).forEach(teacher => {
+                    let subjects = teacher.querySelectorAll('#teacher-subject');
+                    let subjectNames = Array.from(subjects).map(subject => subject.textContent.toLowerCase());
+                    let isMatch = filters.every(filter => subjectNames.includes(filter));
+                    if (filters.length === 0 || isMatch) {
                         teacher.classList.remove('hidden-teacher-container');
                     } else {
                         teacher.classList.add('hidden-teacher-container');
