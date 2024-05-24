@@ -9,6 +9,8 @@ from .views import (
     TeacherProfileView,
     TeacherProfileUpdateView,
     TeacherInterestsView,
+    add_to_teacher_list,
+    remove_from_teacher_list,
 )
 
 urlpatterns = (
@@ -44,5 +46,13 @@ urlpatterns = (
         "teacher/services/<int:pk>/delete/",
         ServiceDeleteView.as_view(),
         name="delete_service",
+    ),
+    path(
+        "teacher/profile/<int:pk>/add", add_to_teacher_list, name="add_to_teacher_list"
+    ),
+    path(
+        "teacher/profile/<int:pk>/remove",
+        remove_from_teacher_list,
+        name="remove_from_teacher_list",
     ),
 )
