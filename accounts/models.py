@@ -29,11 +29,23 @@ class User(AbstractUser):
     second_name = models.CharField(max_length=15, null=True, blank=True)
     third_name = models.CharField(max_length=15, null=True, blank=True)
 
-    picture = models.ImageField(default='default.jpg', upload_to="profile_pics")
+    picture = models.ImageField(default="default.jpg", upload_to="profile_pics")
 
     birth_date = models.DateField(null=True, blank=True)
     phone_number = models.CharField(max_length=10, null=True, blank=True)
     email = models.EmailField()
+
+    def is_complete(self):
+        is_user_fields_complete = (
+            self.first_name
+            and self.second_name
+            and self.picture
+            and (self.phone_number or self.email)
+        )
+
+        if self.is_teacher:
+            return is_user_fields_complete and self.teacher.is_complete()
+        return is_user_fields_complete
 
 
 class Teacher(models.Model):
@@ -47,6 +59,9 @@ class Teacher(models.Model):
     def __str__(self):
         return self.user.username
 
+    def is_complete(self):
+        return self.diploma and self.experience and self.interests and self.description
+
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -57,6 +72,9 @@ class Student(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def is_complete(self):
+        return self.interests and self.school_name
 
 
 Teacher.__annotations__["student_list"] = models.ManyToManyField(
