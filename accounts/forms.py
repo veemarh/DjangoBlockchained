@@ -73,8 +73,7 @@ class TeacherCreationForm(UserCreationForm):
         user.is_teacher = True
         user.save()
         teacher = Teacher.objects.create(user=user)
-        if commit:
-            user.save()
+        teacher.interests.add(*self.cleaned_data.get("interests"))
         return user
 
 
