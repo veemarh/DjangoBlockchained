@@ -68,9 +68,8 @@ class TeacherCreationForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_teacher = True
         user.save()
-        teacher = Teacher.objects.create(user=user)
-        if commit:
-            user.save()
+        student = Teacher.objects.create(user=user)
+        student.interests.add(*self.cleaned_data.get("interests"))
         return user
 
 
