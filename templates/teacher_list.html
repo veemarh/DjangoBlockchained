@@ -5,21 +5,38 @@
     <div>
         <h1>List of teachers</h1>
     </div>
+    <form id="teacher-list-search">
+        <label for="search">Search in teacher list</label>
+        <input type="search" id="search" placeholder="Type to search...">
+    </form>
     <ul id="teacher-list-container">
-      {% for teacher in teachers %}
-        <li>
-            <div class="teacher-container">
-                <div class="teacher-avatar"></div>
-                <div class="teacher-info">
-                    <div class="teacher-name"><a href="#">{{ teacher.user.username }}</a></div>
-<!--                    чуть позже добавю связь с нормальной отраслью-->
-                    <div class="teacher-profession">"Profession"</div>
+        {% for teacher in teachers %}
+            <li>
+                <div class="teacher-container">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-info">
+                        <div class="teacher-name"><a href="#">{{ teacher.user.username }}</a></div>
+                        <div class="teacher-profession">"Profession"</div>
+                    </div>
+                    <div class="teacher-button-wrapper">
+                        <a class="teacher-button" href="#">Chat</a>
+                    </div>
                 </div>
-                <div class="teacher-button-wrapper">
-                    <a class="teacher-button" href="#">Chat</a>
-                </div>
-            </div>
-        </li>
-      {% endfor %}
+            </li>
+        {% endfor %}
     </ul>
+    <script>
+        let teachers = document.querySelectorAll('#teacher-list-container li');
+        document.getElementById('search').addEventListener('input', function () {
+            let filter = this.value.toLowerCase();
+            teachers.forEach(function (teacher) {
+                let teacherName = teacher.querySelector('.teacher-name a').textContent.toLowerCase();
+                if (teacherName.includes(filter)) {
+                    teacher.classList.remove('hidden');
+                } else {
+                    teacher.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 {% endblock %}
