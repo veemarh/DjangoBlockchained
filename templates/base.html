@@ -46,34 +46,34 @@
                 </li>
             </ul>
             <ul id="nav-right">
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <li>
                         <div id="user-icon">
                             <span></span>
                         </div>
                         <script>
-                            document.querySelector('#user-icon span').textContent = '{{ user.username }}'[0];
+                            document.querySelector('#user-icon span').textContent = '{{ request.user.username }}'[0];
                         </script>
                         <ul id="header-user-menu">
                             <li>
-                                {% if user.is_student %}<a href="{% url 'student_profile' user.id %}">
-                                {% else %}<a href="{% url 'teacher_profile' user.id %}">
+                                {% if request.user.is_student %}<a href="{% url 'student_profile' request.user.id %}">
+                                {% else %}<a href="{% url 'teacher_profile' request.user.id %}">
                                 {% endif %}
                                 My profile</a>
                             </li>
                             <li>
-                                {% if user.is_student %}<a href="/">My teachers</a>
+                                {% if request.user.is_student %}<a href="/">My teachers</a>
                                 {% else %}<a href="/">My students</a>
                                 {% endif %}
                             </li>
                             <li>
-                                {% if user.is_student %}<a href="/">
+                                {% if request.user.is_student %}<a href="/">
                                 {% else %}<a href="/">
                                 {% endif %}
                                 My schedule</a>
                             </li>
                             <li>
-                                {% if user.is_student %}<a href="/">
+                                {% if request.user.is_student %}<a href="/">
                                 {% else %}<a href="/">
                                 {% endif %}
                                 My homework</a>
