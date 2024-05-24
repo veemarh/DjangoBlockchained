@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "chat.apps.ChatConfig",
     "teacher.apps.TeacherConfig",
     "services.apps.ServicesConfig",
+    "favoriteLists.apps.FavoriteListsConfig",
 ]
 
 MIDDLEWARE = [
@@ -152,5 +153,5 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # Когда �
 # В проде мы это изменим, а пока пусть будет так
 
 # Here we work with images and profile avatar for users
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"

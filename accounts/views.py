@@ -102,35 +102,14 @@ class TeacherSignUpView(CreateView):
         return redirect("home")
 
 
-# class StudentProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 class StudentProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = "student_profile.html"
 
-    # def test_func(self):
-    #     user = self.get_object()
-    #     return user.is_student
 
-    def add_to_student_list(self, request, *args, **kwargs):
-        teacher = request.user.teacher
-        user = self.get_object()
-        user.student.teacher_list.append(teacher)
-        user.student.save()
-        return reverse("student_profile", kwargs={"pk": user.pk})
-
-    def get_context_data(self, **kwargs):
-        kwargs["add_to_student_list"] = self.add_to_student_list
-        return super().get_context_data(**kwargs)
-
-
-# class TeacherProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 class TeacherProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = "teacher_profile.html"
-
-    # def test_func(self):
-    #     user = self.get_object()
-    #     return user.is_teacher
 
 
 class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -162,19 +141,43 @@ class TeacherProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVi
         return reverse("teacher_profile", kwargs={"pk": user.pk})
 
 
+@login_required
+@student_required
 def add_to_teacher_list(request, pk, *args, **kwargs):
     student = request.user.student
     teacher = get_object_or_404(Teacher, pk=pk)
     # print(teacher.user.username)
-    student.teacher_list.add(teacher)
+    student.favorite_teachers.add(teacher)
     student.save()
     # print(student.teacher_list.all())
     return redirect("teacher_profile", pk)
 
 
+@login_required
+@student_required
 def remove_from_teacher_list(request, pk, *args, **kwargs):
     student = request.user.student
     teacher = get_object_or_404(Teacher, pk=pk)
-    student.teacher_list.remove(teacher)
+    student.favorite_teachers.remove(teacher)
     student.save()
     return redirect("teacher_profile", pk)
+
+
+@login_required
+@teacher_required
+def add_to_student_list(request, pk, *args, **kwargs):
+    teacher = request.user.teacher
+    student = get_object_or_404(Student, pk=pk)
+    teacher.favorite_students.add(student)
+    teacher.save()
+    return redirect("student_profile", pk)
+
+
+@login_required
+@teacher_required
+def remove_from_student_list(request, pk, *args, **kwargs):
+    teacher = request.user.teacher
+    student = get_object_or_404(Student, pk=pk)
+    teacher.favorite_students.remove(student)
+    teacher.save()
+    return redirect("student_profile", pk)
