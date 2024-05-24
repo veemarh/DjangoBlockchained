@@ -2,24 +2,81 @@
 {% load static %}
 {% block title %}Teachers{% endblock title %}
 {% block content %}
-    <div>
+    <div id="teacher-list-content-wrapper">
         <h1>List of teachers</h1>
+        <form id="teacher-list-filter">
+            <label>
+                <input type="checkbox" value="Arts">Arts
+            </label>
+            <label>
+                <input type="checkbox" value="Computing">Computing
+            </label>
+            <label>
+                <input type="checkbox" value="Math">Math
+            </label>
+            <label>
+                <input type="checkbox" value="Biology">Biology
+            </label>
+            <label>
+                <input type="checkbox" value="History">History
+            </label>
+        </form>
+        <form id="teacher-list-search">
+            <label for="search">Search in teacher list</label>
+            <input type="search" id="search" placeholder="Type to search...">
+        </form>
+        <ul id="teacher-list-container">
+            {% for teacher in teachers %}
+                <li>
+                    <a class="teacher-container" href="{% url 'teacher_profile' teacher.user.id %}">
+                        <div class="teacher-avatar"></div>
+                        <div>
+                            <span class="teacher-name">
+                                {{ teacher.user.first_name }} {{ teacher.user.second_name }} {{ teacher.user.third_name }}
+                            </span>
+                            <ul class="teacher-subjects">
+                                {% for subject in teacher.interests.all %}
+                                    <li>{{ subject.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </a>
+                    <div class="teacher-button-wrapper">
+                        <a class="teacher-button" href="/">Chat</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
-    <ul id="teacher-list-container">
-      {% for teacher in teachers %}
-        <li>
-            <div class="teacher-container">
-                <div class="teacher-avatar"></div>
-                <div class="teacher-info">
-                    <div class="teacher-name"><a href="#">{{ teacher.user.username }}</a></div>
-<!--                    чуть позже добавю связь с нормальной отраслью-->
-                    <div class="teacher-profession">"Profession"</div>
-                </div>
-                <div class="teacher-button-wrapper">
-                    <a class="teacher-button" href="{% url 'chat_room' %}">Chat</a>
-                </div>
-            </div>
-        </li>
-      {% endfor %}
-    </ul>
-{% endblock %}
+    <script>
+        let teachers = document.querySelectorAll('#teacher-list-container > li');
+        document.getElementById('search').addEventListener('input', function () {
+            let filter = this.value.toLowerCase();
+            teachers.forEach(function (teacher) {
+                let teacherName = teacher.querySelector('.teacher-name').textContent.toLowerCase();
+                if (teacherName.includes(filter)) {
+                    teacher.classList.remove('hidden-teacher-container');
+                } else {
+                    teacher.classList.add('hidden-teacher-container');
+                }
+            });
+        });
+
+        document.getElementById('teacher-list-filter').addEventListener('change', function () {
+            let checkboxes = document.querySelectorAll('#teacher-list-filter input[type="checkbox"]');
+            let selectedSubjects = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+            teachers.forEach(function (teacher) {
+                let subjects = teacher.querySelectorAll('.teacher-subjects li');
+                subjects.forEach(subject => {
+                    if (selectedSubjects.length === 0 || selectedSubjects.includes(subject)) {
+                        teacher.classList.remove('hidden-teacher-container');
+                    } else {
+                        teacher.classList.add('hidden-teacher-container');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock content %}

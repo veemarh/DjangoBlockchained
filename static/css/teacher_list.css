@@ -1,70 +1,99 @@
-/* Центрирование карточек */
-ul#teacher-list-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-h1 {
-  margin-left: 10px;
-  margin-bottom: 20px;
-}
-/* Стили для карточек преподавателей */
-.teacher-container {
-  flex-grow: 1;
-  margin: 0 20px 40px 20px;
-  padding: 20px;
-  border: 1px solid #333;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
+#teacher-list-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 16px auto;
+    padding: 0 16px;
+    max-width: 1140px;
+    gap: 16px;
 }
 
-/* Убираем отступ справа для последней карточки в ряду */
-.teacher-container:last-child {
-  margin-right: 0;
+#teacher-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+    transition: .3s;
+}
+
+#teacher-list-container > li {
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+#teacher-subjects > li {
+    display: inline-block;
+}
+
+.teacher-container {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    gap: 16px;
 }
 
 .teacher-avatar {
-  width: 100px;
-  height: 100px;
-  background-color: #333;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-.teacher-name,
-.teacher-profession,
-.teacher-button {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.teacher-name a {
-  color: #333;
-  text-decoration: none;
-}
-
-.teacher-name a:hover {
-  color: #94938a;
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 50%;
 }
 
 .teacher-button {
     display: inline-block;
     padding: 8px 32px;
-    margin-top: 18px;
     color: #333;
     line-height: 30px;
     border: 1px solid #333;
     border-radius: 30px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    margin: auto;
 }
 
-.teacher-button:hover {
+.teacher-container:hover,
+.teacher-container:focus,
+.teacher-button:hover,
+.teacher-button:focus {
     background-color: #ddd;
 }
 
+#teacher-list-search input[type=search] {
+    background: transparent;
+    outline: none;
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
 
+#teacher-list-search input[type=search]:active,
+#teacher-list-search input[type=search]:focus {
+    border-color: #333;
+}
+
+.hidden-teacher-container {
+    display: none;
+}
+
+
+@media (max-width: 1140px) {
+    #teacher-list-content-wrapper {
+        max-width: 992px;
+    }
+}
+
+@media (max-width: 992px) {
+    #teacher-list-content-wrapper {
+        max-width: 768px;
+    }
+}
+
+@media (max-width: 768px) {
+    #teacher-list-content-wrapper {
+        max-width: 576px;
+    }
+}

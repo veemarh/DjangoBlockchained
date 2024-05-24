@@ -29,7 +29,7 @@ def rooms(request):
 def room(request, slug):
     room = Room.objects.get(slug=slug)
     all_messages = Message.objects.filter(room=room)
-    return render(request, 'chat/room.html', {
+    return render(request, 'chat_room.html', {
         'room': room,
         'all_messages': all_messages,
     })
