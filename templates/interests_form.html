@@ -3,11 +3,23 @@
     <div class="account-content-wrapper">
         <div id="account-space-nav">
             <ul>
-                <li><a href="{% url 'student_profile_edit' user.id %}">Edit profile</a></li>
+                <li>
+                    {% if user.is_student %}<a href="{% url 'student_profile_edit' user.id %}">
+                    {% else %}<a href="{% url 'teacher_profile_edit' user.id %}">
+                    {% endif %}
+                    Edit profile</a>
+                </li>
                 <li id="current-edit-page">
                     <div></div>
-                    <a href="{% url 'student_interests' %}">Update interests</a>
+                    {% if user.is_student %}<a href="{% url 'student_interests' %}">
+                    {% else %}<a href="{% url 'teacher_interests' %}">
+                    {% endif %}Update interests</a>
                 </li>
+                {% if user.is_teacher %}
+                    <li>
+                        <a href="{% url 'teacher_services' %}">Update services</a>
+                    </li>
+                {% endif %}
                 <li><a href="{% url 'password_change' %}">Change password</a></li>
             </ul>
         </div>
