@@ -18,77 +18,91 @@
 <body>
 {% block header %}
     <header>
-    <nav class="header-nav">
-        <div id="nav-toggle">
-            <div id="toggle-hamburger" class="active">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div id="toggle-arrow">
-                <div><div></div><div></div></div>
-                <div><div></div><div></div></div>
-            </div>
-            <div id="toggle-cross"></div>
-        </div>
-        <ul id="nav-left">
-            <li>
-                <a href="{% url 'home' %}">Homepage</a>
-            </li>
-            <li>
-                <a href="{% url 'teacher_list' %}">Teachers</a>
-            </li>
-        </ul>
-        <ul id="nav-right">
-            {% if user.is_authenticated %}
-                <li>
-                    <div id="user-icon">
-                        <span></span>
+        <nav class="header-nav">
+            <div id="nav-toggle">
+                <div id="toggle-hamburger" class="active">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="toggle-arrow">
+                    <div>
+                        <div></div>
+                        <div></div>
                     </div>
-                    <script>
-                        document.querySelector('#user-icon span').textContent = '{{ user.username }}'[0];
-                    </script>
-                    <ul id="header-user-menu">
-                        <li>
-                            {% if user.is_student %}<a href="{% url 'student_profile' user.id %}">
-                            {% else %}<a href="{% url 'teacher_profile' user.id %}">
-                            {% endif %}
-                            Your profile</a>
-                        </li>
-                        <li>
-                            <a href="/">Your teachers</a>
-                        </li>
-                        <li>
-                            <a href="/">Your schedule</a>
-                        </li>
-                        <li>
-                            <a href="/">Your homework</a>
-                        </li>
-                        <li>
-                            <form id="logout-form" method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button id="nav-logout-button" type="submit">
-                                    {% translate "Logout" %}
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-            {% else %}
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div id="toggle-cross"></div>
+            </div>
+            <ul id="nav-left">
                 <li>
-                    <a href="{% url 'login' %}">Log In</a>
+                    <a href="{% url 'home' %}">Homepage</a>
                 </li>
                 <li>
-                    <a id="signup-link" href="{% url 'signup' %}">Sign Up</a>
+                    <a href="{% url 'teacher_list' %}">Teachers</a>
                 </li>
-            {% endif %}
-        </ul>
-    </nav>
+            </ul>
+            <ul id="nav-right">
+                {% if user.is_authenticated %}
+                    <li>
+                        <div id="user-icon">
+                            <span></span>
+                        </div>
+                        <script>
+                            document.querySelector('#user-icon span').textContent = '{{ user.username }}'[0];
+                        </script>
+                        <ul id="header-user-menu">
+                            <li>
+                                {% if user.is_student %}<a href="{% url 'student_profile' user.id %}">
+                                {% else %}<a href="{% url 'teacher_profile' user.id %}">
+                                {% endif %}
+                                My profile</a>
+                            </li>
+                            <li>
+                                {% if user.is_student %}<a href="/">My teachers</a>
+                                {% else %}<a href="/">My students</a>
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if user.is_student %}<a href="/">
+                                {% else %}<a href="/">
+                                {% endif %}
+                                My schedule</a>
+                            </li>
+                            <li>
+                                {% if user.is_student %}<a href="/">
+                                {% else %}<a href="/">
+                                {% endif %}
+                                My homework</a>
+                            </li>
+                            <li>
+                                <form id="logout-form" method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button id="nav-logout-button" type="submit">
+                                        {% translate "Logout" %}
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li>
+                        <a id="signup-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
 {% endblock header %}
 <main>
-{% block content %}
-{% endblock content %}
+    {% block content %}
+    {% endblock content %}
 </main>
 {% block footer %}
     <footer>
