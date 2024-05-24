@@ -15,21 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from django.conf import settings
-from django.conf.urls.static import static
-
 from accounts.views import TeacherSignUpView, StudentSignUpView, SignUpView
+
+# Я такой херни нигде не видел, сам придумал
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
-    # Практически точно
-    # главная в скором времена страница отсюда переедет в отдельное приложение
+    path("favorite/", include("favoriteLists.urls")),
     path("accounts/signup/", SignUpView.as_view(), name="signup"),
     path(
         "accounts/signup/student/", StudentSignUpView.as_view(), name="student_signup"

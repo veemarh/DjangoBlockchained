@@ -68,7 +68,9 @@ class Student(models.Model):
     interests = models.ManyToManyField(Subject, related_name="interests_student")
 
     school_name = models.CharField(max_length=20, null=True, blank=True)
-    teacher_list = models.ManyToManyField(Teacher, related_name="teacher_list")
+    favorite_teachers = models.ManyToManyField(
+        Teacher, related_name="favorite_teachers"
+    )
 
     def __str__(self):
         return self.user.username
@@ -77,6 +79,6 @@ class Student(models.Model):
         return self.interests and self.school_name
 
 
-Teacher.__annotations__["student_list"] = models.ManyToManyField(
-    Student, related_name="student_list"
+Teacher.__annotations__["favorite_students"] = models.ManyToManyField(
+    Student, related_name="favorite_students"
 )
