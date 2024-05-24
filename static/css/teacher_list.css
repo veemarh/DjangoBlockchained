@@ -7,30 +7,33 @@
     gap: 16px;
 }
 
-/* Центрирование карточек */
-ul#teacher-list-container {
+#teacher-list-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
+    text-align: center;
+    transition: .3s;
 }
 
-/* Стили для карточек преподавателей */
-.teacher-container {
-    flex-grow: 1;
-    padding: 20px;
+#teacher-list-container > li {
+    padding: 8px;
     border: 1px solid #333;
+    border-radius: 10px;
+}
+#teacher-subjects > li {
+    display: inline-block;
+}
+
+.teacher-container {
+    padding: 8px;
+    margin-bottom: 8px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 200px;
-}
-
-/* Убираем отступ справа для последней карточки в ряду */
-.teacher-container:last-child {
-    margin-right: 0;
+    gap: 16px;
 }
 
 .teacher-avatar {
@@ -38,32 +41,25 @@ ul#teacher-list-container {
     height: 100px;
     background-color: #333;
     border-radius: 50%;
-    margin-bottom: 20px;
-}
-
-.teacher-name,
-.teacher-subjects,
-.teacher-button {
-    text-align: center;
 }
 
 .teacher-button {
-    z-index: 100;
     display: inline-block;
     padding: 8px 32px;
-    margin-top: 18px;
     color: #333;
     line-height: 30px;
     border: 1px solid #333;
     border-radius: 30px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    margin: auto;
 }
 
-.teacher-button:hover {
+.teacher-container:hover,
+.teacher-container:focus,
+.teacher-button:hover,
+.teacher-button:focus {
     background-color: #ddd;
 }
-
 
 #teacher-list-search input[type=search] {
     background: transparent;
@@ -73,11 +69,13 @@ ul#teacher-list-container {
     padding: 10px;
     font-size: 16px;
 }
+
 #teacher-list-search input[type=search]:active,
 #teacher-list-search input[type=search]:focus {
     border-color: #333;
 }
-.hidden {
+
+.hidden-teacher-container {
     display: none;
 }
 
