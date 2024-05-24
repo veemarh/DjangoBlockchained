@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import (
@@ -13,7 +13,6 @@ from django.views.generic import (
 )
 
 from .decorators import student_required, teacher_required
-
 from .forms import (
     StudentCreationForm,
     TeacherCreationForm,
@@ -103,22 +102,35 @@ class TeacherSignUpView(CreateView):
         return redirect("home")
 
 
-class StudentProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+# class StudentProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+class StudentProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = "student_profile.html"
 
-    def test_func(self):
+    # def test_func(self):
+    #     user = self.get_object()
+    #     return user.is_student
+
+    def add_to_student_list(self, request, *args, **kwargs):
+        teacher = request.user.teacher
         user = self.get_object()
-        return user.is_student
+        user.student.teacher_list.append(teacher)
+        user.student.save()
+        return reverse("student_profile", kwargs={"pk": user.pk})
+
+    def get_context_data(self, **kwargs):
+        kwargs["add_to_student_list"] = self.add_to_student_list
+        return super().get_context_data(**kwargs)
 
 
-class TeacherProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+# class TeacherProfileView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+class TeacherProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = "teacher_profile.html"
 
-    def test_func(self):
-        user = self.get_object()
-        return user.is_teacher
+    # def test_func(self):
+    #     user = self.get_object()
+    #     return user.is_teacher
 
 
 class StudentProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -148,3 +160,21 @@ class TeacherProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVi
     def get_success_url(self):
         user = self.get_object()
         return reverse("teacher_profile", kwargs={"pk": user.pk})
+
+
+def add_to_teacher_list(request, pk, *args, **kwargs):
+    student = request.user.student
+    teacher = get_object_or_404(Teacher, pk=pk)
+    # print(teacher.user.username)
+    student.teacher_list.add(teacher)
+    student.save()
+    # print(student.teacher_list.all())
+    return redirect("teacher_profile", pk)
+
+
+def remove_from_teacher_list(request, pk, *args, **kwargs):
+    student = request.user.student
+    teacher = get_object_or_404(Teacher, pk=pk)
+    student.teacher_list.remove(teacher)
+    student.save()
+    return redirect("teacher_profile", pk)
