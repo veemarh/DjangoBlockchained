@@ -63,11 +63,16 @@
                         </div>
                         <div class="profile-block">
                             <h3>Services</h3>
-                            <ul>
+                            <div id="profile-service-container">
                                 {% for service in user.teacher.service_set.all %}
-                                    <li> {{ service }} </li>
+                                    <div class="one-profile-service">
+                                        <div> {{ service }} </div>
+                                        <div class="service-desc"> {{ service.description }} </div>
+                                        <div> {{ service.price }} </div>
+                                        <div> {{ service.duration }} </div>
+                                    </div>
                                 {% endfor %}
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

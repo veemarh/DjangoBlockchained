@@ -524,3 +524,35 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     font-weight: bolder;
     color: goldenrod;
 }
+
+#profile-service-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.one-profile-service {
+    display: flex;
+    background-color: rgba(221, 221, 221, 0.3);
+    padding: 3px 8px;
+    gap: 8px;
+}
+
+.one-profile-service div {
+    flex: 1;
+    line-height: 30px;
+    word-break: break-all;
+}
+
+.one-profile-service div:last-child {
+    text-align: end;
+}
+
+.one-profile-service div:first-of-type {
+    font-weight: bolder;
+}
+
+.one-profile-service .service-desc {
+    flex: 3;
+}
