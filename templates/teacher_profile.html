@@ -9,9 +9,9 @@
                         <div id="summary-dataset">
                             {# условно #}
                             <img src="{% static 'img/avatar.jpg' %}">
-                            {#                        {% if is_student and user.teacher in request.user.student.student_list.all %}#}
-                            {##}
-                            {#                        {% endif %}#}
+                            {% if is_student and user.teacher in request.user.student.student_list.all %}
+                                
+                            {% endif %}
                             {% if request.user == user %}
                                 <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
                             {% else %}
@@ -20,8 +20,6 @@
                                 <a href="{% url 'remove_from_teacher_list' user.id %}"
                                    class="btn btn-primary">remove from list</a>
                             {% endif %}
-                            
-
                         </div>
                     </div>
                     <div class="account-dataset" id="main-dataset">
@@ -31,8 +29,7 @@
                             {% endif %}
                             profile
                         </h3>
-                        <h2>{{ user.first_name }} {{ user.second_name }} {{ user.third_name }}</h2>
-                        <span>@{{ user.username }}</span>
+                        <h2 style="display: inline;">{{ user.first_name }} {{ user.second_name }}</h2>
                         <div class="profile-block">
                             <div class="profile-connect" id="profile-phone" style="display: flex">
                                 <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
@@ -41,15 +38,15 @@
                                 <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
                             </div>
                         </div>
-                        <div class="profile-block">
+                        <div class="profile-block" id="teacher-description">
                             <h3>Description</h3>
                             <p>{{ user.teacher.description }}</p>
                         </div>
-                        <div class="profile-block">
+                        <div class="profile-block" id="teacher-diploma">
                             <h3>Diploma</h3>
                             <p>{{ user.teacher.diploma }}</p>
                         </div>
-                        <div class="profile-block">
+                        <div class="profile-block" id="teacher-experience">
                             <h3>Experience</h3>
                             <p>{{ user.teacher.experience }}</p>
                         </div>
@@ -74,5 +71,15 @@
             </div>
         </div>
     </div>
+    <script>
+        let phone = document.getElementById('profile-phone');
+        '{{ user.phone_number }}' === 'None' ? phone.style.display = 'none' : 0;
+        let description = document.getElementById('teacher-description');
+        '{{ user.teacher.description }}' === 'None' ? description.style.display = 'none' : 0;
+        let experience = document.getElementById('teacher-experience');
+        '{{ user.teacher.experience }}' === 'None' ? experience.style.display = 'none' : 0;
+        let diploma = document.getElementById('teacher-diploma');
+        '{{ user.teacher.diploma }}' === 'None' ? diploma.style.display = 'none' : 0;
+    </script>
 {% endblock %}
 {% block footer %}{% endblock footer %}

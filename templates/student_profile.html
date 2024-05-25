@@ -12,12 +12,11 @@
                             {% if request.user == user %}
                                 <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
                             {% else %}
-                                <a href="{% url 'add_to_student_list' user.id %}" 
+                                <a href="{% url 'add_to_student_list' user.id %}"
                                    class="btn btn-primary">add to list</a>
-                                <a href="{% url 'remove_from_student_list' user.id %}" 
+                                <a href="{% url 'remove_from_student_list' user.id %}"
                                    class="btn btn-primary">remove from list</a>
                             {% endif %}
-                        
                         </div>
                     </div>
                     <div class="account-dataset" id="main-dataset">
@@ -27,8 +26,7 @@
                             {% endif %}
                             profile
                         </h3>
-                        <h2>{{ user.first_name }} {{ user.second_name }} {{ user.third_name }}</h2>
-                        <span>@{{ user.username }}</span>
+                        <h2>{{ user.first_name }} {{ user.second_name }} <h2 id="user-third-name">{{ user.third_name }}</h2></h2>
                         <div class="profile-block">
                             <div class="profile-connect" id="profile-phone" style="display: flex">
                                 <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
@@ -37,7 +35,7 @@
                                 <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
                             </div>
                         </div>
-                        <div class="profile-block">
+                        <div class="profile-block" id="student-school">
                             <h3>Education</h3>
                             <p>{{ user.student.school_name }}</p>
                         </div>
@@ -54,5 +52,11 @@
             </div>
         </div>
     </div>
+    <script>
+        let phone = document.getElementById('profile-phone');
+        '{{ user.phone_number }}' === 'None' ? phone.style.display = 'none' : 0;
+        let school = document.getElementById('student-school');
+        '{{ user.student.school_name }}' === 'None' ? school.style.display = 'none' : 0;
+    </script>
 {% endblock %}
 {% block footer %}{% endblock footer %}

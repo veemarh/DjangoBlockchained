@@ -19,7 +19,6 @@ class StudentCreationForm(UserCreationForm):
             "username",
             "first_name",
             "second_name",
-            "picture",
             "email",
             "phone_number",
         )
@@ -28,7 +27,7 @@ class StudentCreationForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         user.is_student = True
-        user.picture = self.cleaned_data.get("picture") # maybe delete after
+        user.picture = self.cleaned_data.get("picture")  # maybe delete after
         user.save()
         student = Student.objects.create(user=user)
         student.interests.add(*self.cleaned_data.get("interests"))
@@ -62,7 +61,6 @@ class TeacherCreationForm(UserCreationForm):
             "username",
             "first_name",
             "second_name",
-            "picture",
             "email",
             "phone_number",
         )

@@ -11,6 +11,6 @@ urlpatterns = (
     path(
         "student/",
         getFavoriteStudentsList,
-        name="favorite_student_list",
+        name="favorite_students_list",
     ),
 )

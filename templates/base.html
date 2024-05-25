@@ -62,8 +62,8 @@
                                 My profile</a>
                             </li>
                             <li>
-                                {% if request.user.is_student %}<a href="/">My teachers</a>
-                                {% else %}<a href="/">My students</a>
+                                {% if request.user.is_student %}<a href="{% url 'favorite_teachers_list' %}">My teachers</a>
+                                {% else %}<a href="{% url 'favorite_students_list' %}">My students</a>
                                 {% endif %}
                             </li>
                             <li>
