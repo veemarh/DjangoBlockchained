@@ -11,13 +11,16 @@
                             <img src="{% static 'img/avatar.jpg' %}">
                             {% if request.user == user %}
                                 <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
-                            {% else %}
-                                <a href="{% url 'add_to_student_list' user.id %}" 
-                                   class="btn btn-primary">add to list</a>
-                                <a href="{% url 'remove_from_student_list' user.id %}" 
-                                   class="btn btn-primary">remove from list</a>
+                            {% elif request.user != user and request.user.is_teacher %}
+                                {% if user.student in request.user.teacher.favorite_students.all %}
+                                    <a href="{% url 'remove_from_student_list' user.id %}"
+                                       class="btn btn-primary">Remove from My students</a>
+                                {% else %}
+                                    <a href="{% url 'add_to_student_list' user.id %}"
+                                       class="btn btn-primary">Add to My students</a>
+                                {% endif %}
                             {% endif %}
-                        
+
                         </div>
                     </div>
                     <div class="account-dataset" id="main-dataset">
