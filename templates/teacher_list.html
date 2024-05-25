@@ -27,6 +27,7 @@
         </form>
         <ul id="teacher-list-container">
             {% for teacher in teachers %}
+                {% if teacher.user.is_complete %}
                 <li>
                     <a class="teacher-container" href="{% url 'teacher_profile' teacher.user.id %}">
                         <div class="teacher-avatar"></div>
@@ -45,6 +46,7 @@
                         <a class="teacher-button" href="/">Chat</a>
                     </div>
                 </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

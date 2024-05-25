@@ -6,9 +6,11 @@
     flex-wrap: wrap;
     gap: 48px;
 }
+
 #account-space-nav {
     flex: 1 0;
 }
+
 #account-space-nav a {
     display: block;
     line-height: 30px;
@@ -17,13 +19,16 @@
     border-radius: 5px;
     color: #333;
 }
+
 #account-space-nav li:last-child a {
     margin-bottom: 0;
 }
+
 #account-space-nav a:hover {
     color: #94938a;
     background-color: #ddd;
 }
+
 #current-edit-page div {
     float: left;
     height: 40px;
@@ -31,22 +36,27 @@
     background-color: #94938a;
     border-radius: 5px 0 0 5px;
 }
+
 #current-edit-page a {
     color: #94938a;
     background-color: #ddd;
 }
+
 #account-space-edit {
     flex: 3 0;
 }
+
 .data-editing-form {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
     margin-bottom: 64px;
 }
+
 .data-editing-form:not(:has(#main-dataset)) {
     max-width: 640px;
 }
+
 .data-editing-form button[type="submit"] {
     color: #fff;
     background-color: #333;
@@ -58,30 +68,38 @@
     width: 100%;
     user-select: none;
 }
+
 .data-editing-form button[type="submit"]:hover,
 .data-editing-form button[type="submit"]:active {
     background-color: #94938a;
 }
+
 .data-editing-form button[type="submit"]:focus:not(:checked) {
     background-color: #333;
 }
+
 .account-dataset {
     flex: 1 0;
 }
+
 .account-dataset#main-dataset {
     flex-grow: 3;
 }
+
 .account-dataset#main-dataset h2 {
     margin-bottom: 0;
 }
+
 .account-dataset#main-dataset span {
     color: #94938a;
     font-weight: lighter;
 }
+
 .account-dataset span:not(.helptext) {
     display: inline-block;
     padding-bottom: 16px;
 }
+
 .account-dataset p:has(label + textarea),
 .account-dataset p:has(label + input),
 .account-dataset:has(#id_interests) p {
@@ -89,9 +107,11 @@
     flex-direction: column;
     margin-bottom: 10px;
 }
+
 .account-dataset p:has(label + input):last-child {
     margin-bottom: 0;
 }
+
 .account-dataset textarea {
     font-family: 'Open Sans', arial, sans-serif;
     line-height: 1.2;
@@ -100,6 +120,7 @@
     resize: none;
     height: 128px;
 }
+
 .account-dataset textarea,
 .account-dataset input {
     background: transparent;
@@ -109,18 +130,21 @@
     padding: 10px;
     font-size: 16px;
 }
+
 .account-dataset textarea:not([disabled]):active,
 .account-dataset textarea:not([disabled]):focus,
 .account-dataset input:not([disabled]):active,
 .account-dataset input:not([disabled]):focus {
     border-color: #333;
 }
+
 .account-dataset label:not(:has(input)) {
     margin: 10px 0;
     line-height: normal;
     font-size: 14px;
     color: rgba(51, 51, 51, 0.75);
 }
+
 .account-dataset #summary-dataset a {
     display: block;
     line-height: 30px;
@@ -131,23 +155,29 @@
     background-color: rgba(221, 221, 221, 0.6);
     border: 1px solid rgba(51, 51, 51, 0.3);
 }
+
 .account-dataset #summary-dataset a:hover {
     background-color: #ddd;
 }
+
 #summary-dataset {
     display: flex;
     flex-direction: column;
 }
+
 #summary-dataset img {
     border-radius: 50%;
 }
+
 #summary-dataset a {
     margin-top: 1em;
 }
+
 #main-dataset {
     display: flex;
     flex-direction: column;
 }
+
 #main-dataset ul > * {
     display: inline-block;
     padding: 8px 10px;
@@ -155,9 +185,11 @@
     border-radius: 10px;
     margin: 0 5px 10px 0;
 }
+
 #main-dataset ul > *:last-child {
     margin-right: 0;
 }
+
 .profile-connect::before {
     content: '';
     width: 1em;
@@ -169,27 +201,34 @@
     background-size: 100%;
     margin: auto 1em auto 0;
 }
+
 .profile-connect#profile-email::before {
     background-image: url('../img/email.png');
 }
+
 .profile-connect#profile-phone::before {
     background-image: url('../img/phone.png');
 }
+
 .profile-block {
     padding: 16px 0;
     border-bottom: 1px solid rgba(51, 51, 51, 0.3);
 }
+
 .profile-block:last-of-type {
     border: none;
 }
+
 #profile-edit-buttons {
     display: flex;
     width: 100%;
     gap: 8px;
 }
+
 #profile-edit-buttons * {
     flex: 1 0;
 }
+
 #profile-edit-buttons input {
     color: #333;
     background-color: #f4f4f4;
@@ -201,38 +240,47 @@
     font-size: 16px;
     transition: .2s;
 }
+
 #profile-edit-buttons input:hover,
 #profile-edit-buttons input:active {
     background-color: #ddd;
 }
+
 #profile-edit-buttons input:focus:not(:checked) {
     background-color: #f4f4f4;
 }
+
 a[href^="mailto:"],
 a[href^="tel:"] {
     color: slateblue;
 }
+
 @media (max-width: 1140px) {
     .account-content-wrapper {
         max-width: 992px;
     }
 }
+
 @media (max-width: 992px) {
     .account-content-wrapper {
         max-width: 768px;
     }
 }
+
 @media (max-width: 768px) {
     .account-content-wrapper {
         max-width: 576px;
         flex-direction: column;
     }
+
     .account-content-wrapper:has(#main-dataset) .data-editing-form {
         flex-direction: column;
     }
+
     #summary-dataset {
         padding-bottom: 16px;
     }
+
     #summary-dataset img {
         max-width: 24vw;
     }
@@ -241,9 +289,11 @@ a[href^="tel:"] {
 .data-editing-form input.modified {
     border-color: slateblue;
 }
+
 .data-editing-form p:has(input.modified) label {
     color: slateblue;
 }
+
 .data-editing-form input.modified:focus,
 .data-editing-form input.modified:active {
     border-color: darkslateblue;
@@ -255,14 +305,17 @@ a[href^="tel:"] {
     flex-wrap: wrap;
     gap: 16px 8px;
 }
+
 .account-dataset #id_interests div {
     width: 160px;
 }
+
 .account-dataset #id_interests input {
     position: absolute;
     opacity: 0;
     z-index: -10;
 }
+
 .account-dataset #id_interests label {
     display: flex;
     width: fit-content;
@@ -274,15 +327,19 @@ a[href^="tel:"] {
     cursor: pointer;
     user-select: none;
 }
+
 .account-dataset #id_interests label:hover {
     background-color: rgba(148, 147, 138, 0.3);
 }
+
 .account-dataset #id_interests label:has(input:checked) {
     background-color: rgba(148, 147, 138, 0.5);
 }
+
 .account-dataset #id_interests label:has(input:focus:not(:checked)) {
     background-color: #ddd;
 }
+
 .account-dataset #id_interests label::before {
     content: '';
     display: inline-block;
@@ -296,6 +353,7 @@ a[href^="tel:"] {
     background-position: center;
     background-size: 60%;
 }
+
 .account-dataset #id_interests label:has(input:checked)::before {
     background-color: #94938a;
     background-image: url('../img/checkmark.png');
@@ -304,6 +362,7 @@ a[href^="tel:"] {
 .account-dataset p:has(input[id*=password]) label {
     display: flex;
 }
+
 p:has(input[id*=password]) .password-view-toggle {
     content: '';
     width: 1.2em;
@@ -318,6 +377,7 @@ p:has(input[id*=password]) .password-view-toggle {
     transition: .2s;
     cursor: pointer;
 }
+
 p:has(input[id*=password]) .password-view-toggle.shown {
     background-image: url('../img/view.png');
 }
@@ -329,15 +389,18 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     gap: 8px;
     max-width: 640px;
 }
+
 #service-list .one-service {
     display: flex;
     justify-content: space-between;
     background-color: rgba(221, 221, 221, 0.3);
     padding: 3px 8px;
 }
+
 #service-list label {
     align-self: center;
 }
+
 #service-list .delete-service-button {
     color: #f4f4f4;
     background-color: #333;
@@ -347,10 +410,12 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     padding: 8px;
     user-select: none;
 }
+
 #service-list .delete-service-button:hover,
 #service-list .delete-service-button:active {
     background-color: #94938a;
 }
+
 #delete-service-dialog > div,
 #create-service-form {
     background-color: #f4f4f4;
@@ -358,6 +423,7 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     border: 1px solid #333;
     border-radius: 10px;
 }
+
 #show-service-button {
     color: #333;
     background-color: #f4f4f4;
@@ -369,13 +435,16 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     cursor: pointer;
     transition: .2s;
 }
+
 #show-service-button:hover,
 #show-service-button:active {
     background-color: #ddd;
 }
+
 #show-service-button button:focus:not(:checked) {
     background-color: #f4f4f4;
 }
+
 #delete-service-dialog,
 #create-service-dialog {
     position: absolute;
@@ -384,13 +453,16 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     margin: auto;
     overflow: visible;
 }
+
 #delete-service-dialog::backdrop,
 #create-service-dialog::backdrop {
     background: rgba(51, 51, 51, 0.3);
 }
+
 #delete-service-dialog {
     max-width: 480px;
 }
+
 #close-service-form button {
     display: block;
     margin-left: auto;
@@ -403,14 +475,17 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     background-color: transparent;
     transform: translateY(calc(100% + 16px));
 }
+
 #close-service-form button:focus-visible {
     outline: none;
 }
+
 #delete-service-buttons {
     margin-top: 16px;
     display: flex;
     gap: 8px;
 }
+
 #delete-service-buttons button {
     font-size: 16px;
     border-radius: 5px;
@@ -419,27 +494,32 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     user-select: none;
     flex-grow: 1;
 }
+
 #delete-service-buttons button:first-of-type {
     color: #333;
     background-color: #f4f4f4;
     border: 1px solid #333;
     float: left;
 }
+
 #delete-service-buttons button:first-of-type:hover,
 #delete-service-buttons button:first-of-type:active {
     background-color: #ddd;
 }
+
 #delete-service-buttons button:last-of-type {
     color: #f4f4f4;
     background-color: #333;
     border: 1px solid #333;
     float: right;
 }
+
 #delete-service-buttons button:last-of-type:hover,
 #delete-service-buttons button:last-of-type:active {
     background-color: #94938a;
     border-color: #94938a;
 }
+
 #current-service-name {
     font-weight: bolder;
     color: goldenrod;

@@ -78,8 +78,8 @@ WSGI_APPLICATION = "djangoBlockchained.wsgi.application"
 
 # For Chat application
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
     }
 }
 

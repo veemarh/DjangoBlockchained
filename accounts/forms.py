@@ -26,6 +26,10 @@ class StudentCreationForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         user.is_student = True
+<<<<<<< HEAD
+        user.picture = self.cleaned_data.get("picture")  # maybe delete after
+=======
+>>>>>>> upstream/main
         user.save()
         student = Student.objects.create(user=user)
         student.interests.add(*self.cleaned_data.get("interests"))
