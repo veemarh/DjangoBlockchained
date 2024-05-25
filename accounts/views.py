@@ -168,7 +168,7 @@ def remove_from_teacher_list(request, pk, *args, **kwargs):
 def add_to_student_list(request, pk, *args, **kwargs):
     teacher = request.user.teacher
     student = get_object_or_404(Student, pk=pk)
-    teacher.favorite_students.add(student)
+    teacher.favorite_students.add(student.user)
     teacher.save()
     return redirect("student_profile", pk)
 
@@ -178,6 +178,6 @@ def add_to_student_list(request, pk, *args, **kwargs):
 def remove_from_student_list(request, pk, *args, **kwargs):
     teacher = request.user.teacher
     student = get_object_or_404(Student, pk=pk)
-    teacher.favorite_students.remove(student)
+    teacher.favorite_students.remove(student.user)
     teacher.save()
     return redirect("student_profile", pk)

@@ -18,6 +18,6 @@ def getFavoriteTeachersList(request):
 @teacher_required
 def getFavoriteStudentsList(request):
     teacher = request.user.teacher
-    students = teacher.favorite_students.all()
+    students = [user.student for user in teacher.favorite_students.all()]
 
     return render(request, "favorite_students.html", {"students": students})

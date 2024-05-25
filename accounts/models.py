@@ -55,6 +55,7 @@ class Teacher(models.Model):
 
     diploma = models.TextField(null=True, blank=True)
     experience = models.TextField(null=True, blank=True)
+    favorite_students = models.ManyToManyField(User, related_name="favorite_students")
 
     def __str__(self):
         return self.user.username
@@ -79,6 +80,8 @@ class Student(models.Model):
         return self.interests and self.school_name
 
 
-Teacher.__annotations__["favorite_students"] = models.ManyToManyField(
-    Student, related_name="favorite_students"
-)
+# Teacher.__annotations__["favorite_students"] =  models.ManyToManyField(
+#     Student, related_name="favorite_students"
+# )
+
+# print(Teacher.__dict__)
