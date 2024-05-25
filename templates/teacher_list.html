@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Teachers{% endblock title %}
 {% block content %}
-    <div id="teacher-list-content-wrapper">
+    <div id="user-list-content-wrapper">
         <h1>List of teachers</h1>
         <form id="teacher-list-filter">
             <label>
@@ -25,15 +25,15 @@
             <label for="search">Search in teacher list</label>
             <input type="search" id="search" placeholder="Type to search...">
         </form>
-        <ul id="teacher-list-container">
+        <ul id="user-list-container">
             {% for teacher in teachers %}
                 {% if teacher.user.is_complete %}
                 <li>
-                    <a class="teacher-container" href="{% url 'teacher_profile' teacher.user.id %}">
-                        <div class="teacher-avatar"></div>
+                    <a class="user-list-container" href="{% url 'teacher_profile' teacher.user.id %}">
+                        <div class="user-list-avatar"></div>
                         <div>
                             <span class="teacher-name">
-                                {{ teacher.user.first_name }} {{ teacher.user.second_name }} {{ teacher.user.third_name }}
+                                {{ teacher.user.first_name }} {{ teacher.user.second_name }}
                             </span>
                             <div class="teacher-subjects">
                                 {% for subject in teacher.interests.all %}
@@ -42,8 +42,8 @@
                             </div>
                         </div>
                     </a>
-                    <div class="teacher-button-wrapper">
-                        <a class="teacher-button" href="/">Chat</a>
+                    <div>
+                        <a class="user-list-button" href="/">Chat</a>
                     </div>
                 </li>
                 {% endif %}
@@ -51,7 +51,7 @@
         </ul>
     </div>
     <script>
-        let teachers = document.querySelectorAll('#teacher-list-container > li');
+        let teachers = document.querySelectorAll('#user-list-container > li');
         document.getElementById('search').addEventListener('input', function () {
             let currSearch = this.value.toLowerCase();
             teachers.forEach(function (teacher) {

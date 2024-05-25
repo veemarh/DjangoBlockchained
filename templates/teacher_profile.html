@@ -9,7 +9,6 @@
                         <div id="summary-dataset">
                             {# условно #}
                             <img src="{% static 'img/avatar.jpg' %}">
-
                             {% if request.user == user %}
                                 <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
                             {% elif request.user != user and request.user.is_student %}
@@ -19,10 +18,13 @@
                                 {% else %}
                                     <a href="{% url 'add_to_teacher_list' user.id %}"
                                        class="btn btn-primary">add to My teachers</a>
-
                                 {% endif %}
                             {% endif %}
-
+                            {% if request.user == user and not user.is_complete %}
+                                <div id="fill-profile-notification">Please fill in all required fields in you profile before
+                                    you start teaching.
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="account-dataset" id="main-dataset">
@@ -63,11 +65,16 @@
                         </div>
                         <div class="profile-block">
                             <h3>Services</h3>
-                            <ul>
+                            <div id="profile-service-container">
                                 {% for service in user.teacher.service_set.all %}
-                                    <li> {{ service }} </li>
+                                    <div class="one-profile-service">
+                                        <div> {{ service }} </div>
+                                        <div class="service-desc"> {{ service.description }} </div>
+                                        <div> {{ service.price }} </div>
+                                        <div> {{ service.duration }} </div>
+                                    </div>
                                 {% endfor %}
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
