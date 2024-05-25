@@ -1,14 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-{% for student in students %}
-    <li> {{ student.user.username }}</li>
-{% endfor %}
-
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div id="user-list-content-wrapper">
+        <h1>My favorite students</h1>
+        <ul id="user-list-container">
+            {% for student in students %}
+                <li>
+                    <a class="user-list-container" href="{% url 'student_profile' student.user.id %}">
+                        <div class="user-list-avatar"></div>
+                        <div>
+                            <span class="user-list-name">
+                                {{ student.user.first_name }} {{ student.user.second_name }}
+                            </span>
+                        </div>
+                    </a>
+                    <div>
+                        <a class="user-list-button" href="/">Chat</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
