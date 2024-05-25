@@ -556,3 +556,14 @@ p:has(input[id*=password]) .password-view-toggle.shown {
 .one-profile-service .service-desc {
     flex: 3;
 }
+
+#fill-profile-notification {
+    padding: 10px;
+    margin-top: 16px;
+    width: 100%;
+    color: indianred;
+    border: 1px solid indianred;
+    border-radius: 5px;
+    line-height: normal;
+    background-color: rgba(205, 92, 92, 0.1);
+}
