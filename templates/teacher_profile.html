@@ -9,17 +9,20 @@
                         <div id="summary-dataset">
                             {# условно #}
                             <img src="{% static 'img/avatar.jpg' %}">
-                            {% if is_student and user.teacher in request.user.student.student_list.all %}
-                                
-                            {% endif %}
+
                             {% if request.user == user %}
                                 <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
-                            {% else %}
-                                <a href="{% url 'add_to_teacher_list' user.id %}"
-                                   class="btn btn-primary">add to list</a>
-                                <a href="{% url 'remove_from_teacher_list' user.id %}"
-                                   class="btn btn-primary">remove from list</a>
+                            {% elif request.user != user and request.user.is_student %}
+                                {% if user.teacher in request.user.student.favorite_teachers.all %}
+                                    <a href="{% url 'remove_from_teacher_list' user.id %}"
+                                       class="btn btn-primary">Remove from My teachers</a>
+                                {% else %}
+                                    <a href="{% url 'add_to_teacher_list' user.id %}"
+                                       class="btn btn-primary">add to My teachers</a>
+
+                                {% endif %}
                             {% endif %}
+
                         </div>
                     </div>
                     <div class="account-dataset" id="main-dataset">
