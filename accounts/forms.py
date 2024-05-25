@@ -11,7 +11,6 @@ class StudentCreationForm(UserCreationForm):
         widget=forms.CheckboxSelectMultiple,
         required=True,
     )
-    picture = forms.ImageField()
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -19,7 +18,6 @@ class StudentCreationForm(UserCreationForm):
             "username",
             "first_name",
             "second_name",
-            "picture",
             "email",
             "phone_number",
         )
@@ -28,7 +26,6 @@ class StudentCreationForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         user.is_student = True
-        user.picture = self.cleaned_data.get("picture") # maybe delete after
         user.save()
         student = Student.objects.create(user=user)
         student.interests.add(*self.cleaned_data.get("interests"))
@@ -62,7 +59,6 @@ class TeacherCreationForm(UserCreationForm):
             "username",
             "first_name",
             "second_name",
-            "picture",
             "email",
             "phone_number",
         )
@@ -95,7 +91,7 @@ class StudentProfileChangeForm(forms.ModelForm):
             "first_name",
             "second_name",
             "third_name",
-            "picture",
+            # "picture",
             "birth_date",
             "phone_number",
             "email",
@@ -122,7 +118,7 @@ class TeacherProfileChangeForm(forms.ModelForm):
             "first_name",
             "second_name",
             "third_name",
-            "picture",
+            # "picture",
             "birth_date",
             "phone_number",
             "email",
