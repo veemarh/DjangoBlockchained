@@ -4,7 +4,6 @@
 {% block content %}
     <div id="user-list-content-wrapper">
         <h1>List of teachers</h1>
-
         <form id="teacher-list-filter">
             {% for subject in interests %}
                 <label>
@@ -43,33 +42,27 @@
     </div>
     <script>
         let teachers = document.querySelectorAll('#user-list-container > li');
-        document.getElementById('search').addEventListener('input', function () {
+        let searchInput = document.getElementById('search');
+        searchInput.addEventListener('input', function () {
             let currSearch = this.value.toLowerCase();
             teachers.forEach(function (teacher) {
                 let teacherName = teacher.querySelector('.teacher-name').textContent.toLowerCase();
-                if (teacherName.includes(currSearch)) {
-                    teacher.classList.remove('hidden-teacher-container');
-                } else {
-                    teacher.classList.add('hidden-teacher-container');
-                }
+                teacherName.includes(currSearch)
+                    ? teacher.classList.remove('hidden-teacher-container')
+                    : teacher.classList.add('hidden-teacher-container');
             });
         });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            let filterForm = document.getElementById('teacher-list-filter');
-            filterForm.addEventListener('change', function () {
-                let checkedBoxes = filterForm.querySelectorAll('input[type="checkbox"]:checked');
-                let filters = Array.from(checkedBoxes).map(checkbox => checkbox.value.toLowerCase());
-                Array.from(teachers).forEach(teacher => {
-                    let subjects = teacher.querySelectorAll('#teacher-subject');
-                    let subjectNames = Array.from(subjects).map(subject => subject.textContent.toLowerCase());
-                    let isMatch = filters.every(filter => subjectNames.includes(filter));
-                    if (filters.length === 0 || isMatch) {
-                        teacher.classList.remove('hidden-teacher-container');
-                    } else {
-                        teacher.classList.add('hidden-teacher-container');
-                    }
-                });
+        let filterForm = document.getElementById('teacher-list-filter');
+        filterForm.addEventListener('change', function () {
+            let checkedBoxes = filterForm.querySelectorAll('input[type="checkbox"]:checked');
+            let filters = Array.from(checkedBoxes).map(checkbox => checkbox.value.toLowerCase());
+            Array.from(teachers).forEach(teacher => {
+                let subjects = teacher.querySelectorAll('#teacher-subject');
+                let subjectNames = Array.from(subjects).map(subject => subject.textContent.toLowerCase());
+                let isMatch = filters.every(filter => subjectNames.includes(filter));
+                filters.length === 0 || isMatch
+                    ? teacher.classList.remove('hidden-teacher-container')
+                    : teacher.classList.add('hidden-teacher-container');
             });
         });
     </script>
