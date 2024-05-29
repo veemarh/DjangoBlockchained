@@ -90,7 +90,7 @@
 /****              поиск              ****/
 /*=======================================*/
 
-#teacher-list-operate{
+#teacher-list-operate {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -207,7 +207,7 @@
 
 #filter-container {
     float: left;
-    margin-right: 16px;
+    margin: 0 16px 0 8px;
     transition: .2s;
 }
 
@@ -248,4 +248,12 @@
         max-width: calc(100vw - 32px);
         margin: auto;
     }
+}
+
+.favorite-link {
+    color: goldenrod;
+}
+
+.favorite-link:hover {
+    color: darkgoldenrod;
 }

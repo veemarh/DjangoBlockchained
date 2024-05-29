@@ -4,22 +4,37 @@
     <div id="user-list-content-wrapper">
         <h1>My students</h1>
         <ul id="user-list-container">
+            {% if not students %}
+                <p>You don't have any students yet.</p>
+            {% endif %}
             {% for student in students %}
                 <li>
-                    <a class="user-list-container" href="{% url 'student_profile' student.user.id %}">
-                        <div class="user-list-avatar"></div>
-                        <div>
-                            <span class="user-list-name">
-                                {{ student.user.first_name }} {{ student.user.second_name }}
-                                {% if teacher.user.third_name %} {{ teacher.user.third_name }} {% endif %}
-                            </span>
+                    <div class="user-list-content">
+                        <div class="user-list-link">
+                            <a href="{% url 'student_profile' student.user.id %}">
+                                <div class="user-list-avatar"></div>
+                                <div class="user-list-info">
+                                    <span>{{ student.user.first_name }} {{ student.user.second_name }}
+                                        {% if student.user.third_name %} {{ student.user.third_name }} {% endif %}
+                                    </span>
+                                </div>
+                            </a>
+                            <hr style="visibility: hidden">
                         </div>
-                    </a>
-                    <div>
                         <a class="user-list-button" href="/">Chat</a>
                     </div>
                 </li>
             {% endfor %}
         </ul>
     </div>
+    <script>
+        function isOverflown(element) {
+            return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+        }
+
+        let userInfo = document.querySelectorAll('.user-list-info');
+        userInfo.forEach(data => {
+            isOverflown(data) ? data.classList.add('overflow-data') : 0;
+        });
+    </script>
 {% endblock content %}
