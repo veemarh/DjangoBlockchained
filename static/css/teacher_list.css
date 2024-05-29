@@ -116,7 +116,8 @@
     border-color: #333;
 }
 
-.hidden-teacher-container {
+.hidden-by-search,
+.hidden-by-filter {
     display: none;
 }
 

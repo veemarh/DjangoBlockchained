@@ -67,8 +67,8 @@
             teachers.forEach(function (teacher) {
                 let teacherName = teacher.querySelector('.teacher-name').innerText.toLowerCase();
                 teacherName.includes(currSearch)
-                    ? teacher.classList.remove('hidden-teacher-container')
-                    : teacher.classList.add('hidden-teacher-container');
+                    ? teacher.classList.remove('hidden-by-search')
+                    : teacher.classList.add('hidden-by-search');
             });
         });
 
@@ -81,8 +81,8 @@
                 let subjectNames = Array.from(subjects).map(subject => subject.innerText.toLowerCase());
                 let isMatch = filters.every(filter => subjectNames.includes(filter));
                 filters.length === 0 || isMatch
-                    ? teacher.classList.remove('hidden-teacher-container')
-                    : teacher.classList.add('hidden-teacher-container');
+                    ? teacher.classList.remove('hidden-by-filter')
+                    : teacher.classList.add('hidden-by-filter');
             });
         });
 
