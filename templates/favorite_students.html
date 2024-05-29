@@ -11,6 +11,7 @@
                         <div>
                             <span class="user-list-name">
                                 {{ student.user.first_name }} {{ student.user.second_name }}
+                                {% if teacher.user.third_name %} {{ teacher.user.third_name }} {% endif %}
                             </span>
                         </div>
                     </a>

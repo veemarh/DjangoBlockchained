@@ -11,6 +11,7 @@
                         <div>
                             <span class="teacher-name">
                                 {{ teacher.user.first_name }} {{ teacher.user.second_name }}
+                                {% if teacher.user.third_name %} {{ teacher.user.third_name }} {% endif %}
                             </span>
                             <div class="teacher-subjects">
                                 {% for subject in teacher.interests.all %}

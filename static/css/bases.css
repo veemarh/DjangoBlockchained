@@ -80,6 +80,7 @@ nav > ul > li:last-child {
     margin-right: 0;
 }
 #nav-left {
+    z-index: 2;
     float: left;
 }
 #nav-right {
@@ -92,7 +93,7 @@ nav > ul > li:last-child {
     display: none;
     position: absolute;
     cursor: pointer;
-    z-index: 2;
+    z-index: 10;
     width: 36px;
     height: 36px;
     border-radius: 30px;

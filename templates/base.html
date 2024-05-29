@@ -66,18 +66,18 @@
                                 {% else %}<a href="{% url 'favorite_students_list' %}">My students</a>
                                 {% endif %}
                             </li>
-{#                            <li>#}
-{#                                {% if request.user.is_student %}<a href="/">#}
-{#                                {% else %}<a href="/">#}
-{#                                {% endif %}#}
-{#                                My schedule</a>#}
-{#                            </li>#}
-                            <li>
-{#                                {% if request.user.is_student %}<a href="/">#}
-{#                                {% else %}<a href="/">#}
-{#                                {% endif %}#}
-{#                                My homework</a>#}
+                            {% comment %}<li>
+                                {% if request.user.is_student %}<a href="/">
+                                {% else %}<a href="/">
+                                {% endif %}
+                                My schedule</a>
                             </li>
+                            <li>
+                                {% if request.user.is_student %}<a href="/">
+                                {% else %}<a href="/">
+                                {% endif %}
+                                My homework</a>
+                            </li>{% endcomment %}
                             <li>
                                 <form id="logout-form" method="post" action="{% url 'logout' %}">
                                     {% csrf_token %}

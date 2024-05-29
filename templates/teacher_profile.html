@@ -22,8 +22,7 @@
                             {% endif %}
                             {% if request.user == user and not user.is_complete %}
                                 <div id="fill-profile-notification">Please fill in all required fields in you profile
-                                    before
-                                    you start teaching.
+                                    before you start teaching.
                                 </div>
                             {% endif %}
                         </div>
@@ -35,7 +34,7 @@
                             {% endif %}
                             profile
                         </h3>
-                        <h2 style="display: inline;">{{ user.second_name }} {{ user.first_name }}
+                        <h2>{{ user.second_name }} {{ user.first_name }}
                             {% if user.third_name %} {{ user.third_name }} {% endif %}</h2>
                         <div class="profile-block">
                             <div class="profile-connect" id="profile-phone" style="display: flex">
