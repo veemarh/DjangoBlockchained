@@ -56,7 +56,7 @@
             <div class="homepage-content-spacing" id="tutors-picture"><img src="{% static 'img/img2.jpg' %}"></div>
             <div class="homepage-content-spacing" id="tutors-work">
                 <h2>Bringing the knowledge gap</h2>
-                <p>Our community of educators share their expertise, 
+                <p>Our community of educators share their expertise,
                     connect with eager students, and create personalized learning experiences.</p>
                 <a class="homepage-link" href="{% url 'teacher_list' %}">Meet with tutors</a>
             </div>
@@ -111,8 +111,7 @@
                 let rect = block.getBoundingClientRect();
                 if (rect.top < window.innerHeight * 0.8) {
                     block.classList.remove('hidden-dynamic-up');
-                }
-                else {
+                } else {
                     return 0;
                 }
             });

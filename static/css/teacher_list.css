@@ -252,9 +252,9 @@
 }
 
 .favorite-link {
-    color: goldenrod;
+    color: #eab42e;
 }
 
 .favorite-link:hover {
-    color: darkgoldenrod;
+    color: rgba(234, 180, 46, 0.6);
 }

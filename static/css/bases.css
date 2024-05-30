@@ -3,33 +3,34 @@
     padding: 0;
     margin: 0;
 }
+
 ul {
     vertical-align: middle;
     list-style: none;
 }
+
 a {
     text-decoration: none;
     outline: none;
 }
+
 img {
     display: block;
     width: 100%;
 }
-h1, h2, h3, h4, h5, h6 {
-    font-family: arial, sans-serif;
-    font-weight: normal;
-    letter-spacing: 1px;
-}
+
 a:link,
 #user-icon span,
 button {
     transition: 0.3s;
 }
+
 button {
     cursor: pointer;
 }
+
 body {
-    font-family: 'Open Sans', arial, sans-serif;
+    font-family: Roboto, Arial, sans-serif;
     font-size: 16px;
     line-height: 1;
     color: #333;
@@ -38,6 +39,13 @@ body {
     flex-direction: column;
     height: 100%;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
 main {
     flex: 1 0 auto;
 }
@@ -48,6 +56,7 @@ header:after, .header-nav:after {
     display: table;
     clear: both;
 }
+
 /* ширина контейнера шапки */
 .header-nav {
     margin: 0 auto;
@@ -57,32 +66,39 @@ header:after, .header-nav:after {
     border: 1px solid #333;
     border-radius: 30px;
 }
+
 /* база шапки */
 header {
     width: 100%;
     padding: 16px;
     position: relative;
 }
+
 header a {
     display: inline-block;
     color: #333;
     line-height: 30px;
     padding: 3px 16px;
 }
+
 header a:hover {
-    color: #94938a;
+    color: #888888;
 }
+
 nav > ul > li {
     display: inline-block;
     margin-right: 8px;
 }
+
 nav > ul > li:last-child {
     margin-right: 0;
 }
+
 #nav-left {
     z-index: 2;
     float: left;
 }
+
 #nav-right {
     float: right;
 }
@@ -98,6 +114,7 @@ nav > ul > li:last-child {
     height: 36px;
     border-radius: 30px;
 }
+
 /* внешняя оболочка не тыкабельная */
 /* прозрачный слой поверх кнопки */
 #nav-toggle > div {
@@ -110,11 +127,13 @@ nav > ul > li:last-child {
     margin: 3px;
     pointer-events: none;
 }
+
 #nav-toggle > div.active {
     visibility: visible;
     opacity: 1;
     transition: opacity .12s, visibility .12s;
 }
+
 /* переключатель по умолчанию */
 #toggle-hamburger {
     justify-content: space-around;
@@ -122,35 +141,43 @@ nav > ul > li:last-child {
     align-items: center;
     padding: 3px;
 }
+
 #toggle-hamburger div {
     height: 1px;
     width: 24px;
     background-color: #333;
 }
+
 /* переключатель при наведенной мыши */
 #toggle-arrow {
     justify-content: center;
 }
+
 #toggle-arrow > div {
     align-content: center;
 }
+
 #toggle-arrow > div > div {
     height: 1px;
     width: 12px;
     margin: 7px 0;
     background-color: #333;
 }
+
 #toggle-arrow > div > div:first-of-type {
     transform: rotate(45deg);
 }
+
 #toggle-arrow > div > div:last-of-type {
     transform: rotate(-45deg);
 }
+
 /* при зафиксированном окне навигации */
 #toggle-cross {
     justify-content: center;
     align-items: center;
 }
+
 #toggle-cross::before,
 #toggle-cross::after {
     content: '';
@@ -159,9 +186,11 @@ nav > ul > li:last-child {
     width: 1px;
     height: 24px;
 }
+
 #toggle-cross::after {
     transform: rotate(45deg);
 }
+
 #toggle-cross::before {
     transform: rotate(-45deg);
 }
@@ -171,6 +200,7 @@ nav > ul > li:last-child {
     text-align: center;
     cursor: pointer;
 }
+
 #user-icon span {
     border: 1px solid #333;
     color: #333;
@@ -181,6 +211,7 @@ nav > ul > li:last-child {
     border-radius: 50%;
     pointer-events: none;
 }
+
 #user-icon:hover span {
     background-color: #ddd;
 }
@@ -199,24 +230,29 @@ nav > ul > li:last-child {
     padding: 10px;
     transition: .08s;
 }
+
 #header-user-menu.active {
     visibility: visible;
     opacity: 1;
     transition: .12s;
     transform: translate(calc(-100% + 36px), 16px);
 }
+
 #header-user-menu a {
     display: block;
     margin: 5px 0;
     padding: 5px 16px;
     border-radius: 5px;
 }
+
 #header-user-menu li:first-child {
     border-bottom: 1px solid rgba(51, 51, 51, 0.3);
 }
+
 #header-user-menu li:last-child {
     border-top: 1px solid rgba(51, 51, 51, 0.3);
 }
+
 #header-user-menu a:hover,
 #header-user-menu button:hover {
     background-color: #ddd;
@@ -235,6 +271,7 @@ nav > ul > li:last-child {
     line-height: 30px;
     border-radius: 5px;
 }
+
 #nav-logout-button:hover {
     color: #94938a;
 }
@@ -245,8 +282,9 @@ nav > ul > li:last-child {
     background-color: #333;
     border-radius: 30px;
 }
+
 #signup-link:hover {
-    background-color: goldenrod;
+    background-color: #eab42e;
 }
 
 /* мобильный */
@@ -254,6 +292,7 @@ nav > ul > li:last-child {
     #nav-toggle {
         display: block;
     }
+
     #nav-left {
         position: fixed;
         top: 0;
@@ -267,36 +306,43 @@ nav > ul > li:last-child {
         border-radius: 0 0 10px;
         box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
     }
+
     #nav-left li {
         display: block;
         margin-right: 0;
     }
+
     #nav-left a {
         display: block;
         padding: 5px 16px;
         margin: 5px 0;
         border-radius: 5px;
     }
+
     #nav-left a:hover {
         background-color: #ddd;
     }
+
     #nav-left li:first-child {
         border-top: 1px solid rgba(51, 51, 51, 0.3);
     }
+
     #nav-left li:last-child {
         border-bottom: 1px solid rgba(51, 51, 51, 0.3);
     }
+
     #nav-left.active {
         left: 0;
     }
+
     body:has(#nav-left.active) {
         overflow: hidden;
     }
 }
 
 footer {
-    background: #333;
-    color: #fff;
+    background: linear-gradient(150deg, rgb(206, 212, 218) 0%, rgb(224, 228, 232) 75%);
+    color: #333333;
     text-align: center;
     line-height: 30px;
     padding: 10px 0;

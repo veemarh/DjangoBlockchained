@@ -4,37 +4,46 @@
     margin: 0 auto;
     max-width: 90%;
 }
+
 .authorization-form-wrapper h2,
 .message-form-wrapper {
     text-align: center;
 }
+
 .authorization-form-wrapper h3 {
     padding-bottom: 0;
 }
+
 .authorization-form-wrapper p:has(label) {
     display: flex;
     flex-direction: column;
 }
+
 #forgot-password-link {
     font-size: 14px;
     color: slateblue;
     margin-left: auto;
 }
+
 #forgot-password-link:hover {
     color: darkslateblue;
 }
+
 .message-form-wrapper a {
-    color: goldenrod;
+    color: #eab42e;
 }
+
 .message-form-wrapper a:hover {
-    color: darkgoldenrod;
+    color: rgba(234, 180, 46, 0.6);
 }
+
 /* переход на предыдущую страницу */
 .return-link {
     position: absolute;
     height: 14px;
     width: 14px;
 }
+
 .return-link div {
     pointer-events: none;
     height: 1px;
@@ -44,15 +53,19 @@
     opacity: .75;
     transition: .2s;
 }
+
 .return-link:hover div {
     background-color: #94938a;
 }
+
 .return-link div:first-of-type {
     transform: rotate(-45deg);
 }
+
 .return-link div:last-of-type {
     transform: rotate(45deg);
 }
+
 /* это ссылка на домашнюю страницу */
 /* как мне кажется, самая удобная вещь для страниц без шапки */
 /* здесь должен быть лого, сейчас его нет, но это поправимо */
@@ -67,6 +80,7 @@
     cursor: pointer;
     transition: .2s;
 }
+
 .return-to-home:hover {
     opacity: .5;
 }
@@ -80,6 +94,7 @@
     border-radius: 10px;
     box-shadow: 0 3px 16px 0 rgba(51, 51, 51, 0.3);
 }
+
 .form-container > p > input {
     background: transparent;
     outline: none;
@@ -88,6 +103,7 @@
     padding: 10px;
     font-size: 16px;
 }
+
 .form-container > p > label {
     padding: 10px 0;
     line-height: normal;
@@ -95,6 +111,7 @@
     color: rgba(51, 51, 51, 0.75);
     display: flex;
 }
+
 .form-container button {
     color: #fff;
     background-color: #333;
@@ -105,10 +122,12 @@
     padding: 16px;
     margin-top: 10px;
 }
+
 .form-container button:hover,
 .form-container button:focus {
     background-color: #94938a;
 }
+
 .form-container input:active,
 .form-container input:focus {
     border-color: #333;
@@ -118,15 +137,18 @@
 #signup-wrapper {
     width: 640px;
 }
+
 #signup-wrapper p {
     text-align: center;
 }
+
 #select-user-type {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
 }
+
 #select-user-type a {
     width: 150px;
     height: 200px;
@@ -138,6 +160,7 @@
     text-align: center;
     align-content: end;
 }
+
 #select-user-type a:hover {
     border-color: #333;
     background-color: #ddd;
@@ -148,13 +171,16 @@
 #login-wrapper {
     width: 320px;
 }
+
 #signup-form-wrapper,
 .password-form-wrapper {
     width: 480px;
 }
+
 #signup-form-wrapper p {
     display: none;
 }
+
 #signup-form-wrapper button {
     margin-top: 0;
 }
@@ -166,6 +192,7 @@
     line-height: normal;
     color: rgba(51, 51, 51, 0.5);
 }
+
 .errorlist {
     color: indianred;
     padding: 10px;
@@ -174,13 +201,15 @@
     line-height: normal;
     background-color: rgba(205, 92, 92, 0.1);
 }
-.errorlist.self-written{
+
+.errorlist.self-written {
     position: absolute;
     top: -10000px;
     visibility: hidden;
     opacity: 0;
     transition: visibility .2s, opacity .2s;
 }
+
 .errorlist.self-written.shown {
     position: static;
     top: 0;
@@ -188,6 +217,7 @@
     opacity: 1;
     transition: visibility .2s, opacity .2s;
 }
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -199,6 +229,7 @@ input:-webkit-autofill:active {
     #signup-info-box {
         display: none;
     }
+
     [class$='-form-wrapper'] p:not(:has(label)) {
         font-size: 16px;
         line-height: 24px;
@@ -211,9 +242,11 @@ input:-webkit-autofill:active {
         box-shadow: none;
         padding: 8px;
     }
+
     #select-user-type {
         justify-content: space-around;
     }
+
     #select-user-type a {
         width: 144px;
         height: 192px;
@@ -228,14 +261,17 @@ input:-webkit-autofill:active {
     flex-wrap: wrap;
     gap: 8px;
 }
+
 .authorization-form-wrapper #id_interests div {
     flex: 1 0 160px;
 }
+
 .authorization-form-wrapper #id_interests input {
     position: absolute;
     opacity: 0;
     z-index: -10;
 }
+
 .authorization-form-wrapper #id_interests label {
     display: flex;
     height: 64px;
@@ -246,9 +282,11 @@ input:-webkit-autofill:active {
     transition: .2s;
     cursor: pointer;
 }
+
 .authorization-form-wrapper #id_interests label:hover {
     background-color: rgba(148, 147, 138, 0.3);
 }
+
 .authorization-form-wrapper #id_interests label:has(input:checked) {
     background-color: rgba(148, 147, 138, 0.6);
 }
@@ -258,20 +296,25 @@ input:-webkit-autofill:active {
 #id_interests.active {
     display: flex;
 }
+
 #dataset-buttons-container {
     margin-top: 10px;
 }
+
 #dataset-buttons-container * {
     display: none;
     width: 128px;
     border-radius: 10px;
 }
+
 #dataset-buttons-container *.active {
     display: block;
 }
+
 #dataset-buttons-container .btn.btn-success {
     float: right;
 }
+
 #next-set-button,
 #prev-set-button {
     height: 48px;
@@ -280,6 +323,7 @@ input:-webkit-autofill:active {
     cursor: pointer;
     transition: .2s;
 }
+
 /*#next-set-button {
     float: right;
     background-color: #ddd;
@@ -291,18 +335,22 @@ input:-webkit-autofill:active {
     color: rgba(51, 51, 51, 0.3);
     pointer-events: none;
 }
+
 #next-set-button.valid {
     background-color: #ddd;
     color: #333;
     pointer-events: auto;
 }
+
 #prev-set-button {
     float: left;
     color: rgba(51, 51, 51, 0.75);
 }
+
 #next-set-button:hover {
     background-color: rgba(148, 147, 138, 0.6);
 }
+
 #prev-set-button:hover {
     background-color: rgba(221, 221, 221, 0.3);
 }

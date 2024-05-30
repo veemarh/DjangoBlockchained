@@ -113,7 +113,7 @@
 }
 
 .account-dataset textarea {
-    font-family: 'Open Sans', arial, sans-serif;
+    font-family: 'Open Sans', Roboto, sans-serif;
     line-height: 1.2;
     color: #333;
     width: 100%;
@@ -422,6 +422,7 @@ p:has(input[id*=password]) .password-view-toggle.shown {
     padding: 16px;
     border: 1px solid #333;
     border-radius: 10px;
+    color: #333333;
 }
 
 #show-service-button {
@@ -522,7 +523,7 @@ p:has(input[id*=password]) .password-view-toggle.shown {
 
 #current-service-name {
     font-weight: bolder;
-    color: goldenrod;
+    color: #eab42e;
 }
 
 #profile-service-container {

@@ -1,160 +1,189 @@
-/* секция */
-/* самодостаточный блок на странице, со своей темой и задачей */
 section {
     width: 100%;
     transition: .5s;
 }
-/* самый первый блок любой секции -- оболочка внутреннего контента */
-/* здесь задается максимальная ширина содержимого */
-/* прежде всего нужна для адаптации к разным устройствам */
-/* гланые изменения при смене девайса происходят тут */
+
 .homepage-content-wrapper {
     display: flex;
     margin: auto;
     padding: 0 16px;
     max-width: 1140px;
 }
-/* вложенный в оболочку блок с разделителями */
-/* собственно блок с содержанием */
-/* и отделять его нужно собственно от других блоков с содержанием */
+
 .homepage-content-spacing {
     padding: 16px;
     align-content: center;
 }
-/* разделитель разделов */
-.homepage-spacer {
-    width: 100%;
-    height: 64px;
-}
+
 .homepage-content-spacing > img {
     border-radius: 30px;
 }
 
-/* ссылки */
+.homepage-content-spacing span {
+    color: #888888;
+}
+
 .homepage-link {
     display: inline-block;
-    padding: 8px 32px;
+    padding: 18px 32px;
     margin-top: 18px;
     color: #333;
-    line-height: 30px;
-    border: 1px solid #333;
-    border-radius: 30px;
-}
-.homepage-link:hover {
-    background-color: #ddd;
+    border-radius: 10px;
 }
 
-/* адаптация */
-@media (max-width: 1140px) {
-    .homepage-content-wrapper {
-        max-width: 992px;
-    }
-}
-@media (max-width: 992px) {
-    .homepage-content-wrapper {
-        max-width: 768px;
-    }
-}
-@media (max-width: 768px) {
-    .homepage-content-wrapper {
-        max-width: 576px;
-    }
+.homepage-spacer {
+    width: 100%;
+    height: 64px;
 }
 
-/* первая секция домашней страницы */
-/* титульная */
-/* задаю пропорциональный размер блоков */
+/* Первая секция */
+
 #usp,
 #poster {
     flex: 1 0;
 }
+
 #usp {
-    padding-top: 128px;
-    padding-bottom: 128px;
-}
-#poster {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
-/* вторая секция -- кого и как учат на платформе, услуги */
+#usp .homepage-link {
+    background-color: #eab42e;
+}
+
+#usp .homepage-link:hover {
+    background-color: rgba(234, 180, 46, 0.6);
+    box-shadow: 0 8px 16px 0 rgba(255, 210, 139, 0.3);
+}
+
+/* Вторая секция */
+
 #services .homepage-content-wrapper {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .proposition {
     flex: 1 0;
-    margin: 16px 16px 0;
+    margin: 16px 8px 0;
     min-width: 240px;
+    border-radius: 20px;
+    background: linear-gradient(150deg, rgb(206, 212, 218) 0%, rgb(224, 228, 232) 75%);
 }
+
 .proposition-img {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     margin-bottom: 16px;
 }
 
-/* третья секция -- о работе преподавателей на платформе */
+/* Третья секция */
+
+#about .homepage-content-wrapper {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+#about .homepage-link {
+    background-color: #ffd28b;
+}
+
+#about .homepage-link:hover {
+    background-color: #f3deb8;
+    box-shadow: 0 8px 16px 0 rgba(243, 222, 184, 0.3);
+}
+
 #tutors-work {
     flex: 2;
 }
+
 #tutors-picture {
     flex: 1;
 }
 
-/* четвертая секция -- преимущества нашей платформы */
+/* Четвертая секция */
+
 #feature-list,
 #feature-addition {
     flex: 1;
 }
+
 .feature-point {
     display: flex;
     padding: 16px;
     margin-bottom: 16px;
 }
+
 .feature-point:last-child {
     margin-bottom: 0;
 }
+
 .feature-icon {
     min-width: 32px;
     height: 32px;
     margin-right: 32px;
 }
 
-/* отдельные моменты адаптации разделов */
+/* адаптация */
+
+@media (max-width: 1140px) {
+    .homepage-content-wrapper {
+        max-width: 992px;
+    }
+}
+
 @media (max-width: 992px) {
+    .homepage-content-wrapper {
+        max-width: 768px;
+    }
+
     #billboard .homepage-content-wrapper,
     #features .homepage-content-wrapper,
     #about .homepage-content-wrapper {
         flex-direction: column;
     }
+
     #usp {
         padding-top: 80px;
         padding-bottom: 16px;
     }
+
     #poster {
         padding-top: 16px;
         padding-bottom: 32px;
     }
+
     .proposition {
         max-width: 336px;
     }
+
     #feature-addition {
         display: none;
     }
+
     #tutors-work {
         order: 1;
     }
+
     #tutors-picture {
         order: 2;
     }
 }
+
 @media (max-width: 768px) {
+    .homepage-content-wrapper {
+        max-width: 576px;
+    }
+
     #services .homepage-content-wrapper {
         flex-direction: column;
     }
+
     .proposition {
         max-width: none;
     }
+
     .proposition,
     #feature-list {
         min-width: 0;
