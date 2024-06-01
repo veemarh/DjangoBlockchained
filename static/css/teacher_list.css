@@ -151,7 +151,7 @@
 
 #teacher-list-filter label {
     display: flex;
-    width: fit-content;
+    padding: 3px 0;
     gap: 8px;
     cursor: pointer;
     user-select: none;
@@ -252,9 +252,9 @@
 }
 
 .favorite-link {
-    color: #eab42e;
+    color: #ffba60;
 }
 
 .favorite-link:hover {
-    color: rgba(234, 180, 46, 0.6);
+    color: rgba(255, 186, 96, 0.3);
 }

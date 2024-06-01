@@ -224,7 +224,7 @@ nav > ul > li:last-child {
     position: absolute;
     transform: translate(calc(-100% + 42px), 10px);
     min-width: 210px;
-    box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
+    box-shadow: 0 20px 26px 16px rgba(51, 51, 51, 0.1);
     border-radius: 10px;
     background: #f4f4f4;
     padding: 10px;
@@ -284,7 +284,7 @@ nav > ul > li:last-child {
 }
 
 #signup-link:hover {
-    background-color: #eab42e;
+    background-color: #e5a656;
 }
 
 /* мобильный */
@@ -304,7 +304,7 @@ nav > ul > li:last-child {
         transition: left 0.4s;
         background: #f4f4f4;
         border-radius: 0 0 10px;
-        box-shadow: 0 8px 16px 0 rgba(51, 51, 51, 0.3);
+        box-shadow: 0 20px 26px 16px rgba(51, 51, 51, 0.1);
     }
 
     #nav-left li {
@@ -341,7 +341,7 @@ nav > ul > li:last-child {
 }
 
 footer {
-    background: linear-gradient(150deg, rgb(206, 212, 218) 0%, rgb(224, 228, 232) 75%);
+    background: linear-gradient(150deg, #ced4da 0%, #e0e4e8 75%);
     color: #333333;
     text-align: center;
     line-height: 30px;

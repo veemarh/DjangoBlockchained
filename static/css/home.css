@@ -27,8 +27,8 @@ section {
     display: inline-block;
     padding: 18px 32px;
     margin-top: 18px;
-    color: #333;
     border-radius: 10px;
+    color: #f4f4f4;
 }
 
 .homepage-spacer {
@@ -49,12 +49,12 @@ section {
 }
 
 #usp .homepage-link {
-    background-color: #eab42e;
+    background-color: #ffba60;
 }
 
 #usp .homepage-link:hover {
-    background-color: rgba(234, 180, 46, 0.6);
-    box-shadow: 0 8px 16px 0 rgba(255, 210, 139, 0.3);
+    background-color: rgba(255, 186, 96, 0.6);
+    box-shadow: 0 8px 16px -4px rgba(255, 186, 96, 0.3);
 }
 
 /* Вторая секция */
@@ -69,7 +69,7 @@ section {
     margin: 16px 8px 0;
     min-width: 240px;
     border-radius: 20px;
-    background: linear-gradient(150deg, rgb(206, 212, 218) 0%, rgb(224, 228, 232) 75%);
+    background: linear-gradient(150deg, #ced4da 0%, #e0e4e8 75%);
 }
 
 .proposition-img {
@@ -86,12 +86,11 @@ section {
 }
 
 #about .homepage-link {
-    background-color: #ffd28b;
+    background-color: #333333;
 }
 
 #about .homepage-link:hover {
-    background-color: #f3deb8;
-    box-shadow: 0 8px 16px 0 rgba(243, 222, 184, 0.3);
+    background-color: #ffba60;
 }
 
 #tutors-work {
