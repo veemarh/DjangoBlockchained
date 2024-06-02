@@ -23,6 +23,19 @@
     color: rgba(255, 186, 96, 0.6);
 }
 
+.authorization-form-wrapper button {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+
+    color: #f4f4f4;
+    background-color: #333333;
+}
+
+.authorization-form-wrapper input {
+    font-family: Roboto, Arial, sans-serif;
+}
+
 /* переход на предыдущую страницу */
 .return-link {
     position: absolute;
@@ -36,7 +49,6 @@
     margin: 5px 0;
 
     background-color: #333333;
-    opacity: .75;
 
     pointer-events: none;
     transition: 0.2s;
@@ -157,7 +169,7 @@
     background-repeat: no-repeat;
 
     opacity: 0;
-    transition: 0.3s;
+    transition: opacity 0.2s;
 }
 
 #select-user-type a:first-of-type::after {
@@ -181,10 +193,6 @@
     z-index: 2;
     margin-top: 4px;
 
-    font-weight: bolder;
-
-    text-shadow: #e0e4e8;
-
     transform: translateX(-50%);
 }
 
@@ -207,12 +215,6 @@
 #login-wrapper button {
     padding: 18px 32px;
     margin-top: 10px;
-
-    font-size: 16px;
-    line-height: 1;
-
-    color: #ffffff;
-    background-color: #333333;
     border: none;
     border-radius: 10px;
 }
@@ -235,23 +237,17 @@
     border-radius: 10px;
 }
 
-#dataset-buttons-container button {
-    float: right;
-
-    font-size: 16px;
-    line-height: 1;
-
-    color: #ffffff;
-    background-color: #333333;
-    border: none;
-}
-
 #dataset-buttons-container *.active {
     display: block;
 }
 
-#dataset-buttons-container button:hover,
-#dataset-buttons-container button:focus {
+#signup-form-button {
+    float: right;
+    border: none;
+}
+
+#signup-form-button:hover,
+#signup-form-button:focus {
     background-color: #ffba60;
 }
 
@@ -297,7 +293,10 @@
     top: 0;
     visibility: visible;
     opacity: 1;
-    transition: visibility 0.2s, opacity 0.2s;
+}
+
+#signup-form-wrapper .errorlist:not(.self-written) {
+    display: none;
 }
 
 input:-webkit-autofill,
@@ -406,15 +405,19 @@ input:-webkit-autofill:active {
 
 #next-set-button {
     float: right;
-    color: rgba(51, 51, 51, 0.3);
-    background-color: rgba(221, 221, 221, 0.3);
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(221, 221, 221, 0.5);
     pointer-events: none;
 }
 
 #next-set-button.valid {
-    background-color: rgba(255, 186, 96, 0.4);
     color: #333333;
+    background-color: rgba(255, 186, 96, 0.5);
     pointer-events: auto;
+}
+
+#next-set-button:hover {
+    background-color: rgba(255, 186, 96, 0.75);
 }
 
 #prev-set-button {
@@ -422,10 +425,6 @@ input:-webkit-autofill:active {
     color: rgba(51, 51, 51, 0.75);
 }
 
-#next-set-button:hover {
-    background-color: rgba(255, 186, 96, 0.6);
-}
-
 #prev-set-button:hover {
-    background-color: rgba(136, 136, 136, 0.05);
+    background-color: rgba(221, 221, 221, 0.25);
 }

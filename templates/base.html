@@ -38,16 +38,16 @@
                 <div id="toggle-cross"></div>
             </div>
             <ul id="nav-left">
-                <li>
-                    <a href="{% url 'home' %}">Homepage</a>
+                <li class="header-nav-li">
+                    <a class="header-nav-a" href="{% url 'home' %}">Homepage</a>
                 </li>
-                <li>
-                    <a href="{% url 'teacher_list' %}">Teachers</a>
+                <li class="header-nav-li">
+                    <a class="header-nav-a" href="{% url 'teacher_list' %}">Teachers</a>
                 </li>
             </ul>
             <ul id="nav-right">
                 {% if request.user.is_authenticated %}
-                    <li>
+                    <li class="header-nav-li">
                         <div id="user-icon">
                             <span></span>
                         </div>
@@ -56,14 +56,20 @@
                         </script>
                         <ul id="header-user-menu">
                             <li>
-                                {% if request.user.is_student %}<a href="{% url 'student_profile' request.user.id %}">
-                                {% else %}<a href="{% url 'teacher_profile' request.user.id %}">
+                                {% if request.user.is_student %}
+                                    <a class="header-menu-link" href="{% url 'student_profile' request.user.id %}">
+                                {% else %}
+                                    <a class="header-menu-link" href="{% url 'teacher_profile' request.user.id %}">
                                 {% endif %}
                                 My profile</a>
                             </li>
                             <li>
-                                {% if request.user.is_student %}<a href="{% url 'favorite_teachers_list' %}">My teachers</a>
-                                {% else %}<a href="{% url 'favorite_students_list' %}">My students</a>
+                                {% if request.user.is_student %}
+                                    <a class="header-menu-link" href="{% url 'favorite_teachers_list' %}">
+                                        My teachers</a>
+                                {% else %}
+                                    <a class="header-menu-link" href="{% url 'favorite_students_list' %}">
+                                        My students</a>
                                 {% endif %}
                             </li>
                             {% comment %}<li>
@@ -89,11 +95,11 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li>
-                        <a href="{% url 'login' %}">Log In</a>
+                    <li class="header-nav-li">
+                        <a class="header-nav-a" href="{% url 'login' %}">Log In</a>
                     </li>
-                    <li>
-                        <a id="signup-link" href="{% url 'signup' %}">Sign Up</a>
+                    <li class="header-nav-li">
+                        <a class="header-nav-a" id="signup-link" href="{% url 'signup' %}">Sign Up</a>
                     </li>
                 {% endif %}
             </ul>
@@ -106,7 +112,7 @@
 </main>
 {% block footer %}
     <footer>
-        &copy; 2024 Django Blockchained.
+        &copy; 2024 DjangoBlockchained.
     </footer>
 {% endblock footer %}
 <script type="text/javascript" src="{% static 'scripts/main.js' %}"></script>

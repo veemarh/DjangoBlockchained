@@ -20,7 +20,7 @@
                     {{ form.as_p }}
                     <div id="dataset-buttons-container">
                         <div id="prev-set-button">Back</div>
-                        <button type="submit" class="btn btn-success">Sign up</button>
+                        <button id="signup-form-button" type="submit" class="btn btn-success">Sign up</button>
                         <div class="active" id="next-set-button">Continue</div>
                     </div>
                 </form>
@@ -46,7 +46,7 @@
         let setNumber = 0;
         let buttonNext = document.getElementById('next-set-button');
         let buttonPrev = document.getElementById('prev-set-button');
-        let buttonSignup = document.querySelector('.btn.btn-success');
+        let buttonSignup = document.getElementById('signup-form-button');
         let setTitle = document.querySelector('.form-container h3');
         let setLabel = document.querySelector('.form-container span');
         let inputs = document.querySelectorAll('.form-container > p, .form-container > [id=\'id_interests\']');
