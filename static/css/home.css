@@ -90,6 +90,7 @@ section {
 }
 
 #about .homepage-link:hover {
+    color: #333333;
     background-color: #ffba60;
 }
 

@@ -171,9 +171,9 @@
     flex-grow: 0;
     border: 1px solid #94938a;
     border-radius: 0.25em;
-    background-repeat: no-repeat;
     background-position: center;
     background-size: 60%;
+    background-repeat: no-repeat;
     transition: .2s;
 }
 
@@ -193,8 +193,8 @@
     height: 36px;
     width: 36px;
     background-image: url('../img/filter.png');
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 

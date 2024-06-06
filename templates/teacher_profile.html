@@ -1,82 +1,75 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="col-md-6">
-        <div class="account-content-wrapper">
-            <div id="account-space-edit">
-                <div class="data-editing-form">
-                    <div class="account-dataset">
-                        <div id="summary-dataset">
-                            {# условно #}
-                            <img src="{% static 'img/avatar.jpg' %}">
-                            {% if request.user == user %}
-                                <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
-                            {% elif request.user != user and request.user.is_student %}
-                                {% if user.teacher in request.user.student.favorite_teachers.all %}
-                                    <a href="{% url 'remove_from_teacher_list' user.id %}"
-                                       class="btn btn-primary">Remove from My teachers</a>
-                                {% else %}
-                                    <a href="{% url 'add_to_teacher_list' user.id %}"
-                                       class="btn btn-primary">add to My teachers</a>
-                                {% endif %}
-                            {% endif %}
-                            {% if request.user == user and not user.is_complete %}
-                                <div id="fill-profile-notification">Please fill in all required fields in you profile
-                                    before you start teaching.
-                                </div>
-                            {% endif %}
-                        </div>
+    <div class="account-content-wrapper">
+        <div class="data-view-container">
+            <div id="summary-dataset">
+                <img src="{% static 'img/avatar.jpg' %}">
+                {% if request.user == user %}
+                    <a class="goto-egit-page" href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
+                {% elif request.user != user and request.user.is_student %}
+                    {% if user.teacher in request.user.student.favorite_teachers.all %}
+                        <a href="{% url 'remove_from_teacher_list' user.id %}"
+                           class="btn btn-primary add-remove-user">Remove from My teachers</a>
+                    {% else %}
+                        <a href="{% url 'add_to_teacher_list' user.id %}"
+                           class="btn btn-primary add-remove-user">Add to My teachers</a>
+                    {% endif %}
+                {% endif %}
+                {% if request.user == user and not user.is_complete %}
+                    <div id="fill-profile-notification">Please fill in all required fields in you profile
+                        before you start teaching.
                     </div>
-                    <div class="account-dataset" id="main-dataset">
-                        <h3>
-                            {% if request.user == user %}Public
-                            {% elif user.is_teacher %}Teacher
-                            {% endif %}
-                            profile
-                        </h3>
-                        <h2>{{ user.second_name }} {{ user.first_name }}
-                            {% if user.third_name %} {{ user.third_name }} {% endif %}</h2>
-                        <div class="profile-block">
-                            <div class="profile-connect" id="profile-phone" style="display: flex">
-                                <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
+                {% endif %}
+            </div>
+            <div id="main-dataset">
+                <h3>
+                    {% if request.user == user %}Public
+                    {% elif user.is_teacher %}Teacher
+                    {% endif %}
+                    profile
+                </h3>
+                <h2>{{ user.second_name }} {{ user.first_name }}
+                    {% if user.third_name %} {{ user.third_name }} {% endif %}</h2>
+                <div class="profile-block">
+                    <div class="profile-connect" id="profile-phone">
+                        <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
+                    </div>
+                    <div class="profile-connect" id="profile-email">
+                        <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+                    </div>
+                </div>
+                <div class="profile-block" id="teacher-description">
+                    <h3>Description</h3>
+                    <span>{{ user.teacher.description }}</span>
+                </div>
+                <div class="profile-block" id="teacher-diploma">
+                    <h3>Diploma</h3>
+                    <span>{{ user.teacher.diploma }}</span>
+                </div>
+                <div class="profile-block" id="teacher-experience">
+                    <h3>Experience</h3>
+                    <span>{{ user.teacher.experience }}</span>
+                </div>
+                <div class="profile-block">
+                    <h3>Interests</h3>
+                    <div id="profile-interests-list">
+                        {% for subject in user.teacher.interests.all %}
+                            <div class="profile-interest-name">{{ subject.name }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="profile-block">
+                    <h3>Services</h3>
+                    <div id="profile-service-container">
+                        {% for service in user.teacher.service_set.all %}
+                            <div class="one-profile-service">
+                                <div class="profile-service-name">{{ service }}</div>
+                                <div class="profile-service-desc">{{ service.description }}</div>
+                                <div class="profile-service-price">{{ service.price }}</div>
+                                <div class="profile-service-duration">{{ service.duration }}</div>
                             </div>
-                            <div class="profile-connect" id="profile-email" style="display: flex">
-                                <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
-                            </div>
-                        </div>
-                        <div class="profile-block" id="teacher-description">
-                            <h3>Description</h3>
-                            <p>{{ user.teacher.description }}</p>
-                        </div>
-                        <div class="profile-block" id="teacher-diploma">
-                            <h3>Diploma</h3>
-                            <p>{{ user.teacher.diploma }}</p>
-                        </div>
-                        <div class="profile-block" id="teacher-experience">
-                            <h3>Experience</h3>
-                            <p>{{ user.teacher.experience }}</p>
-                        </div>
-                        <div class="profile-block">
-                            <h3>Interests</h3>
-                            <ul>
-                                {% for subject in user.teacher.interests.all %}
-                                    <li> {{ subject.name }} </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="profile-block">
-                            <h3>Services</h3>
-                            <div id="profile-service-container">
-                                {% for service in user.teacher.service_set.all %}
-                                    <div class="one-profile-service">
-                                        <div> {{ service }} </div>
-                                        <div class="service-desc"> {{ service.description }} </div>
-                                        <div> {{ service.price }} </div>
-                                        <div> {{ service.duration }} </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

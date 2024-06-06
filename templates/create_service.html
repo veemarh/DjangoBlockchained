@@ -3,21 +3,21 @@
     <div class="account-content-wrapper">
         <div id="account-space-nav">
             <ul>
-                <li><a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a></li>
-                <li><a href="{% url 'teacher_interests' %}">Update interests</a></li>
+                <li><a class="edit-profile-link" href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a></li>
+                <li><a class="edit-profile-link" href="{% url 'teacher_interests' %}">Update interests</a></li>
                 <li id="current-edit-page">
                     <div></div>
-                    <a href="{% url 'teacher_services' %}">Update services</a>
+                    <a class="edit-profile-link" href="{% url 'teacher_services' %}">Update services</a>
                 </li>
-                <li><a href="{% url 'password_change' %}">Change password</a></li>
+                <li><a class="edit-profile-link" href="{% url 'password_change' %}">Change password</a></li>
             </ul>
         </div>
         <div id="account-space-edit">
             <h3>Update services</h3>
             <div id="service-list">
                 {% for service in request.user.teacher.service_set.all %}
-                    <div class="one-service">
-                        <label>{{ service.name }}</label>
+                    <div class="one-edit-service">
+                        <label class="edit-service-name">{{ service.name }}</label>
                         <form method="post" action="{% url 'delete_service' service.pk %}">
                             {% csrf_token %}
                             <button class="delete-service-button" type="submit">Delete</button>
@@ -28,7 +28,7 @@
             </div>
             <dialog id="create-service-dialog">
                 <form id="close-service-form" method="dialog">
-                    <button>X</button>
+                    <button><span id="dialog-cross"></span></button>
                 </form>
                 <form id="create-service-form" class="data-editing-form" action="" method="post">
                     <div class="account-dataset">
@@ -40,7 +40,7 @@
                 </form>
             </dialog>
             <dialog id="delete-service-dialog">
-                <div>
+                <div id="delete-service-form">
                     <span>Are you sure you want to delete the service 
                         <span id="current-service-name"></span>?
                     </span>
