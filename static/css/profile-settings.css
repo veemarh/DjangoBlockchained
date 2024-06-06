@@ -311,6 +311,8 @@
     border: none;
     border-radius: 5px;
 
+    font-size: 14px;
+
     user-select: none;
 }
 

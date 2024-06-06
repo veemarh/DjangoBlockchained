@@ -302,10 +302,10 @@
     display: none;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+.authorization-form-wrapper input:-webkit-autofill,
+.authorization-form-wrapper input:-webkit-autofill:hover,
+.authorization-form-wrapper input:-webkit-autofill:focus,
+.authorization-form-wrapper input:-webkit-autofill:active {
     box-shadow: 0 0 0 30px #e0e4e8 inset !important;
 }
 

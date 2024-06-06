@@ -4,45 +4,71 @@
     max-width: 1140px;
 }
 
-/*=======================================*/
-/****      список преподавателей      ****/
-/*=======================================*/
-
+/* список пользователей */
 #user-list-container {
     display: flex;
+    padding: 16px 16px 24px;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 16px;
     text-align: center;
-    margin: 16px;
-}
+    justify-content: center;
 
-.user-list-content {
-    width: 216px;
-    height: fit-content;
-    padding: 8px;
-    border: 1px solid #333;
+    background-color: rgba(221, 221, 221, 0.5);
     border-radius: 10px;
 }
 
+/* карточка пользователя */
+.user-list-content {
+    width: 216px;
+    padding: 8px;
+
+    background-color: #f4f4f4;
+    border: 1px solid #333333;
+    border-radius: 10px;
+}
+
+/* ссылки */
 .user-list-content a {
-    color: #333;
+    color: #333333;
 }
 
 .user-list-link {
     padding: 8px 8px 0;
     border-radius: 10px;
-    transition: .2s;
+    transition: 0.2s;
 }
 
+/* ссылка на чат */
+.user-list-chat {
+    display: inline-block;
+    padding: 5px 32px;
+    margin: 8px;
+
+    line-height: 30px;
+
+    border: 1px solid #333333;
+    border-radius: 30px;
+
+    transition: 0.2s;
+}
+
+.user-list-link:hover,
+.user-list-link:focus,
+.user-list-chat:hover,
+.user-list-chat:focus {
+    background-color: #dddddd;
+}
+
+/* аватар */
 .user-list-avatar {
     width: 100px;
     height: 100px;
-    background-color: #333;
+    background-color: #333333;
     border-radius: 50%;
     margin: 0 auto;
 }
 
+/* блок с данными - ФИО и интересы */
 .user-list-info {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -70,55 +96,171 @@
     margin: 0;
 }
 
-.user-list-button {
-    display: inline-block;
-    padding: 8px 32px;
-    line-height: 30px;
-    border: 1px solid #333;
-    border-radius: 30px;
-    margin: 8px;
-}
-
-.user-list-link:hover,
-.user-list-link:focus,
-.user-list-button:hover,
-.user-list-button:focus {
-    background-color: #ddd;
-}
-
-/*=======================================*/
-/****              поиск              ****/
-/*=======================================*/
-
+/* поиск */
 #teacher-list-operate {
     display: flex;
-    align-items: center;
     gap: 16px;
+    align-items: center;
 }
 
 #teacher-list-search {
     flex: 1;
 }
 
-#teacher-list-search input[type=search] {
+#teacher-list-search input {
+    width: 100%;
+    padding: 10px 16px;
+    margin: 16px 0;
+
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+
     background: transparent;
     outline: none;
-    border: 1px solid rgba(51, 51, 51, 0.3);
+    border: 1px solid rgba(51, 51, 51, 0.5);
     border-radius: 30px;
-    padding: 10px 16px;
-    font-size: 16px;
-    margin: 16px 0;
-    width: 100%;
 }
 
-#teacher-list-search input[type=search]:active,
-#teacher-list-search input[type=search]:focus {
-    border-color: #333;
+#teacher-list-search input:active,
+#teacher-list-search input:focus {
+    border-color: #333333;
+}
+
+#teacher-list-search input:-webkit-autofill,
+#teacher-list-search input:-webkit-autofill:hover,
+#teacher-list-search input:-webkit-autofill:focus,
+#teacher-list-search input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #f4f4f4 inset !important;
 }
 
 .hidden-by-search,
 .hidden-by-filter {
     display: none;
+}
+
+/* фильтр */
+#filter-container {
+    float: left;
+    width: 180px;
+    margin-right: 16px;
+    transition: 0.2s;
+}
+
+#filter-container p {
+    margin: 0 0 3px 3px;
+}
+
+#teacher-list-filter input {
+    position: absolute;
+    opacity: 0;
+    z-index: -10;
+}
+
+#teacher-list-filter label {
+    display: flex;
+    padding: 8px 0 8px 8px;
+    margin-bottom: 3px;
+    gap: 8px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: 0.2s;
+}
+
+#teacher-list-filter label:last-of-type {
+    margin-bottom: 0;
+}
+
+#teacher-list-filter label:hover {
+    color: #888888;
+}
+
+#teacher-list-filter label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    border: 1px solid #333333;
+    border-radius: 0.25em;
+
+    transition: background-color 0.2s;
+}
+
+#teacher-list-filter label:has(input:checked)::before {
+    background-color: #333333;
+    background-image: url('../img/checkmark.png');
+}
+
+/* адаптивный */
+#filter-toggle,
+#filter-close {
+    display: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* кнопка открытия фильтра */
+#filter-toggle {
+    height: 36px;
+    width: 36px;
+
+    background-image: url('../img/filter.png');
+    background-position: center;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+
+#filter-toggle:hover {
+    background-color: #dddddd;
+    opacity: 0.75;
+}
+
+/* кнопка закрытия фильтра */
+#filter-close {
+    float: right;
+
+    width: 24px;
+    height: 24px;
+    margin: 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+#filter-close::before,
+#filter-close::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 1px;
+    height: 20px;
+
+    background-color: #333333;
+
+    transition: background-color 0.2s;
+    pointer-events: none;
+}
+
+#filter-close::before {
+    transform: rotate(45deg);
+}
+
+#filter-close::after {
+    transform: rotate(-45deg);
+}
+
+#filter-close:hover::before,
+#filter-close:hover::after {
+    background-color: #888888;
 }
 
 @media (max-width: 1140px) {
@@ -137,117 +279,40 @@
     #user-list-content-wrapper {
         max-width: 576px;
     }
-}
-
-/*======================================*/
-/****             фильтр             ****/
-/*======================================*/
-
-#teacher-list-filter input {
-    position: absolute;
-    opacity: 0;
-    z-index: -10;
-}
-
-#teacher-list-filter label {
-    display: flex;
-    padding: 3px 0;
-    gap: 8px;
-    cursor: pointer;
-    user-select: none;
-    margin-bottom: 8px;
-}
-
-#teacher-list-filter label:last-of-type {
-    margin-bottom: 0;
-}
-
-#teacher-list-filter label::before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0;
-    flex-grow: 0;
-    border: 1px solid #94938a;
-    border-radius: 0.25em;
-    background-position: center;
-    background-size: 60%;
-    background-repeat: no-repeat;
-    transition: .2s;
-}
-
-#teacher-list-filter label:has(input:checked)::before {
-    background-color: #94938a;
-    background-image: url('../img/checkmark.png');
-}
-
-#filter-toggle,
-#filter-close {
-    display: none;
-    cursor: pointer;
-    transition: .2s;
-}
-
-#filter-toggle {
-    height: 36px;
-    width: 36px;
-    background-image: url('../img/filter.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-#filter-close {
-    float: right;
-    width: 30px;
-    line-height: 30px;
-    text-align: center;
-    border-radius: 50%;
-}
-
-#filter-container {
-    float: left;
-    margin: 0 16px 0 8px;
-    transition: .2s;
-}
-
-#filter-container p {
-    margin-bottom: 8px;
-}
-
-@media (max-width: 768px) {
-    #teacher-list-search {
-        display: inline-block;
-    }
-
-    #filter-toggle,
-    #filter-close {
-        display: inline-block;
-    }
 
     #filter-container {
         position: fixed;
-        transform: translateY(100%);
         left: 0;
+
         width: 100%;
         padding: 16px 0 100vh;
+
         background: rgba(244, 244, 244, 0.9);
-        border-top: 1px solid rgba(51, 51, 51, 0.9);
+        border-top: 1px solid #333;
+
+        transform: translateY(100%);
     }
 
     #filter-container.active {
         transform: none;
     }
 
-    body:has(#filter-container.active) {
-        overflow: hidden;
-    }
-
     #teacher-list-filter {
         width: 544px;
         max-width: calc(100vw - 32px);
         margin: auto;
+    }
+
+    #filter-toggle {
+        display: inline-block;
+    }
+
+    #filter-close {
+        display: flex;
+    }
+
+    body:has(#filter-container.active) {
+        overflow: hidden;
     }
 }
 
@@ -256,5 +321,5 @@
 }
 
 .favorite-link:hover {
-    color: rgba(255, 186, 96, 0.3);
+    color: rgba(255, 186, 96, 0.6);
 }

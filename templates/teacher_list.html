@@ -12,7 +12,7 @@
         </div>
         <div id="filter-container">
             <form id="teacher-list-filter">
-                <div id="filter-close">x</div>
+                <div id="filter-close"></div>
                 <p>Search by subjects</p>
                 {% for subject in interests %}
                     <label>
@@ -22,6 +22,7 @@
             </form>
         </div>
         <ul id="user-list-container">
+            <p id="teacher-list-message" hidden>No teachers were found for your request.</p>
             {% for teacher in teachers %}
                 {% if teacher.user.is_complete %}
                     <li>
@@ -43,7 +44,7 @@
                                 </a>
                                 <hr style="visibility: hidden">
                             </div>
-                            <a class="user-list-button" href="/">Chat</a>
+                            <a class="user-list-chat" href="/">Chat</a>
                         </div>
                     </li>
                 {% endif %}
@@ -51,6 +52,7 @@
         </ul>
     </div>
     <script>
+        /* обрезка данных в карточке */
         function isOverflown(element) {
             return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
         }
@@ -60,6 +62,20 @@
             isOverflown(data) ? data.classList.add('overflow-data') : 0;
         });
 
+        /* показать или скрыть сообщение пустого списка */
+        let listMessage = document.getElementById('teacher-list-message');
+
+        function checkEmptyList() {
+            for (let i = 0; i < teachers.length; i++) {
+                if (teachers[i].classList.length === 0) {
+                    listMessage.setAttribute('hidden', 'true');
+                    return;
+                }
+            }
+            listMessage.removeAttribute('hidden');
+        }
+
+        /* поиск и фильтр */
         let teachers = document.querySelectorAll('#user-list-container > li');
         let searchInput = document.getElementById('search');
         searchInput.addEventListener('input', function () {
@@ -70,6 +86,7 @@
                     ? teacher.classList.remove('hidden-by-search')
                     : teacher.classList.add('hidden-by-search');
             });
+            checkEmptyList();
         });
 
         let filterForm = document.getElementById('teacher-list-filter');
@@ -84,6 +101,7 @@
                     ? teacher.classList.remove('hidden-by-filter')
                     : teacher.classList.add('hidden-by-filter');
             });
+            checkEmptyList();
         });
 
         let filterToggle = document.getElementById('filter-toggle');
