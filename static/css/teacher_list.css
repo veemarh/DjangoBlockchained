@@ -158,7 +158,7 @@
 
 #teacher-list-filter label {
     display: flex;
-    padding: 8px 0 8px 8px;
+    padding: 8px 0 8px 3px;
     margin-bottom: 3px;
     gap: 8px;
 

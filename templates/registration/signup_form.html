@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Sign up{% endblock title %}
 {% block header %}{% endblock header %}
 {% block content %}
     <div class="row">
@@ -33,7 +34,7 @@
         passwordLabels.forEach(label => {
             let passwordViewToggle = document.createElement("div");
             passwordViewToggle.classList.add('password-view-toggle');
-            label.appendChild(passwordViewToggle);
+            label.append(passwordViewToggle);
             passwordViewToggle.addEventListener('click', () => {
                 passwordViewToggle.classList.toggle('shown');
                 passwordViewToggle.classList.contains('shown')
@@ -102,7 +103,7 @@
             error.classList.add('errorlist', 'self-written');
             let content = document.createElement("li");
             content.textContent = message;
-            error.appendChild(content);
+            error.append(content);
             inputs[num].after(error);
             return error;
         }
@@ -113,7 +114,7 @@
 
         function usernameExists() {
             let usernamesRender = "{{ usernames }}".split("!");
-            return usernamesRender.includes(usernameInput.value.trim());
+            return !usernameInput.value || usernamesRender.includes(usernameInput.value.trim());
         }
 
         usernameInput.addEventListener("change", () => {

@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+html {
+    scrollbar-gutter: stable;
+}
+
 ul {
     vertical-align: middle;
     list-style: none;

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Edit profile{% endblock title %}
 {% block content %}
     <div class="account-content-wrapper">
         <div id="account-space-nav">
@@ -37,8 +38,7 @@
             let textareaElement = document.createElement('textarea');
             textareaElement.id = inputElement.id;
             textareaElement.name = inputElement.name;
-            textareaElement.value = inputElement.value;
-            inputElement.parentNode.replaceChild(textareaElement, inputElement);
+            inputElement.replaceWith(textareaElement);
         }
 
         /* автозаполнение полей ввода inputsToFix */
