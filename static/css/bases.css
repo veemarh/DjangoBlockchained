@@ -5,6 +5,7 @@
 }
 
 html {
+    scrollbar-width: thin;
     scrollbar-gutter: stable;
 }
 
@@ -245,6 +246,8 @@ header {
 }
 
 #header-user-menu.active {
+    z-index: 1;
+
     visibility: visible;
     opacity: 1;
     transform: translate(calc(-100% + 36px), 16px);

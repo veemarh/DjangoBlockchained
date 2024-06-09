@@ -54,7 +54,7 @@
     <script>
         /* обрезка данных в карточке */
         function isOverflown(element) {
-            return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+            return element.scrollHeight > element.clientHeight;
         }
 
         let userInfo = document.querySelectorAll('.user-list-info');
@@ -115,3 +115,4 @@
         });
     </script>
 {% endblock content %}
+{% block footer %}{% endblock footer %}

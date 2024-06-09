@@ -23,8 +23,8 @@
     padding: 8px;
 
     background-color: #f4f4f4;
-    border: 1px solid #333333;
     border-radius: 10px;
+    box-shadow: 0 10px 26px 1px rgba(51, 51, 51, 0.1);
 }
 
 /* ссылки */
@@ -152,8 +152,8 @@
 
 #teacher-list-filter input {
     position: absolute;
-    opacity: 0;
     z-index: -10;
+    opacity: 0;
 }
 
 #teacher-list-filter label {
@@ -282,19 +282,18 @@
 
     #filter-container {
         position: fixed;
+        top: 100%;
         left: 0;
 
         width: 100%;
         padding: 16px 0 100vh;
 
-        background: rgba(244, 244, 244, 0.9);
-        border-top: 1px solid #333;
-
-        transform: translateY(100%);
+        background-color: #f4f4f4;
     }
 
     #filter-container.active {
-        transform: none;
+        top: 0;
+        z-index: 20;
     }
 
     #teacher-list-filter {

@@ -121,6 +121,7 @@
 
     color: #333333;
 
+    scrollbar-width: thin;
     resize: none;
 }
 
@@ -436,13 +437,13 @@
 }
 
 /* блок с кнопками, форма удаления сервиса */
-#delete-service-buttons {
+#delete-service-container {
     display: flex;
     margin-top: 16px;
     gap: 8px;
 }
 
-#delete-service-buttons button {
+#delete-service-container button {
     flex: 1 0 calc(50% - 4px);
     padding: 8px 0;
 
@@ -452,18 +453,18 @@
     user-select: none;
 }
 
-#delete-service-buttons button:first-of-type {
+#delete-service-container button:first-of-type {
     color: #333333;
     background-color: #f4f4f4;
 }
 
-#delete-service-buttons button:first-of-type:hover,
-#delete-service-buttons button:first-of-type:active {
+#delete-service-container button:first-of-type:hover,
+#delete-service-container button:first-of-type:active {
     background-color: #dddddd;
 }
 
-#delete-service-buttons button:last-of-type:hover,
-#delete-service-buttons button:last-of-type:active {
+#delete-service-container button:last-of-type:hover,
+#delete-service-container button:last-of-type:active {
     background-color: #888888;
     border-color: #888888;
 }
