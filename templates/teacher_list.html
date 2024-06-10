@@ -5,21 +5,22 @@
     <div id="user-list-content-wrapper">
         <h1>List of teachers</h1>
         <div id="teacher-list-operate">
-            <div id="filter-toggle"></div>
+            <div data-toggle-filter="update" id="filter-toggle"></div>
             <form id="teacher-list-search">
                 <input type="search" id="search" placeholder="Search by name...">
             </form>
         </div>
         <div id="filter-container">
             <form id="teacher-list-filter">
-                <div id="filter-close"></div>
-                <p>Search by subjects</p>
+                <div data-toggle-filter id="filter-close"></div>
+                <p id="filter-header">Search by subjects</p>
                 {% for subject in interests %}
-                    <label>
+                    <label lang="en">
                         <input type="checkbox" value="{{ subject }}">{{ subject }}
                     </label>
                 {% endfor %}
             </form>
+            <div data-toggle-filter id="found-teachers"></div>
         </div>
         <ul id="user-list-container">
             <p id="teacher-list-message" hidden>No teachers were found for your request.</p>
@@ -52,32 +53,20 @@
         </ul>
     </div>
     <script>
-        /* обрезка данных в карточке */
-        function isOverflown(element) {
-            return element.scrollHeight > element.clientHeight;
-        }
-
+        let teachers = document.querySelectorAll('#user-list-container > li');
         let userInfo = document.querySelectorAll('.user-list-info');
+        let searchInput = document.getElementById('search');
+        let filterForm = document.getElementById('teacher-list-filter');
+        let filterContainer = document.getElementById('filter-container');
+        let foundTeachers = document.getElementById('found-teachers');
+        let listMessage = document.getElementById('teacher-list-message');
+
+        /* обрезка данных */
         userInfo.forEach(data => {
             isOverflown(data) ? data.classList.add('overflow-data') : 0;
         });
 
-        /* показать или скрыть сообщение пустого списка */
-        let listMessage = document.getElementById('teacher-list-message');
-
-        function checkEmptyList() {
-            for (let i = 0; i < teachers.length; i++) {
-                if (teachers[i].classList.length === 0) {
-                    listMessage.setAttribute('hidden', 'true');
-                    return;
-                }
-            }
-            listMessage.removeAttribute('hidden');
-        }
-
-        /* поиск и фильтр */
-        let teachers = document.querySelectorAll('#user-list-container > li');
-        let searchInput = document.getElementById('search');
+        /* поиск */
         searchInput.addEventListener('input', function () {
             let currSearch = this.value.toLowerCase();
             teachers.forEach(function (teacher) {
@@ -89,7 +78,7 @@
             checkEmptyList();
         });
 
-        let filterForm = document.getElementById('teacher-list-filter');
+        /* фильтр */
         filterForm.addEventListener('change', function () {
             let checkedBoxes = filterForm.querySelectorAll('input[type="checkbox"]:checked');
             let filters = Array.from(checkedBoxes).map(checkbox => checkbox.value.toLowerCase());
@@ -101,18 +90,39 @@
                     ? teacher.classList.remove('hidden-by-filter')
                     : teacher.classList.add('hidden-by-filter');
             });
+            fillFoundResults();
             checkEmptyList();
         });
 
-        let filterToggle = document.getElementById('filter-toggle');
-        let filterClose = document.getElementById('filter-close');
-        let filterContainer = document.getElementById('filter-container');
-        filterToggle.addEventListener('click', function () {
-            filterContainer.classList.toggle('active');
+        document.addEventListener('click', (event) => {
+            let elem = event.target;
+            if (elem.hasAttribute('data-toggle-filter')) {
+                filterContainer.classList.toggle('active');
+                elem.dataset.toggleFilter === 'update' ? fillFoundResults() : 0;
+            }
         });
-        filterClose.addEventListener('click', function () {
-            filterContainer.classList.remove('active');
-        });
+
+        /* проверить размер данных в карточке */
+        function isOverflown(elem) {
+            return elem.scrollHeight > elem.clientHeight;
+        }
+
+        /* показать или скрыть сообщение пустого списка */
+        function checkEmptyList() {
+            for (let i = 0; i < teachers.length; i++) {
+                if (teachers[i].classList.length === 0) {
+                    listMessage.setAttribute('hidden', 'true');
+                    return;
+                }
+            }
+            listMessage.removeAttribute('hidden');
+        }
+
+        /* показать количество найденных преподавателей */
+        function fillFoundResults() {
+            let count = teachers.length - document.querySelectorAll('.hidden-by-search, .hidden-by-filter').length;
+            foundTeachers.textContent = "Show results: " + count;
+        }
     </script>
 {% endblock content %}
 {% block footer %}{% endblock footer %}

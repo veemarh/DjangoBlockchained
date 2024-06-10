@@ -67,10 +67,10 @@
                     <div id="profile-service-container">
                         {% for service in user.teacher.service_set.all %}
                             <div class="one-profile-service">
-                                <div class="profile-service-name">{{ service }}</div>
-                                <div class="profile-service-desc">{{ service.description }}</div>
-                                <div class="profile-service-price">{{ service.price }}</div>
-                                <div class="profile-service-duration">{{ service.duration }}</div>
+                                <div lang="en" class="profile-service-name">{{ service }}</div>
+                                <div lang="en" class="profile-service-desc">{{ service.description }}</div>
+                                <div lang="en" class="profile-service-price">{{ service.price }}</div>
+                                <div lang="en" class="profile-service-duration">{{ service.duration }}</div>
                             </div>
                         {% endfor %}
                     </div>
