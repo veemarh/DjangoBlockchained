@@ -26,15 +26,13 @@
             <p id="teacher-list-message" hidden>No teachers were found for your request.</p>
             {% for teacher in teachers %}
                 {% if teacher.user.is_complete %}
-                    <li>
+                    <li class="user-list-card">
                         <div class="user-list-content">
                             <div class="user-list-link">
                                 <a href="{% url 'teacher_profile' teacher.user.id %}">
                                     <div class="user-list-avatar"></div>
                                     <div class="user-list-info">
-                                        <span class="teacher-name">{{ teacher.user.first_name }} {{ teacher.user.second_name }}
-                                            {% if teacher.user.third_name %}{{ teacher.user.third_name }}{% endif %}
-                                        </span>
+                                        <span class="teacher-name">{{ teacher.user.first_name }} {{ teacher.user.second_name }} {% if teacher.user.third_name %}{{ teacher.user.third_name }}{% endif %}</span>
                                     </div>
                                     <hr>
                                     <div class="user-list-info">
@@ -53,7 +51,7 @@
         </ul>
     </div>
     <script>
-        let teachers = document.querySelectorAll('#user-list-container > li');
+        let teachers = document.querySelectorAll('.user-list-card');
         let userInfo = document.querySelectorAll('.user-list-info');
         let searchInput = document.getElementById('search');
         let filterForm = document.getElementById('teacher-list-filter');
@@ -68,9 +66,9 @@
 
         /* поиск */
         searchInput.addEventListener('input', function () {
-            let currSearch = this.value.toLowerCase();
+            let currSearch = this.value.trim().toLowerCase();
             teachers.forEach(function (teacher) {
-                let teacherName = teacher.querySelector('.teacher-name').innerText.toLowerCase();
+                let teacherName = teacher.querySelector('.teacher-name').textContent.toLowerCase();
                 teacherName.includes(currSearch)
                     ? teacher.classList.remove('hidden-by-search')
                     : teacher.classList.add('hidden-by-search');
@@ -110,7 +108,7 @@
         /* показать или скрыть сообщение пустого списка */
         function checkEmptyList() {
             for (let i = 0; i < teachers.length; i++) {
-                if (teachers[i].classList.length === 0) {
+                if (teachers[i].classList.length === 1) {
                     listMessage.setAttribute('hidden', 'true');
                     return;
                 }
