@@ -55,7 +55,7 @@
 }
 
 .return-link:hover div {
-    background-color: #888888;
+    background-color: rgba(51, 51, 51, 0.5);
 }
 
 .return-link div:first-of-type {
@@ -409,7 +409,7 @@ input:-webkit-autofill:active {
 #next-set-button {
     float: right;
     color: rgba(51, 51, 51, 0.5);
-    background-color: rgba(221, 221, 221, 0.5);
+    background-color: rgba(51, 51, 51, 0.05);
     pointer-events: none;
 }
 
@@ -429,5 +429,5 @@ input:-webkit-autofill:active {
 }
 
 #prev-set-button:hover {
-    background-color: rgba(221, 221, 221, 0.25);
+    background-color: rgba(51, 51, 51, 0.03);
 }

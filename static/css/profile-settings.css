@@ -49,8 +49,8 @@
 }
 
 .edit-profile-link:hover {
-    color: #888888;
-    background-color: #dddddd;
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
 #current-edit-page > div {
@@ -59,13 +59,13 @@
     height: 40px;
     width: 4px;
 
-    background-color: #888888;
+    background-color: rgba(51, 51, 51, 0.5);
     border-radius: 5px 0 0 5px;
 }
 
 #current-edit-page .edit-profile-link {
-    color: #888888;
-    background-color: #dddddd;
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
 /* пространство редактирования */
@@ -169,7 +169,7 @@
     font-size: 16px;
 
     color: #333333;
-    background-color: #f4f4f4;
+    background: none;
     border: 1px solid #333333;
     border-radius: 30px;
 
@@ -181,11 +181,11 @@
 
 #reset-edited-data:hover,
 #reset-edited-data:active {
-    background-color: #dddddd;
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
 #reset-edited-data:focus:not(:checked) {
-    background-color: #f4f4f4;
+    background: none;
 }
 
 /* подсветка измененных полей */
@@ -300,7 +300,7 @@
     padding: 3px 8px;
     justify-content: space-between;
 
-    background-color: rgba(221, 221, 221, 0.25);
+    background-color: rgba(51, 51, 51, 0.03);
 }
 
 #service-list .edit-service-name {
@@ -317,7 +317,7 @@
 
 #service-list .delete-service-button:hover,
 #service-list .delete-service-button:active {
-    background-color: #888888;
+    background-color: rgba(51, 51, 51, 0.5);
 }
 
 /* кнопка, открывающая форму создания сервиса */
@@ -327,7 +327,6 @@
     width: fit-content;
     align-content: center;
 
-    background-color: #f4f4f4;
     border: 1px solid #333333;
     border-radius: 5px;
 
@@ -339,11 +338,11 @@
 
 #show-service-button:hover,
 #show-service-button:active {
-    background-color: #dddddd;
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
-#show-service-button button:focus:not(:checked) {
-    background-color: #f4f4f4;
+#show-service-button:focus:not(:checked) {
+    background: none;
 }
 
 /* диалоговые окна */
@@ -371,7 +370,7 @@
 
     color: #333333;
     background-color: #f4f4f4;
-    border: 1px solid #333333;
+    box-shadow: 0 20px 26px 16px rgba(51, 51, 51, 0.1);
     border-radius: 10px;
 }
 
@@ -433,7 +432,7 @@
 
 #close-service-form button:hover ::before,
 #close-service-form button:hover ::after {
-    background-color: #888888;
+    background-color: rgba(51, 51, 51, 0.5);
 }
 
 /* блок с кнопками, форма удаления сервиса */
@@ -455,17 +454,17 @@
 
 #delete-service-container button:first-of-type {
     color: #333333;
-    background-color: #f4f4f4;
+    background: none;
 }
 
 #delete-service-container button:first-of-type:hover,
 #delete-service-container button:first-of-type:active {
-    background-color: rgba(221, 221, 221, 0.25);
+    background-color: rgba(51, 51, 51, 0.03);
 }
 
 #delete-service-container button:last-of-type:hover,
 #delete-service-container button:last-of-type:active {
-    background-color: #888888;
+    background-color: rgba(51, 51, 51, 0.5);
 }
 
 #current-service-name {
@@ -502,14 +501,13 @@
     align-content: center;
 
     color: #333333;
-    background-color: #f4f4f4;
     border: 1px solid #333333;
     border-radius: 5px;
 }
 
 .goto-egit-page:hover,
 .add-remove-user:hover {
-    background-color: #dddddd;
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
 /* данные пользователя */
@@ -569,7 +567,7 @@
 
 .profile-interest-name {
     padding: 8px 10px;
-    background-color: #dddddd;
+    background-color: rgba(51, 51, 51, 0.1);
     border-radius: 10px;
 }
 
@@ -585,7 +583,7 @@
     padding: 3px 8px;
     gap: 8px;
 
-    background-color: rgba(221, 221, 221, 0.25);
+    background-color: rgba(51, 51, 51, 0.03);
 }
 
 .one-profile-service > div {

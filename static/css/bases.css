@@ -96,7 +96,7 @@ header {
 }
 
 .header-nav-a:hover {
-    color: #888888;
+    color: rgba(51, 51, 51, 0.5);
 }
 
 #nav-left {
@@ -221,9 +221,9 @@ header {
 }
 
 #user-icon:hover span {
-    color: #888888;
-    background-color: #dddddd;
-    border-color: #888888;
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
+    border-color: rgba(51, 51, 51, 0.5);
 }
 
 /* меню пользователя, по умолчанию скрыто */
@@ -276,8 +276,8 @@ header {
 
 .header-menu-link:hover,
 #header-user-menu button:hover {
-    color: #888888;
-    background-color: #dddddd;
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
 /* кнопка выхода из системы внутри меню пользователя */
@@ -297,7 +297,7 @@ header {
 }
 
 #nav-logout-button:hover {
-    color: #888888;
+    color: rgba(51, 51, 51, 0.5);
 }
 
 /* ссылка на форму входа в систему */
@@ -359,7 +359,7 @@ header {
     }
 
     #nav-left .header-nav-a:hover {
-        background-color: #dddddd;
+        background-color: rgba(51, 51, 51, 0.1);
     }
 
     body:has(#nav-left.active) {
