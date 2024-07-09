@@ -25,7 +25,7 @@ section {
 
 .homepage-link {
     display: inline-block;
-    padding: 18px 32px;
+    padding: 16px 32px;
     margin-top: 18px;
     border-radius: 10px;
     color: #f4f4f4;
@@ -68,7 +68,7 @@ section {
     flex: 1 0;
     margin: 16px 8px 0;
     min-width: 240px;
-    border-radius: 20px;
+    border-radius: 30px;
     background: linear-gradient(150deg, #ced4da 0%, #e0e4e8 75%);
 }
 

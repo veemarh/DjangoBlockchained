@@ -312,8 +312,6 @@
     border: none;
     border-radius: 5px;
 
-    font-size: 14px;
-
     user-select: none;
 }
 
@@ -324,8 +322,10 @@
 
 /* кнопка, открывающая форму создания сервиса */
 #show-service-button {
-    padding: 8px 16px;
+    padding: 0 16px;
+    height: 40px;
     width: fit-content;
+    align-content: center;
 
     background-color: #f4f4f4;
     border: 1px solid #333333;
@@ -447,7 +447,7 @@
     flex: 1 0 calc(50% - 4px);
     padding: 8px 0;
 
-    border: 1px solid #333333;
+    border: none;
     border-radius: 5px;
 
     user-select: none;
@@ -460,13 +460,12 @@
 
 #delete-service-container button:first-of-type:hover,
 #delete-service-container button:first-of-type:active {
-    background-color: #dddddd;
+    background-color: rgba(221, 221, 221, 0.25);
 }
 
 #delete-service-container button:last-of-type:hover,
 #delete-service-container button:last-of-type:active {
     background-color: #888888;
-    border-color: #888888;
 }
 
 #current-service-name {
@@ -497,15 +496,14 @@
 .goto-egit-page,
 .add-remove-user {
     display: block;
-    padding: 5px;
+    height: 40px;
     margin-top: 1em;
     text-align: center;
-
-    line-height: 30px;
+    align-content: center;
 
     color: #333333;
-    background-color: rgba(221, 221, 221, 0.5);
-    border: 1px solid rgba(51, 51, 51, 0.25);
+    background-color: #f4f4f4;
+    border: 1px solid #333333;
     border-radius: 5px;
 }
 
@@ -580,8 +578,6 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-
-    font-size: 14px;
 }
 
 .one-profile-service {
