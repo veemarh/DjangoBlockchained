@@ -7,7 +7,7 @@
         <a href="{% url 'home' %}">
             <div class="return-to-home"></div>
         </a>
-        <form method="post" class="form-container">
+        <form name="login" method="post" class="form-container">
             <h2>Log In</h2>
             {% csrf_token %}
             {{ form.as_p }}
@@ -16,17 +16,16 @@
         </form>
     </div>
     <script>
-        let passwordLabels = document.querySelectorAll('p:has(input[id*=password]) label');
-        passwordLabels.forEach(label => {
-            let passwordViewToggle = document.createElement("div");
-            passwordViewToggle.classList.add('password-view-toggle');
-            label.append(passwordViewToggle);
-            passwordViewToggle.addEventListener('click', () => {
-                passwordViewToggle.classList.toggle('shown');
-                passwordViewToggle.classList.contains('shown')
-                    ? label.nextElementSibling.setAttribute('type', 'text')
-                    : label.nextElementSibling.setAttribute('type', 'password');
-            })
+        let passwordInput = document.forms.login.password;
+        let passwordLabel = passwordInput.previousElementSibling;
+        let passwordViewToggle = document.createElement("div");
+        passwordViewToggle.classList.add('password-view-toggle');
+        passwordLabel.append(passwordViewToggle);
+        passwordViewToggle.addEventListener('click', () => {
+            passwordViewToggle.classList.toggle('shown');
+            passwordViewToggle.classList.contains('shown')
+                ? passwordInput.setAttribute('type', 'text')
+                : passwordInput.setAttribute('type', 'password');
         });
     </script>
 {% endblock content %}

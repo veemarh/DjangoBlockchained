@@ -30,16 +30,17 @@
     </div>
     <script>
         {# глаз для пароля #}
-        let passwordLabels = document.querySelectorAll('p:has(input[id*=password]) label');
-        passwordLabels.forEach(label => {
-            let passwordViewToggle = document.createElement("div");
+        let passwordInputs = document.querySelectorAll('input[name^="password"]');
+        passwordInputs.forEach(input => {
+            let label = input.previousElementSibling;
+            let passwordViewToggle = document.createElement('div');
             passwordViewToggle.classList.add('password-view-toggle');
             label.append(passwordViewToggle);
             passwordViewToggle.addEventListener('click', () => {
                 passwordViewToggle.classList.toggle('shown');
                 passwordViewToggle.classList.contains('shown')
-                    ? label.nextElementSibling.setAttribute('type', 'text')
-                    : label.nextElementSibling.setAttribute('type', 'password');
+                    ? input.setAttribute('type', 'text')
+                    : input.setAttribute('type', 'password');
             })
         });
 
