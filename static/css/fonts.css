@@ -3,20 +3,24 @@ h1 {
     line-height: 60px;
     margin-bottom: 8px;
 }
+
 h2 {
     font-size: 36px;
     line-height: 48px;
     margin-bottom: 8px;
 }
+
 h3 {
     font-size: 24px;
     line-height: 32px;
     padding-bottom: 16px;
 }
+
 p {
     font-size: 20px;
     line-height: 30px;
 }
+
 span {
     font-size: 16px;
     line-height: 24px;
@@ -28,15 +32,18 @@ span {
         line-height: 52px;
     }
 }
+
 @media (max-width: 768px) {
-     h1 {
+    h1 {
         font-size: 32px;
         line-height: 40px;
-     }
+    }
+
     h2 {
         font-size: 24px;
         line-height: 32px;
     }
+
     h3 {
         font-size: 20px;
         line-height: 24px;

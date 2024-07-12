@@ -1,57 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+    {{ user.first_name }} {{ user.second_name }}{% if user.third_name %} {{ user.third_name }} {% endif %}
+{% endblock title %}
 {% block content %}
-    <div class="col-md-6">
-        <div class="account-content-wrapper">
-            <div id="account-space-edit">
-                <div class="data-editing-form">
-                    <div class="account-dataset">
-                        <div id="summary-dataset">
-                            {# условно #}
-                            <img src="{% static 'img/avatar.jpg' %}">
-                            {% if request.user == user %}
-                                <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
-                                
-                            {% elif request.user != user and request.user.is_teacher %}
-                                {% if user.student in request.user.teacher.favorite_students.all %}
-                                    <a href="{% url 'remove_from_student_list' user.id %}"
-                                       class="btn btn-primary">Remove from My students</a>
-                                {% else %}
-                                    <a href="{% url 'add_to_student_list' user.id %}"
-                                       class="btn btn-primary">Add to My students</a>
-                                {% endif %}
-                            {% endif %}
-                        
-                        </div>
+    <div class="account-content-wrapper">
+        <div class="data-view-container">
+            <div class="account-dataset">
+                <div id="summary-dataset">
+                    <img src="{% static 'img/avatar.jpg' %}">
+                    {% if request.user == user %}
+                        <a class="goto-egit-page" href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
+                    {% elif request.user != user and request.user.is_teacher %}
+                        {% if user.student in request.user.teacher.favorite_students.all %}
+                            <a href="{% url 'remove_from_student_list' user.id %}"
+                               class="btn btn-primary add-remove-user">Remove from My students</a>
+                        {% else %}
+                            <a href="{% url 'add_to_student_list' user.id %}"
+                               class="btn btn-primary add-remove-user">Add to My students</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div id="main-dataset">
+                <h3>
+                    {% if request.user == user %}Public
+                    {% elif user.is_student %}Student
+                    {% endif %}
+                    profile
+                </h3>
+                <h2>{{ user.first_name }} {{ user.second_name }}
+                    {% if user.third_name %} {{ user.third_name }} {% endif %}</h2>
+                <div class="profile-block">
+                    <div class="profile-connect" id="profile-phone" style="display: flex">
+                        <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
                     </div>
-                    <div class="account-dataset" id="main-dataset">
-                        <h3>
-                            {% if request.user == user %}Public
-                            {% elif user.is_student %}Student
-                            {% endif %}
-                            profile
-                        </h3>
-                        <h2>{{ user.first_name }} {{ user.second_name }} <h2 id="user-third-name">{{ user.third_name }}</h2></h2>
-                        <div class="profile-block">
-                            <div class="profile-connect" id="profile-phone" style="display: flex">
-                                <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
-                            </div>
-                            <div class="profile-connect" id="profile-email" style="display: flex">
-                                <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
-                            </div>
-                        </div>
-                        <div class="profile-block" id="student-school">
-                            <h3>Education</h3>
-                            <p>{{ user.student.school_name }}</p>
-                        </div>
-                        <div class="profile-block">
-                            <h3>Interests</h3>
-                            <ul>
-                                {% for subject in user.student.interests.all %}
-                                    <li> {{ subject.name }} </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                    <div class="profile-connect" id="profile-email" style="display: flex">
+                        <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+                    </div>
+                </div>
+                <div class="profile-block" id="student-school">
+                    <h3>Education</h3>
+                    <p>{{ user.student.school_name }}</p>
+                </div>
+                <div class="profile-block">
+                    <h3>Interests</h3>
+                    <div id="profile-interests-list">
+                        {% for subject in user.student.interests.all %}
+                            <div class="profile-interest-name">{{ subject.name }}</div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

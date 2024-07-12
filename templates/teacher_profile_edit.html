@@ -1,15 +1,16 @@
 {% extends "base.html" %}
+{% block title %}Edit profile{% endblock title %}
 {% block content %}
     <div class="account-content-wrapper">
         <div id="account-space-nav">
             <ul>
                 <li id="current-edit-page">
                     <div></div>
-                    <a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
+                    <a class="edit-profile-link" href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a>
                 </li>
-                <li><a href="{% url 'teacher_interests' %}">Update interests</a></li>
-                <li><a href="{% url 'teacher_services' %}">Update services</a></li>
-                <li><a href="{% url 'password_change' %}">Change password</a></li>
+                <li><a class="edit-profile-link" href="{% url 'teacher_interests' %}">Update interests</a></li>
+                <li><a class="edit-profile-link" href="{% url 'teacher_services' %}">Update services</a></li>
+                <li><a class="edit-profile-link" href="{% url 'password_change' %}">Change password</a></li>
             </ul>
         </div>
         <div id="account-space-edit">
@@ -20,46 +21,66 @@
                     {{ form.as_p }}
                 </div>
                 <div id="profile-edit-buttons">
-                    <input type="reset" value="Reset">
+                    <input id="reset-edited-data" type="reset" value="Reset">
                     <button class="btn btn-info ml-2" type="submit">Update</button>
                 </div>
             </form>
         </div>
     </div>
     <script>
-        let inputs = document.querySelectorAll('.data-editing-form input');
-        inputs.forEach(input => {
-            let currentValue = input.value;
-            input.addEventListener('input', () => {
-                if (input.value !== currentValue) {
-                    input.classList.add('modified');
+        /* поиск заполняемых полей */
+        function getInputs() {
+            return document.querySelectorAll('.account-dataset input, .account-dataset textarea');
+        }
+
+        /* замена input на textarea */
+        function changeInputToTextarea(inputElement) {
+            let textareaElement = document.createElement('textarea');
+            textareaElement.id = inputElement.id;
+            textareaElement.name = inputElement.name;
+            inputElement.replaceWith(textareaElement);
+        }
+
+        /* автозаполнение полей ввода inputsToFix */
+        let currentInputId;
+
+        function fillInTeacherData() {
+            inputsToFix.forEach(elem => {
+                currentInputId = elem.id;
+                currentInputId === 'id_description' ? elem.value = '{{ user.teacher.description }}'
+                    : currentInputId === 'id_diploma' ? elem.value = '{{ user.teacher.diploma }}'
+                        : elem.value = '{{ user.teacher.experience }}';
+            });
+        }
+
+        changeInputToTextarea(document.getElementById('id_description'));
+        changeInputToTextarea(document.getElementById('id_diploma'));
+        changeInputToTextarea(document.getElementById('id_experience'));
+        let inputsToFix = document.querySelectorAll('textarea');
+        let inputs = getInputs();
+        fillInTeacherData();
+
+        /* подсветка измененных полей */
+        inputs.forEach(elem => {
+            let currentValue = elem.value;
+            elem.addEventListener('input', () => {
+                if (elem.value !== currentValue) {
+                    elem.classList.add('modified');
                 } else {
-                    input.classList.remove('modified');
+                    elem.classList.remove('modified');
                 }
             });
         });
 
-        let idsToFix = ['id_description', 'id_diploma', 'id_experience'];
-        let inputsToFix = Array.from(inputs).filter(input => idsToFix.includes(input.id));
-        let currentInputId;
-
-        function FillInTeacherData() {
-            inputsToFix.forEach(input => {
-                currentInputId = input.id;
-                currentInputId === 'id_description' ? input.value = '{{ user.teacher.description }}'
-                    : currentInputId === 'id_diploma' ? input.value = '{{ user.teacher.diploma }}'
-                        : input.value = '{{ user.teacher.experience }}';
-            });
-        }
-
-        FillInTeacherData();
-        let resetButton = document.querySelector("input[type=reset]");
+        /* сброс подстветки при ресете */
+        /* затем заполнение полей */
+        let resetButton = document.querySelector('input[type=reset]');
         resetButton.addEventListener('click', () => {
-            inputs.forEach(input => {
-                input.classList.contains('modified') ? input.classList.remove('modified') : 0;
+            inputs.forEach(elem => {
+                elem.classList.contains('modified') ? elem.classList.remove('modified') : 0;
             });
             setTimeout(function () {
-                FillInTeacherData();
+                fillInTeacherData();
             }, 0);
         });
     </script>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Sign up{% endblock title %}
 {% block header %}{% endblock header %}
 {% block content %}
     <div class="row">
@@ -20,7 +21,7 @@
                     {{ form.as_p }}
                     <div id="dataset-buttons-container">
                         <div id="prev-set-button">Back</div>
-                        <button type="submit" class="btn btn-success">Sign up</button>
+                        <button id="signup-form-button" type="submit" class="btn btn-success">Sign up</button>
                         <div class="active" id="next-set-button">Continue</div>
                     </div>
                 </form>
@@ -33,7 +34,7 @@
         passwordLabels.forEach(label => {
             let passwordViewToggle = document.createElement("div");
             passwordViewToggle.classList.add('password-view-toggle');
-            label.appendChild(passwordViewToggle);
+            label.append(passwordViewToggle);
             passwordViewToggle.addEventListener('click', () => {
                 passwordViewToggle.classList.toggle('shown');
                 passwordViewToggle.classList.contains('shown')
@@ -46,7 +47,7 @@
         let setNumber = 0;
         let buttonNext = document.getElementById('next-set-button');
         let buttonPrev = document.getElementById('prev-set-button');
-        let buttonSignup = document.querySelector('.btn.btn-success');
+        let buttonSignup = document.getElementById('signup-form-button');
         let setTitle = document.querySelector('.form-container h3');
         let setLabel = document.querySelector('.form-container span');
         let inputs = document.querySelectorAll('.form-container > p, .form-container > [id=\'id_interests\']');
@@ -102,7 +103,7 @@
             error.classList.add('errorlist', 'self-written');
             let content = document.createElement("li");
             content.textContent = message;
-            error.appendChild(content);
+            error.append(content);
             inputs[num].after(error);
             return error;
         }
@@ -113,7 +114,7 @@
 
         function usernameExists() {
             let usernamesRender = "{{ usernames }}".split("!");
-            return usernamesRender.includes(usernameInput.value.trim());
+            return !usernameInput.value || usernamesRender.includes(usernameInput.value.trim());
         }
 
         usernameInput.addEventListener("change", () => {

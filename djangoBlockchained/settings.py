@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",  # new
     "django.contrib.staticfiles",
     "accounts.apps.AccountsConfig",
-    "chat.apps.ChatConfig",
+    # "chat.apps.ChatConfig",
     "teacher.apps.TeacherConfig",
     "services.apps.ServicesConfig",
     "favoriteLists.apps.FavoriteListsConfig",

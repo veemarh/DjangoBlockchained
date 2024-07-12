@@ -22,7 +22,6 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from accounts.views import TeacherSignUpView, StudentSignUpView, SignUpView
 
-# Я такой херни нигде не видел, сам придумал
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -38,7 +37,7 @@ urlpatterns = [
         "accounts/signup/teacher/", TeacherSignUpView.as_view(), name="teacher_signup"
     ),
     path("teacher_list/", include("teacher.urls")),
-    path("room/", include("chat.urls")),
+    # path("room/", include("chat.urls")),
 ]
 
 if settings.DEBUG:

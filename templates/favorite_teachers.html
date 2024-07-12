@@ -1,29 +1,50 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}My teachers{% endblock title %}
 {% block content %}
     <div id="user-list-content-wrapper">
-        <h1>My favorite teachers</h1>
+        <h1>My teachers</h1>
         <ul id="user-list-container">
+            {% if not teachers %}
+                <p>You don't have any teachers yet.<br/>
+                    Visit <a href="{% url 'teacher_list' %}" class="favorite-link">the teachers' page</a> and sign up
+                    for classes!</p>
+            {% endif %}
             {% for teacher in teachers %}
                 <li>
-                    <a class="user-list-container" href="{% url 'teacher_profile' teacher.user.id %}">
-                        <div class="user-list-avatar"></div>
-                        <div>
-                            <span class="teacher-name">
-                                {{ teacher.user.first_name }} {{ teacher.user.second_name }}
-                            </span>
-                            <div class="teacher-subjects">
-                                {% for subject in teacher.interests.all %}
-                                    <span id="teacher-subject">{{ subject.name }}</span>
-                                {% endfor %}
-                            </div>
+                    <div class="user-list-content">
+                        <div class="user-list-link">
+                            <a href="{% url 'teacher_profile' teacher.user.id %}">
+                                <div class="user-list-avatar"></div>
+                                <div class="user-list-info">
+                                    <span>{{ teacher.user.first_name }} {{ teacher.user.second_name }}
+                                        {% if teacher.user.third_name %}{{ teacher.user.third_name }}{% endif %}
+                                    </span>
+                                </div>
+                                <hr>
+                                <div class="user-list-info">
+                                    {% for subject in teacher.interests.all %}
+                                        <span class="teacher-subject">{{ subject.name }}</span>
+                                    {% endfor %}
+                                </div>
+                            </a>
+                            <hr style="visibility: hidden">
                         </div>
-                    </a>
-                    <div>
-                        <a class="user-list-button" href="/">Chat</a>
+                        <a class="user-list-chat" href="/">Chat</a>
                     </div>
                 </li>
             {% endfor %}
         </ul>
     </div>
+    <script>
+        function isOverflown(element) {
+            return element.scrollHeight > element.clientHeight;
+        }
+
+        let userInfo = document.querySelectorAll('.user-list-info');
+        userInfo.forEach(data => {
+            isOverflown(data) ? data.classList.add('overflow-data') : 0;
+        });
+    </script>
 {% endblock content %}
+{% block footer %}{% endblock footer %}
