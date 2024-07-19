@@ -1,204 +1,316 @@
+/* оболочки */
 .authorization-form-wrapper,
 .message-form-wrapper {
     padding: 32px 0;
     margin: 0 auto;
     max-width: 90%;
 }
+
 .authorization-form-wrapper h2,
 .message-form-wrapper {
     text-align: center;
 }
+
 .authorization-form-wrapper h3 {
     padding-bottom: 0;
 }
-.authorization-form-wrapper p:has(label) {
-    display: flex;
-    flex-direction: column;
+
+.message-form-wrapper .redirect-link {
+    color: #ffba60;
 }
-#forgot-password-link {
-    font-size: 14px;
-    color: slateblue;
-    margin-left: auto;
+
+.message-form-wrapper .redirect-link:hover {
+    color: rgba(255, 186, 96, 0.6);
 }
-#forgot-password-link:hover {
-    color: darkslateblue;
+
+.authorization-form-wrapper button {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+
+    color: #f4f4f4;
+    background-color: #333333;
 }
-.message-form-wrapper a {
-    color: goldenrod;
+
+.authorization-form-wrapper input {
+    font-family: Roboto, Arial, sans-serif;
 }
-.message-form-wrapper a:hover {
-    color: darkgoldenrod;
-}
+
 /* переход на предыдущую страницу */
 .return-link {
     position: absolute;
     height: 14px;
     width: 14px;
 }
+
 .return-link div {
-    pointer-events: none;
     height: 1px;
     width: 9px;
     margin: 5px 0;
-    background-color: #333;
-    opacity: .75;
-    transition: .2s;
+
+    background-color: #333333;
+
+    pointer-events: none;
+    transition: 0.2s;
 }
+
 .return-link:hover div {
-    background-color: #94938a;
+    background-color: rgba(51, 51, 51, 0.5);
 }
+
 .return-link div:first-of-type {
     transform: rotate(-45deg);
 }
+
 .return-link div:last-of-type {
     transform: rotate(45deg);
 }
-/* это ссылка на домашнюю страницу */
-/* как мне кажется, самая удобная вещь для страниц без шапки */
-/* здесь должен быть лого, сейчас его нет, но это поправимо */
+
+/* ссылка на домашнюю страницу */
 .return-to-home {
     height: 48px;
     width: 48px;
     margin: 0 auto 24px;
+
     background-image: url('../img/back.png');
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
-    cursor: pointer;
-    transition: .2s;
-}
-.return-to-home:hover {
-    opacity: .5;
+
+    transition: 0.2s;
 }
 
+.return-to-home:hover {
+    opacity: 0.5;
+}
+
+/* блок формы и поля ввода */
 .form-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 32px;
+
     background-color: #f4f4f4;
+    box-shadow: 0 20px 26px 16px rgba(51, 51, 51, 0.1);
     border-radius: 10px;
-    box-shadow: 0 3px 16px 0 rgba(51, 51, 51, 0.3);
 }
+
+.form-container > p:has(label) {
+    display: flex;
+    flex-direction: column;
+}
+
 .form-container > p > input {
-    background: transparent;
-    outline: none;
-    border: 1px solid rgba(51, 51, 51, 0.3);
-    border-radius: 5px;
     padding: 10px;
+
     font-size: 16px;
+
+    background: #e0e4e8;
+    outline: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
 }
+
 .form-container > p > label {
     padding: 10px 0;
-    line-height: normal;
+
     font-size: 14px;
+    line-height: 1.2;
+
     color: rgba(51, 51, 51, 0.75);
+}
+
+/* .password-view-toggle см. profile-settings.css */
+.form-container > p > label:has(.password-view-toggle) {
     display: flex;
 }
-.form-container button {
-    color: #fff;
-    background-color: #333;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    line-height: 1;
-    padding: 16px;
-    margin-top: 10px;
-}
-.form-container button:hover,
-.form-container button:focus {
-    background-color: #94938a;
-}
+
 .form-container input:active,
 .form-container input:focus {
-    border-color: #333;
+    border-color: #333333;
 }
 
 /* выбор роли */
 #signup-wrapper {
     width: 640px;
 }
+
 #signup-wrapper p {
     text-align: center;
 }
+
 #select-user-type {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
 }
+
 #select-user-type a {
     width: 150px;
     height: 200px;
-    border: 1px solid #94938a;
-    border-radius: 5px;
-    color: #333;
     margin: 16px;
-    padding-bottom: 8px;
     text-align: center;
-    align-content: end;
-}
-#select-user-type a:hover {
-    border-color: #333;
-    background-color: #ddd;
-    transform: scale(102%);
+
+    color: #333333;
+    background: linear-gradient(150deg, #ced4da 0%, #e0e4e8 75%);
+    border-radius: 5px;
 }
 
-/* локальные настройки */
+#select-user-type a::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#select-user-type a:first-of-type::after {
+    background-image: url('../img/student.jpg');
+}
+
+#select-user-type a:last-of-type::after {
+    background-image: url('../img/teacher.jpg');
+}
+
+#select-user-type a:hover::after {
+    opacity: 1;
+}
+
+#select-user-type a:hover {
+    color: #f4f4f4;
+}
+
+#select-user-type span {
+    position: absolute;
+    z-index: 2;
+    margin-top: 4px;
+
+    transform: translateX(-50%);
+}
+
+/* точечные свойства форм */
 #login-wrapper {
     width: 320px;
 }
+
 #signup-form-wrapper,
 .password-form-wrapper {
     width: 480px;
 }
+
 #signup-form-wrapper p {
     display: none;
 }
-#signup-form-wrapper button {
-    margin-top: 0;
+
+/* кнопки */
+.password-form-wrapper button,
+#login-wrapper button {
+    padding: 16px 32px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
 }
 
-/* сообщения об ошибках и проч. */
+.password-form-wrapper button:hover,
+.password-form-wrapper button:focus,
+#login-wrapper button:hover,
+#login-wrapper button:focus {
+    color: #333333;
+    background-color: #ffba60;
+}
+
+#dataset-buttons-container {
+    margin-top: 10px;
+}
+
+#dataset-buttons-container * {
+    display: none;
+    width: 128px;
+    padding: 16px 0;
+    border-radius: 10px;
+}
+
+#dataset-buttons-container *.active {
+    display: block;
+}
+
+#signup-form-button {
+    float: right;
+    border: none;
+}
+
+#signup-form-button:hover,
+#signup-form-button:focus {
+    color: #333333;
+    background-color: #ffba60;
+}
+
+/* сообщения */
+#forgot-password-link {
+    margin-left: auto;
+    font-size: 14px;
+    color: slateblue;
+}
+
+#forgot-password-link:hover {
+    color: darkslateblue;
+}
+
 .helptext {
     padding: 10px 0 0;
     font-size: 12px;
-    line-height: normal;
+    line-height: 1.2;
     color: rgba(51, 51, 51, 0.5);
 }
+
 .errorlist {
-    color: indianred;
     padding: 10px;
+
+    line-height: 1.2;
+
+    color: indianred;
+    background-color: rgba(205, 92, 92, 0.1);
     border: 1px solid indianred;
     border-radius: 5px;
-    line-height: normal;
-    background-color: rgba(205, 92, 92, 0.1);
 }
-.errorlist.self-written{
+
+.errorlist.self-written {
     position: absolute;
     top: -10000px;
     visibility: hidden;
     opacity: 0;
-    transition: visibility .2s, opacity .2s;
+    transition: visibility 0.2s, opacity 0.2s;
 }
+
 .errorlist.self-written.shown {
     position: static;
     top: 0;
     visibility: visible;
     opacity: 1;
-    transition: visibility .2s, opacity .2s;
 }
+
+#signup-form-wrapper .errorlist:not(.self-written) {
+    display: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    box-shadow: 0 0 0 30px #f4f4f4 inset !important;
+    box-shadow: 0 0 0 30px #e0e4e8 inset !important;
 }
 
+/* адаптация */
 @media (max-width: 768px) {
-    #signup-info-box {
-        display: none;
-    }
     [class$='-form-wrapper'] p:not(:has(label)) {
         font-size: 16px;
         line-height: 24px;
@@ -208,12 +320,14 @@ input:-webkit-autofill:active {
 @media (max-width: 486px) {
     .form-container {
         width: 100%;
-        box-shadow: none;
         padding: 8px;
+        box-shadow: none;
     }
+
     #select-user-type {
         justify-content: space-around;
     }
+
     #select-user-type a {
         width: 144px;
         height: 192px;
@@ -223,86 +337,97 @@ input:-webkit-autofill:active {
 }
 
 /* блок выбора интересов */
-.authorization-form-wrapper #id_interests {
+#signup-form-wrapper #id_interests {
     display: none;
     flex-wrap: wrap;
-    gap: 8px;
-}
-.authorization-form-wrapper #id_interests div {
-    flex: 1 0 160px;
-}
-.authorization-form-wrapper #id_interests input {
-    position: absolute;
-    opacity: 0;
-    z-index: -10;
-}
-.authorization-form-wrapper #id_interests label {
-    display: flex;
-    height: 64px;
-    background-color: #ddd;
-    border-radius: 5px;
-    justify-content: center;
-    align-items: center;
-    transition: .2s;
-    cursor: pointer;
-}
-.authorization-form-wrapper #id_interests label:hover {
-    background-color: rgba(148, 147, 138, 0.3);
-}
-.authorization-form-wrapper #id_interests label:has(input:checked) {
-    background-color: rgba(148, 147, 138, 0.6);
+    gap: 16px 8px;
 }
 
-/* скрипт */
+#signup-form-wrapper #id_interests input {
+    position: absolute;
+    z-index: -10;
+    opacity: 0;
+}
+
+#signup-form-wrapper #id_interests label {
+    display: flex;
+    padding: 8px 10px;
+    gap: 8px;
+
+    background-color: #e0e4e8;
+    border-radius: 10px;
+
+    transition: 0.2s;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+#signup-form-wrapper #id_interests label:hover {
+    background-color: #d7dce1;
+}
+
+#signup-form-wrapper #id_interests label:has(input:checked) {
+    background-color: #ced4da;
+}
+
+#signup-form-wrapper #id_interests label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    border: 1px solid #333333;
+    border-radius: 0.25em;
+
+    transition: background-color 0.2s;
+}
+
+#signup-form-wrapper #id_interests label:has(input:checked)::before {
+    background-color: #333333;
+    background-image: url('../img/checkmark.png');
+}
+
 #signup-form-wrapper p.active,
-#id_interests.active {
+#signup-form-wrapper #id_interests.active {
     display: flex;
 }
-#dataset-buttons-container {
-    margin-top: 10px;
-}
-#dataset-buttons-container * {
-    display: none;
-    width: 128px;
-    border-radius: 10px;
-}
-#dataset-buttons-container *.active {
-    display: block;
-}
-#dataset-buttons-container .btn.btn-success {
-    float: right;
-}
+
+/* для скрипта с проверкой валидности */
 #next-set-button,
 #prev-set-button {
-    height: 48px;
-    align-content: center;
     text-align: center;
+    transition: 0.2s;
     cursor: pointer;
-    transition: .2s;
 }
-/*#next-set-button {
-    float: right;
-    background-color: #ddd;
-}*/
-/* для скрипта с проверкой валидности */
+
 #next-set-button {
     float: right;
-    background-color: rgba(221, 221, 221, 0.3);
-    color: rgba(51, 51, 51, 0.3);
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.05);
     pointer-events: none;
 }
+
 #next-set-button.valid {
-    background-color: #ddd;
-    color: #333;
+    color: #333333;
+    background-color: rgba(255, 186, 96, 0.5);
     pointer-events: auto;
 }
+
+#next-set-button:hover {
+    background-color: rgba(255, 186, 96, 0.75);
+}
+
 #prev-set-button {
     float: left;
     color: rgba(51, 51, 51, 0.75);
 }
-#next-set-button:hover {
-    background-color: rgba(148, 147, 138, 0.6);
-}
+
 #prev-set-button:hover {
-    background-color: rgba(221, 221, 221, 0.3);
+    background-color: rgba(51, 51, 51, 0.03);
 }

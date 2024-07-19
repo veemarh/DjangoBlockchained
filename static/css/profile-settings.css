@@ -1,47 +1,74 @@
 .account-content-wrapper {
-    margin: 64px auto auto;
-    padding: 0 16px;
-    max-width: 1140px;
     display: flex;
-    flex-wrap: wrap;
     gap: 48px;
+    max-width: 1140px;
+    margin: 32px auto 48px;
+    padding: 0 16px;
 }
 
+.account-content-wrapper button {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+
+    color: #f4f4f4;
+    background-color: #333333;
+}
+
+.account-content-wrapper input,
+.account-content-wrapper textarea {
+    font-family: Roboto, Arial, sans-serif;
+}
+
+/*  ================================
+ *  Редактирование профиля
+ *  ================================
+*/
+
+/* навигационное меню */
 #account-space-nav {
     flex: 1 0;
 }
 
-#account-space-nav a {
-    display: block;
-    line-height: 30px;
-    padding: 5px 0 5px 16px;
+#account-space-nav li {
     margin-bottom: 5px;
-    border-radius: 5px;
-    color: #333;
 }
 
-#account-space-nav li:last-child a {
+#account-space-nav li:last-child {
     margin-bottom: 0;
 }
 
-#account-space-nav a:hover {
-    color: #94938a;
-    background-color: #ddd;
+.edit-profile-link {
+    display: block;
+    padding: 5px 0 5px 16px;
+
+    line-height: 30px;
+
+    border-radius: 5px;
+    color: #333333;
 }
 
-#current-edit-page div {
+.edit-profile-link:hover {
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
+}
+
+#current-edit-page > div {
     float: left;
+
     height: 40px;
     width: 4px;
-    background-color: #94938a;
+
+    background-color: rgba(51, 51, 51, 0.5);
     border-radius: 5px 0 0 5px;
 }
 
-#current-edit-page a {
-    color: #94938a;
-    background-color: #ddd;
+#current-edit-page .edit-profile-link {
+    color: rgba(51, 51, 51, 0.5);
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
+/* пространство редактирования */
 #account-space-edit {
     flex: 3 0;
 }
@@ -50,156 +77,473 @@
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
-    margin-bottom: 64px;
-}
-
-.data-editing-form:not(:has(#main-dataset)) {
     max-width: 640px;
 }
 
+/* блок с полями ввода */
+.account-dataset {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1 0;
+}
+
+.account-dataset > p {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-dataset > p > label {
+    padding: 10px 0;
+
+    font-size: 14px;
+    line-height: 1.2;
+
+    color: rgba(51, 51, 51, 0.75);
+}
+
+.account-dataset textarea,
+.account-dataset > p > input {
+    width: 100%;
+    padding: 10px;
+
+    font-size: 16px;
+
+    background: #e0e4e8;
+    outline: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.account-dataset textarea {
+    width: 100%;
+    height: 128px;
+
+    color: #333333;
+
+    scrollbar-width: thin;
+    resize: none;
+}
+
+.account-dataset textarea:active,
+.account-dataset textarea:focus,
+.account-dataset > p > input:active,
+.account-dataset > p > input:focus {
+    border-color: #333333;
+}
+
+/* кнопка отправки формы */
 .data-editing-form button[type="submit"] {
-    color: #fff;
-    background-color: #333;
+    width: 100%;
+    padding: 16px;
+
     border: none;
     border-radius: 30px;
-    font-size: 16px;
-    line-height: 1;
-    padding: 16px;
-    width: 100%;
+
     user-select: none;
 }
 
 .data-editing-form button[type="submit"]:hover,
 .data-editing-form button[type="submit"]:active {
-    background-color: #94938a;
+    color: #333333;
+    background-color: #ffba60;
 }
 
 .data-editing-form button[type="submit"]:focus:not(:checked) {
-    background-color: #333;
+    background-color: #333333;
 }
 
-.account-dataset {
-    flex: 1 0;
-}
-
-.account-dataset#main-dataset {
-    flex-grow: 3;
-}
-
-.account-dataset#main-dataset h2 {
-    margin-bottom: 0;
-}
-
-.account-dataset#main-dataset span {
-    color: #94938a;
-    font-weight: lighter;
-}
-
-.account-dataset span:not(.helptext) {
-    display: inline-block;
-    padding-bottom: 16px;
-}
-
-.account-dataset p:has(label + textarea),
-.account-dataset p:has(label + input),
-.account-dataset:has(#id_interests) p {
+/* ..edit-profile */
+/* блок с кнопками */
+#profile-edit-buttons {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.account-dataset p:has(label + input):last-child {
-    margin-bottom: 0;
-}
-
-.account-dataset textarea {
-    font-family: 'Open Sans', arial, sans-serif;
-    line-height: 1.2;
-    color: #333;
     width: 100%;
-    resize: none;
-    height: 128px;
+    gap: 8px;
 }
 
-.account-dataset textarea,
-.account-dataset input {
-    background: transparent;
-    outline: none;
-    border: 1px solid rgba(51, 51, 51, 0.3);
-    border-radius: 5px;
-    padding: 10px;
+#profile-edit-buttons * {
+    flex: 1 0 calc(50% - 4px);
+}
+
+#reset-edited-data {
     font-size: 16px;
+
+    color: #333333;
+    background: none;
+    border: 1px solid #333333;
+    border-radius: 30px;
+
+    transition: 0.2s;
+
+    cursor: pointer;
+    user-select: none;
 }
 
-.account-dataset textarea:not([disabled]):active,
-.account-dataset textarea:not([disabled]):focus,
-.account-dataset input:not([disabled]):active,
-.account-dataset input:not([disabled]):focus {
-    border-color: #333;
+#reset-edited-data:hover,
+#reset-edited-data:active {
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
-.account-dataset label:not(:has(input)) {
-    margin: 10px 0;
-    line-height: normal;
-    font-size: 14px;
-    color: rgba(51, 51, 51, 0.75);
+#reset-edited-data:focus:not(:checked) {
+    background: none;
 }
 
-.account-dataset #summary-dataset a {
-    display: block;
-    line-height: 30px;
-    padding: 5px;
-    text-align: center;
-    border-radius: 5px;
-    color: #333;
-    background-color: rgba(221, 221, 221, 0.6);
-    border: 1px solid rgba(51, 51, 51, 0.3);
+/* подсветка измененных полей */
+.account-dataset .modified {
+    border-color: slateblue;
 }
 
-.account-dataset #summary-dataset a:hover {
-    background-color: #ddd;
+.account-dataset p:has(.modified) label {
+    color: slateblue;
 }
 
-#summary-dataset {
+.account-dataset .modified:focus,
+.account-dataset .modified:active {
+    border-color: darkslateblue;
+}
+
+/* блок выбора интересов */
+.account-dataset #id_interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 8px;
+}
+
+.account-dataset #id_interests input {
+    position: absolute;
+    z-index: -10;
+    opacity: 0;
+}
+
+.account-dataset #id_interests label {
+    display: flex;
+    padding: 8px 10px;
+    gap: 8px;
+
+    background-color: #e0e4e8;
+    border-radius: 10px;
+
+    transition: 0.2s;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.account-dataset #id_interests label:hover {
+    background-color: #d7dce1;
+}
+
+.account-dataset #id_interests label:has(input:checked) {
+    background-color: #ced4da;
+}
+
+.account-dataset #id_interests label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    border: 1px solid #333333;
+    border-radius: 0.25em;
+
+    transition: background-color 0.2s;
+}
+
+.account-dataset #id_interests label:has(input:checked)::before {
+    background-color: #333333;
+    background-image: url('../img/checkmark.png');
+}
+
+/* блок изменения пароля */
+.account-dataset label:has(.password-view-toggle) {
+    display: flex;
+}
+
+/* глаз-тогл */
+.password-view-toggle {
+    content: '';
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: auto;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    background-image: url('../img/hidden.png');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    transition: 0.2s;
+
+    cursor: pointer;
+}
+
+.password-view-toggle.shown {
+    background-image: url('../img/view.png');
+}
+
+/* блок сервисов преподавателей */
+#service-list {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+    max-width: 640px;
+}
+
+#service-list .one-edit-service {
+    display: flex;
+    padding: 3px 8px;
+    justify-content: space-between;
+
+    background-color: rgba(51, 51, 51, 0.03);
+}
+
+#service-list .edit-service-name {
+    align-self: center;
+}
+
+#service-list .delete-service-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+
+    user-select: none;
+}
+
+#service-list .delete-service-button:hover,
+#service-list .delete-service-button:active {
+    background-color: rgba(51, 51, 51, 0.5);
+}
+
+/* кнопка, открывающая форму создания сервиса */
+#show-service-button {
+    padding: 0 16px;
+    height: 40px;
+    width: fit-content;
+    align-content: center;
+
+    border: 1px solid #333333;
+    border-radius: 5px;
+
+    transition: 0.2s;
+
+    user-select: none;
+    cursor: pointer;
+}
+
+#show-service-button:hover,
+#show-service-button:active {
+    background-color: rgba(51, 51, 51, 0.1);
+}
+
+#show-service-button:focus:not(:checked) {
+    background: none;
+}
+
+/* диалоговые окна */
+#create-service-dialog,
+#delete-service-dialog {
+    position: absolute;
+
+    margin: auto;
+
+    background: none;
+    border: none;
+
+    overflow: visible;
+}
+
+#create-service-dialog::backdrop,
+#delete-service-dialog::backdrop {
+    background: rgba(51, 51, 51, 0.25);
+}
+
+/* тело диалогового окна */
+#create-service-form,
+#delete-service-form {
+    padding: 16px;
+
+    color: #333333;
+    background-color: #f4f4f4;
+    box-shadow: 0 20px 26px 16px rgba(51, 51, 51, 0.1);
+    border-radius: 10px;
+}
+
+#create-service-form h3 {
+    padding-bottom: 0;
+}
+
+#delete-service-form span {
+    display: inline-block;
+    max-width: 480px;
+}
+
+/* кнопка закрытия формы, форма создания сервиса */
+#close-service-form button {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    margin-right: 16px;
+
+    background: none;
+    border: none;
+
+    transform: translateY(calc(100% + 16px));
+}
+
+#close-service-form button:focus-visible {
+    outline: none;
+}
+
+/* крестик */
+#dialog-cross {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    pointer-events: none;
+}
+
+#dialog-cross::before,
+#dialog-cross::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 24px;
+
+    background-color: #333333;
+
+    transition: background-color 0.2s;
+}
+
+#dialog-cross::before {
+    transform: rotate(45deg);
+}
+
+#dialog-cross::after {
+    transform: rotate(-45deg);
+}
+
+#close-service-form button:hover ::before,
+#close-service-form button:hover ::after {
+    background-color: rgba(51, 51, 51, 0.5);
+}
+
+/* блок с кнопками, форма удаления сервиса */
+#delete-service-container {
+    display: flex;
+    margin-top: 16px;
+    gap: 8px;
+}
+
+#delete-service-container button {
+    flex: 1 0 calc(50% - 4px);
+    padding: 8px 0;
+
+    border: none;
+    border-radius: 5px;
+
+    user-select: none;
+}
+
+#delete-service-container button:first-of-type {
+    color: #333333;
+    background: none;
+}
+
+#delete-service-container button:first-of-type:hover,
+#delete-service-container button:first-of-type:active {
+    background-color: rgba(51, 51, 51, 0.03);
+}
+
+#delete-service-container button:last-of-type:hover,
+#delete-service-container button:last-of-type:active {
+    background-color: rgba(51, 51, 51, 0.5);
+}
+
+#current-service-name {
+    font-weight: bolder;
+    color: #ffba60;
+}
+
+/*  ================================
+ *  Страница публичного профиля
+ *  ================================
+*/
+
+.data-view-container {
+    display: flex;
+    flex-grow: 1;
+    gap: 32px;
+}
+
+/* блок с аватаркой и функционалом */
+#summary-dataset {
+    flex: 1 0;
 }
 
 #summary-dataset img {
     border-radius: 50%;
 }
 
-#summary-dataset a {
+.goto-egit-page,
+.add-remove-user {
+    display: block;
+    height: 40px;
     margin-top: 1em;
+    text-align: center;
+    align-content: center;
+
+    color: #333333;
+    border: 1px solid #333333;
+    border-radius: 5px;
 }
 
+.goto-egit-page:hover,
+.add-remove-user:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+}
+
+/* данные пользователя */
 #main-dataset {
+    flex: 3 0;
+}
+
+#main-dataset h2 {
+    margin-bottom: 0;
+}
+
+/* единица данных пользователя */
+.profile-block {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.25);
+}
+
+.profile-block:last-of-type {
+    border: none;
+}
+
+/* контакты */
+.profile-connect {
     display: flex;
-    flex-direction: column;
-}
-
-#main-dataset ul > * {
-    display: inline-block;
-    padding: 8px 10px;
-    background-color: #ddd;
-    border-radius: 10px;
-    margin: 0 5px 10px 0;
-}
-
-#main-dataset ul > *:last-child {
-    margin-right: 0;
 }
 
 .profile-connect::before {
     content: '';
     width: 1em;
     height: 1em;
-    flex-shrink: 0;
-    flex-grow: 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
     margin: auto 1em auto 0;
+    flex-shrink: 0;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .profile-connect#profile-email::before {
@@ -210,49 +554,61 @@
     background-image: url('../img/phone.png');
 }
 
-.profile-block {
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+.profile-connect a {
+    color: slateblue;
 }
 
-.profile-block:last-of-type {
-    border: none;
-}
-
-#profile-edit-buttons {
+/* интересы */
+#profile-interests-list {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
-#profile-edit-buttons * {
-    flex: 1 0;
+.profile-interest-name {
+    padding: 8px 10px;
+    background-color: rgba(51, 51, 51, 0.1);
+    border-radius: 10px;
 }
 
-#profile-edit-buttons input {
-    color: #333;
-    background-color: #f4f4f4;
-    border: 1px solid #333;
-    border-radius: 30px;
-    padding: 8px 16px;
-    user-select: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: .2s;
+/* сервисы */
+#profile-service-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-#profile-edit-buttons input:hover,
-#profile-edit-buttons input:active {
-    background-color: #ddd;
+.one-profile-service {
+    display: flex;
+    padding: 3px 8px;
+    gap: 8px;
+
+    background-color: rgba(51, 51, 51, 0.03);
 }
 
-#profile-edit-buttons input:focus:not(:checked) {
-    background-color: #f4f4f4;
+.one-profile-service > div {
+    padding: 8px 0;
+    line-height: 1;
+    hyphens: auto;
 }
 
-a[href^="mailto:"],
-a[href^="tel:"] {
-    color: slateblue;
+.profile-service-name {
+    flex: 1;
+    font-weight: bolder;
+    color: #ffba60;
+}
+
+.profile-service-desc {
+    flex: 3;
+}
+
+.profile-service-price {
+    flex: 1;
+}
+
+.profile-service-duration {
+    flex: 1;
+    text-align: end;
 }
 
 @media (max-width: 1140px) {
@@ -273,7 +629,7 @@ a[href^="tel:"] {
         flex-direction: column;
     }
 
-    .account-content-wrapper:has(#main-dataset) .data-editing-form {
+    .data-view-container {
         flex-direction: column;
     }
 
@@ -286,284 +642,14 @@ a[href^="tel:"] {
     }
 }
 
-.data-editing-form input.modified {
-    border-color: slateblue;
-}
-
-.data-editing-form p:has(input.modified) label {
-    color: slateblue;
-}
-
-.data-editing-form input.modified:focus,
-.data-editing-form input.modified:active {
-    border-color: darkslateblue;
-}
-
-/* блок выбора интересов */
-.account-dataset #id_interests {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px 8px;
-}
-
-.account-dataset #id_interests div {
-    width: 160px;
-}
-
-.account-dataset #id_interests input {
-    position: absolute;
-    opacity: 0;
-    z-index: -10;
-}
-
-.account-dataset #id_interests label {
-    display: flex;
-    width: fit-content;
-    gap: 8px;
-    padding: 8px 10px;
-    background-color: #ddd;
-    border-radius: 10px;
-    transition: .2s;
-    cursor: pointer;
-    user-select: none;
-}
-
-.account-dataset #id_interests label:hover {
-    background-color: rgba(148, 147, 138, 0.3);
-}
-
-.account-dataset #id_interests label:has(input:checked) {
-    background-color: rgba(148, 147, 138, 0.5);
-}
-
-.account-dataset #id_interests label:has(input:focus:not(:checked)) {
-    background-color: #ddd;
-}
-
-.account-dataset #id_interests label::before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0;
-    flex-grow: 0;
-    border: 1px solid #94938a;
-    border-radius: 0.25em;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 60%;
-}
-
-.account-dataset #id_interests label:has(input:checked)::before {
-    background-color: #94938a;
-    background-image: url('../img/checkmark.png');
-}
-
-.account-dataset p:has(input[id*=password]) label {
-    display: flex;
-}
-
-p:has(input[id*=password]) .password-view-toggle {
-    content: '';
-    width: 1.2em;
-    height: 1.2em;
-    flex-shrink: 0;
-    flex-grow: 0;
-    background-image: url('../img/hidden.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-    margin-left: auto;
-    transition: .2s;
-    cursor: pointer;
-}
-
-p:has(input[id*=password]) .password-view-toggle.shown {
-    background-image: url('../img/view.png');
-}
-
-/* блок сервисов преподавателей */
-#service-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-width: 640px;
-}
-
-#service-list .one-service {
-    display: flex;
-    justify-content: space-between;
-    background-color: rgba(221, 221, 221, 0.3);
-    padding: 3px 8px;
-}
-
-#service-list label {
-    align-self: center;
-}
-
-#service-list .delete-service-button {
-    color: #f4f4f4;
-    background-color: #333;
-    border: none;
-    border-radius: 5px;
-    line-height: 1;
-    padding: 8px;
-    user-select: none;
-}
-
-#service-list .delete-service-button:hover,
-#service-list .delete-service-button:active {
-    background-color: #94938a;
-}
-
-#delete-service-dialog > div,
-#create-service-form {
-    background-color: #f4f4f4;
-    padding: 16px;
-    border: 1px solid #333;
-    border-radius: 10px;
-}
-
-#show-service-button {
-    color: #333;
-    background-color: #f4f4f4;
-    border: 1px solid #333;
-    border-radius: 5px;
-    padding: 8px 16px;
-    width: fit-content;
-    user-select: none;
-    cursor: pointer;
-    transition: .2s;
-}
-
-#show-service-button:hover,
-#show-service-button:active {
-    background-color: #ddd;
-}
-
-#show-service-button button:focus:not(:checked) {
-    background-color: #f4f4f4;
-}
-
-#delete-service-dialog,
-#create-service-dialog {
-    position: absolute;
-    background: none;
-    border: none;
-    margin: auto;
-    overflow: visible;
-}
-
-#delete-service-dialog::backdrop,
-#create-service-dialog::backdrop {
-    background: rgba(51, 51, 51, 0.3);
-}
-
-#delete-service-dialog {
-    max-width: 480px;
-}
-
-#close-service-form button {
-    display: block;
-    margin-left: auto;
-    margin-right: 16px;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    border: 1px solid #333;
-    border-radius: 50%;
-    background-color: transparent;
-    transform: translateY(calc(100% + 16px));
-}
-
-#close-service-form button:focus-visible {
-    outline: none;
-}
-
-#delete-service-buttons {
-    margin-top: 16px;
-    display: flex;
-    gap: 8px;
-}
-
-#delete-service-buttons button {
-    font-size: 16px;
-    border-radius: 5px;
-    line-height: 1;
-    padding: 8px 0;
-    user-select: none;
-    flex-grow: 1;
-}
-
-#delete-service-buttons button:first-of-type {
-    color: #333;
-    background-color: #f4f4f4;
-    border: 1px solid #333;
-    float: left;
-}
-
-#delete-service-buttons button:first-of-type:hover,
-#delete-service-buttons button:first-of-type:active {
-    background-color: #ddd;
-}
-
-#delete-service-buttons button:last-of-type {
-    color: #f4f4f4;
-    background-color: #333;
-    border: 1px solid #333;
-    float: right;
-}
-
-#delete-service-buttons button:last-of-type:hover,
-#delete-service-buttons button:last-of-type:active {
-    background-color: #94938a;
-    border-color: #94938a;
-}
-
-#current-service-name {
-    font-weight: bolder;
-    color: goldenrod;
-}
-
-#profile-service-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 14px;
-}
-
-.one-profile-service {
-    display: flex;
-    background-color: rgba(221, 221, 221, 0.3);
-    padding: 3px 8px;
-    gap: 8px;
-}
-
-.one-profile-service div {
-    flex: 1;
-    line-height: 30px;
-    word-break: break-all;
-}
-
-.one-profile-service div:last-child {
-    text-align: end;
-}
-
-.one-profile-service div:first-of-type {
-    font-weight: bolder;
-}
-
-.one-profile-service .service-desc {
-    flex: 3;
-}
-
+/* напоминание о незаполненном профиле */
+/* для преподавателей */
 #fill-profile-notification {
     padding: 10px;
     margin-top: 16px;
-    width: 100%;
+
     color: indianred;
+    background-color: rgba(205, 92, 92, 0.1);
     border: 1px solid indianred;
     border-radius: 5px;
-    line-height: normal;
-    background-color: rgba(205, 92, 92, 0.1);
 }

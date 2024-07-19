@@ -1,84 +1,286 @@
 #user-list-content-wrapper {
-    display: flex;
-    flex-direction: column;
     margin: 16px auto;
     padding: 0 16px;
     max-width: 1140px;
-    gap: 16px;
 }
 
+/* список пользователей */
 #user-list-container {
     display: flex;
+    padding: 16px 16px 24px;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 16px;
     text-align: center;
-    transition: .3s;
-}
+    justify-content: center;
 
-#user-list-container > li {
-    padding: 8px;
-    border: 1px solid #333;
+    background-color: rgba(51, 51, 51, 0.05);
     border-radius: 10px;
 }
-#teacher-subjects > li {
+
+/* карточка пользователя */
+.user-list-content {
+    width: 216px;
+    padding: 8px;
+
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 10px 26px 1px rgba(51, 51, 51, 0.1);
+}
+
+/* ссылки */
+.user-list-content a {
+    color: #333333;
+}
+
+.user-list-link {
+    padding: 8px 8px 0;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+/* ссылка на чат */
+.user-list-chat {
     display: inline-block;
+    padding: 5px 32px;
+    margin: 8px;
+
+    line-height: 30px;
+
+    border: 1px solid #333333;
+    border-radius: 30px;
+
+    transition: 0.2s;
 }
 
-.user-list-container {
-    padding: 8px;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    gap: 16px;
+.user-list-link:hover,
+.user-list-link:focus,
+.user-list-chat:hover,
+.user-list-chat:focus {
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
+/* аватар */
 .user-list-avatar {
     width: 100px;
     height: 100px;
-    background-color: #333;
+    background-color: #333333;
     border-radius: 50%;
+    margin: 0 auto;
 }
 
-.user-list-button {
-    display: inline-block;
-    padding: 8px 32px;
-    color: #333;
-    line-height: 30px;
-    border: 1px solid #333;
-    border-radius: 30px;
-    text-decoration: none;
-    margin: auto;
+/* блок с данными - ФИО и интересы */
+.user-list-info {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    height: 3em;
+    margin: 8px 0;
 }
 
-.user-list-container:hover,
-.user-list-container:focus,
-.user-list-button:hover,
-.user-list-button:focus {
-    background-color: #ddd;
+.user-list-info .teacher-subject {
+    margin-right: 4px;
 }
 
-#teacher-list-search input[type=search] {
+.user-list-info .teacher-subject:last-of-type {
+    margin-right: 0;
+}
+
+.user-list-info.overflow-data {
+    -webkit-line-clamp: 2;
+}
+
+.user-list-info.overflow-data .teacher-subject {
+    margin: 0;
+}
+
+/* поиск */
+#teacher-list-operate {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+#teacher-list-search {
+    flex: 1;
+}
+
+#teacher-list-search input {
+    width: 100%;
+    padding: 10px 16px;
+    margin: 16px 0;
+
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+
     background: transparent;
     outline: none;
-    border: 1px solid rgba(51, 51, 51, 0.3);
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
+    border: 1px solid rgba(51, 51, 51, 0.5);
+    border-radius: 30px;
 }
 
-#teacher-list-search input[type=search]:active,
-#teacher-list-search input[type=search]:focus {
-    border-color: #333;
+#teacher-list-search input:active,
+#teacher-list-search input:focus {
+    border-color: #333333;
 }
 
-.hidden-teacher-container {
+#teacher-list-search input:-webkit-autofill,
+#teacher-list-search input:-webkit-autofill:hover,
+#teacher-list-search input:-webkit-autofill:focus,
+#teacher-list-search input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #f4f4f4 inset !important;
+}
+
+.hidden-by-search,
+.hidden-by-filter {
     display: none;
 }
 
+/* фильтр */
+#filter-container {
+    float: left;
+    width: 180px;
+    margin-right: 16px;
+    transition: 0.2s;
+}
+
+#filter-header {
+    margin-bottom: 3px;
+}
+
+#found-teachers {
+    display: none;
+    padding: 16px;
+    margin: 16px 16px 0;
+    text-align: center;
+
+    color: #f4f4f4;
+    background-color: #333333;
+    border-radius: 10px;
+
+    transition: 0.2s;
+}
+
+#found-teachers:hover {
+    color: #333333;
+    background-color: #ffba60;
+}
+
+#teacher-list-filter input {
+    position: absolute;
+    z-index: -10;
+    opacity: 0;
+}
+
+#teacher-list-filter label {
+    display: flex;
+    padding: 8px 0;
+    margin-bottom: 3px;
+    gap: 8px;
+
+    hyphens: auto;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+}
+
+#teacher-list-filter label:last-of-type {
+    margin-bottom: 0;
+}
+
+#teacher-list-filter label:hover {
+    color: rgba(51, 51, 51, 0.5);
+}
+
+#teacher-list-filter label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    border: 1px solid #333333;
+    border-radius: 0.25em;
+
+    transition: background-color 0.2s;
+}
+
+#teacher-list-filter label:has(input:checked)::before {
+    background-color: #333333;
+    background-image: url('../img/checkmark.png');
+}
+
+/* адаптивный */
+#filter-toggle,
+#filter-close {
+    display: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* кнопка открытия фильтра */
+#filter-toggle {
+    height: 36px;
+    width: 36px;
+
+    background-image: url('../img/filter.png');
+    background-position: center;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+
+#filter-toggle:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+    opacity: 0.75;
+}
+
+/* кнопка закрытия фильтра */
+#filter-close {
+    float: right;
+
+    width: 24px;
+    height: 24px;
+    margin: 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+#filter-close::before,
+#filter-close::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 1px;
+    height: 20px;
+
+    background-color: #333333;
+
+    transition: background-color 0.2s;
+    pointer-events: none;
+}
+
+#filter-close::before {
+    transform: rotate(45deg);
+}
+
+#filter-close::after {
+    transform: rotate(-45deg);
+}
+
+#filter-close:hover::before,
+#filter-close:hover::after {
+    background-color: rgba(51, 51, 51, 0.5);
+}
 
 @media (max-width: 1140px) {
     #user-list-content-wrapper {
@@ -96,4 +298,53 @@
     #user-list-content-wrapper {
         max-width: 576px;
     }
+
+    #filter-container {
+        position: fixed;
+        top: 100%;
+        left: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        padding: 16px 0;
+
+        background-color: #f4f4f4;
+    }
+
+    #filter-container.active {
+        top: 0;
+        z-index: 20;
+        overflow-y: auto;
+    }
+
+    #found-teachers {
+        display: block;
+    }
+
+    #teacher-list-filter {
+        margin: 0 16px;
+    }
+
+    #filter-toggle {
+        display: inline-block;
+    }
+
+    #filter-close {
+        display: flex;
+    }
+
+    body:has(#filter-container.active) {
+        overflow: hidden;
+    }
+}
+
+.favorite-link {
+    color: #ffba60;
+}
+
+.favorite-link:hover {
+    color: rgba(255, 186, 96, 0.6);
 }

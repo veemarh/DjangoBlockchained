@@ -1,34 +1,38 @@
 {% extends 'base.html' %}
+{% block title %}Update services{% endblock title %}
 {% block content %}
     <div class="account-content-wrapper">
         <div id="account-space-nav">
             <ul>
-                <li><a href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a></li>
-                <li><a href="{% url 'teacher_interests' %}">Update interests</a></li>
+                <li><a class="edit-profile-link" href="{% url 'teacher_profile_edit' user.id %}">Edit profile</a></li>
+                <li><a class="edit-profile-link" href="{% url 'teacher_interests' %}">Update interests</a></li>
                 <li id="current-edit-page">
                     <div></div>
-                    <a href="{% url 'teacher_services' %}">Update services</a>
+                    <a class="edit-profile-link" href="{% url 'teacher_services' %}">Update services</a>
                 </li>
-                <li><a href="{% url 'password_change' %}">Change password</a></li>
+                <li><a class="edit-profile-link" href="{% url 'password_change' %}">Change password</a></li>
             </ul>
         </div>
         <div id="account-space-edit">
             <h3>Update services</h3>
             <div id="service-list">
                 {% for service in request.user.teacher.service_set.all %}
-                    <div class="one-service">
-                        <label>{{ service.name }}</label>
-                        <form method="post" action="{% url 'delete_service' service.pk %}">
+                    <div class="one-edit-service">
+                        <label class="edit-service-name">{{ service.name }}</label>
+                        <form data-service="{{ service.name }}" method="post"
+                              action="{% url 'delete_service' service.pk %}">
                             {% csrf_token %}
-                            <button class="delete-service-button" type="submit">Delete</button>
+                            <button data-action="deletion" class="delete-service-button" type="submit">
+                                Delete
+                            </button>
                         </form>
                     </div>
                 {% endfor %}
-                <div id="show-service-button">Add service</div>
+                <div data-action="creation" id="show-service-button">Add service</div>
             </div>
             <dialog id="create-service-dialog">
                 <form id="close-service-form" method="dialog">
-                    <button>X</button>
+                    <button><span id="dialog-cross"></span></button>
                 </form>
                 <form id="create-service-form" class="data-editing-form" action="" method="post">
                     <div class="account-dataset">
@@ -40,12 +44,12 @@
                 </form>
             </dialog>
             <dialog id="delete-service-dialog">
-                <div>
+                <div id="delete-service-form">
                     <span>Are you sure you want to delete the service 
                         <span id="current-service-name"></span>?
                     </span>
                     <form method="dialog">
-                        <div id="delete-service-buttons">
+                        <div id="delete-service-container">
                             <button>Cancel</button>
                             <button id="confirm-delete-button">Delete</button>
                         </div>
@@ -55,25 +59,37 @@
         </div>
     </div>
     <script>
-        let createServiceButton = document.getElementById('show-service-button');
         let createServiceDialog = document.getElementById('create-service-dialog');
-        createServiceButton.addEventListener('click', () => {
-            createServiceDialog.showModal();
-        });
-
-        let deleteServiceButton = document.querySelectorAll('.delete-service-button');
         let deleteServiceDialog = document.getElementById('delete-service-dialog');
-        let confirmDeleteButton = document.getElementById('confirm-delete-button');
         let currentServiceName = document.getElementById('current-service-name');
         let currentDeleteForm;
-        deleteServiceButton.forEach(button => {
-            button.addEventListener('click', function (event) {
-                event.preventDefault();
-                currentDeleteForm = button.parentElement;
-                currentServiceName.textContent = currentDeleteForm.parentElement.firstElementChild.textContent;
+
+        class serviceMenu {
+            constructor(elem) {
+                elem.onclick = this.onClick.bind(this);
+            }
+
+            creation() {
+                createServiceDialog.showModal();
+            }
+
+            deletion(event) {
+                currentDeleteForm = event.target.closest('form');
+                currentServiceName.textContent = currentDeleteForm.dataset.service;
                 deleteServiceDialog.showModal();
-            });
-        });
+                event.preventDefault();
+            }
+
+            onClick(event) {
+                let action = event.target.dataset.action;
+                action ? this[action](event) : 0;
+            }
+        }
+
+        let serviceList = document.getElementById('service-list');
+        new serviceMenu(serviceList);
+
+        let confirmDeleteButton = document.getElementById('confirm-delete-button');
         confirmDeleteButton.addEventListener('click', () => {
             currentDeleteForm.submit();
         });
