@@ -14,9 +14,12 @@ class CustomUserAdmin(UserAdmin):
         "username",
         "birth_date",  # Нахуя тут дата рождения? Позже уберу
         "is_staff",
+        "picture",
     ]
-    fieldsets = UserAdmin.fieldsets + ((None, {"fields": ("birth_date",)}),)
-    add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": ("birth_date",)}),)
+    fieldsets = UserAdmin.fieldsets + ((None, {"fields": ("birth_date", "picture")}),)
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {"fields": ("birth_date", "picture")}),
+    )
 
 
 class InterestsInline(admin.TabularInline):
