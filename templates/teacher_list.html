@@ -30,7 +30,11 @@
                         <div class="user-list-content">
                             <div class="user-list-link">
                                 <a href="{% url 'teacher_profile' teacher.user.id %}">
-                                    <div class="user-list-avatar"></div>
+                                    {% if teacher.user.picture %}
+                                        <img class="user-list-avatar" src="{{ teacher.user.picture.url }}">
+                                    {% else %}
+                                        blank
+                                    {% endif %}
                                     <div class="user-list-info">
                                         <span class="teacher-name">{{ teacher.user.first_name }} {{ teacher.user.second_name }} {% if teacher.user.third_name %}{{ teacher.user.third_name }}{% endif %}</span>
                                     </div>

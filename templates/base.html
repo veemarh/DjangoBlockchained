@@ -49,11 +49,12 @@
                 {% if request.user.is_authenticated %}
                     <li class="header-nav-li">
                         <div id="user-icon">
-                            <span></span>
+                            {% if request.user.picture %}
+                                <img src="{{ request.user.picture.url }}">
+                            {% else %}
+                                blank
+                            {% endif %}
                         </div>
-                        <script>
-                            document.querySelector('#user-icon span').textContent = '{{ request.user.username }}'[0];
-                        </script>
                         <ul id="header-user-menu">
                             <li>
                                 {% if request.user.is_student %}

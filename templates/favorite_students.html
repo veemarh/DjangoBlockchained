@@ -13,11 +13,13 @@
                     <div class="user-list-content">
                         <div class="user-list-link">
                             <a href="{% url 'student_profile' student.user.id %}">
-                                <div class="user-list-avatar"></div>
+                                {% if student.user.picture %}
+                                    <img class="user-list-avatar" src="{{ student.user.picture.url }}">
+                                {% else %}
+                                    blank
+                                {% endif %}
                                 <div class="user-list-info">
-                                    <span>{{ student.user.first_name }} {{ student.user.second_name }}
-                                        {% if student.user.third_name %} {{ student.user.third_name }} {% endif %}
-                                    </span>
+                                    <span>{{ student.user.first_name }} {{ student.user.second_name }} {% if student.user.third_name %}{{ student.user.third_name }}{% endif %}</span>
                                 </div>
                             </a>
                             <hr style="visibility: hidden">
