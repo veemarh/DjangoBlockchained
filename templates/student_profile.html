@@ -8,10 +8,14 @@
                     <div class="account-dataset">
                         <div id="summary-dataset">
                             {# условно #}
-                            <img src="{% static 'img/avatar.jpg' %}">
+                            {% if user.picture %}
+                                <img src="{{ user.picture.url }}">
+                            {% else %}
+                                blank
+                            {% endif %}
                             {% if request.user == user %}
                                 <a href="{% url 'student_profile_edit' user.id %}">Edit profile</a>
-                                
+
                             {% elif request.user != user and request.user.is_teacher %}
                                 {% if user.student in request.user.teacher.favorite_students.all %}
                                     <a href="{% url 'remove_from_student_list' user.id %}"
@@ -21,7 +25,7 @@
                                        class="btn btn-primary">Add to My students</a>
                                 {% endif %}
                             {% endif %}
-                        
+
                         </div>
                     </div>
                     <div class="account-dataset" id="main-dataset">
@@ -31,7 +35,8 @@
                             {% endif %}
                             profile
                         </h3>
-                        <h2>{{ user.first_name }} {{ user.second_name }} <h2 id="user-third-name">{{ user.third_name }}</h2></h2>
+                        <h2>{{ user.first_name }} {{ user.second_name }} <h2
+                                id="user-third-name">{{ user.third_name }}</h2></h2>
                         <div class="profile-block">
                             <div class="profile-connect" id="profile-phone" style="display: flex">
                                 <p><a href="tel:{{ user.phone_number }}">{{ user.phone_number }}</a></p>
